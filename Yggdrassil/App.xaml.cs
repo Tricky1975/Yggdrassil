@@ -26,6 +26,8 @@
 
 
 
+
+
 using System;
 using System.Diagnostics;
 using System.Collections.Generic;
@@ -35,6 +37,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using TrickyUnits;
+using Yggdrassil.Needed.XSource;
 
 namespace Yggdrassil {
     /// <summary>
@@ -44,11 +47,15 @@ namespace Yggdrassil {
 
         public App() {
             Debug.WriteLine("Application loading!");
+            Dirry.InitAltDrives();
+            Config.Load();
             MKL.Version("Yggdrassil - App.xaml.cs","19.06.13");
             MKL.Lic    ("Yggdrassil - App.xaml.cs","GNU General Public License 3");
         }
     }
 }
+
+
 
 
 

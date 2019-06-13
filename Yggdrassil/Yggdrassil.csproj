@@ -87,6 +87,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Needed\XSource\Config.cs" />
+    <Compile Include="Needed\XSource\Fout.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

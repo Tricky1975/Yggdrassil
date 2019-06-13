@@ -25,7 +25,9 @@
 // EndLic
 
 
+
 using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -47,9 +49,13 @@ namespace Yggdrassil {
     /// </summary>
     public partial class MainWindow : Window {
         public MainWindow() {
+            Debug.WriteLine("Loading main window");
+            MKL.Lic    ("Yggdrassil - MainWindow.xaml.cs","GNU General Public License 3");
+            MKL.Version("Yggdrassil - MainWindow.xaml.cs","19.06.13");
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             Title = $"Yggdrassil version {MKL.Newest}";
+            Debug.WriteLine(MKL.All());
         }
 
         private void CenterWindowOnScreen() {
@@ -62,5 +68,6 @@ namespace Yggdrassil {
         }
     }
 }
+
 
 
