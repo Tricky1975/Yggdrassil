@@ -38,6 +38,8 @@ namespace Yggdrassil.Needed.XSource {
         static string Dir => Dirry.C("$AppSupport$").Replace("\\","/");
         static string File => $"{Dir}/Yggdrassil_MainConfig.GINI";
 
+        static string ProjectsDir => Dirry.AD(config.C("DIR.PROJECTS"));
+
         static void Print(params string[] s) {
             foreach (string qs in s) Debug.Write($"{qs}\t");
             Debug.WriteLine("");
@@ -53,7 +55,7 @@ namespace Yggdrassil.Needed.XSource {
             Print("Loading");
             config = GINI.ReadFromFile(File);
             Print("Ready"); // Yeah, I did use a Commodore 64, long ago!
-
+            Fout.Assert(ProjectsDir, "DIR.PROJECTS has not been set in main config file!");
         }
     }
 }

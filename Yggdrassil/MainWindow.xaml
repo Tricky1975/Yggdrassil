@@ -11,6 +11,42 @@
             <ColumnDefinition Width="65*"/>
             <ColumnDefinition Width="1427*"/>
         </Grid.ColumnDefinitions>
+        <TabControl HorizontalAlignment="Left" Height="969" VerticalAlignment="Top" Width="1492" Grid.ColumnSpan="2">
+            <TabItem Header="Projects">
+                <Grid Background="#FFE5E5E5">
+                    <ListBox HorizontalAlignment="Left" Height="941" VerticalAlignment="Top" Width="354">
+                        <ListBox.Foreground>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFFFFFB4" Offset="0"/>
+                                <GradientStop Color="#FFFFB400" Offset="1"/>
+                            </LinearGradientBrush>
+                        </ListBox.Foreground>
+                        <ListBox.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFB400FF" Offset="0"/>
+                                <GradientStop Color="Blue" Offset="1"/>
+                            </LinearGradientBrush>
+                        </ListBox.Background>
+                    </ListBox>
+                    <Image x:Name="Yggdrassil" HorizontalAlignment="Left" Height="350" Margin="365,14,0,0" VerticalAlignment="Top" Width="350" Source="Needed/Assets/Yggdrassil.png">
+                        <Image.OpacityMask>
+                            <ImageBrush ImageSource="Needed/Assets/Yggdrassil.png"/>
+                        </Image.OpacityMask>
+                    </Image>
+                    <Label Content="Yggdrassil&#xD;&#xA;" HorizontalAlignment="Left" Margin="766,14,0,0" VerticalAlignment="Top" Width="685" Height="94" FontFamily="Segoe UI Black" FontSize="48">
+                        <Label.Foreground>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Lime" Offset="0"/>
+                                <GradientStop Color="Blue" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Label.Foreground>
+                    </Label>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Configuration">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
 
     </Grid>
 </Window>
