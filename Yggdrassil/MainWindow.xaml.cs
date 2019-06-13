@@ -56,6 +56,7 @@ namespace Yggdrassil {
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             Title = $"Yggdrassil version {MKL.Newest}";
             Debug.WriteLine(MKL.All());
+            VersionDetails.Content = MKL.All();
         }
 
         private void CenterWindowOnScreen() {

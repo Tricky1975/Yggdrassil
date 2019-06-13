@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Yggdrassil"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1000" Width="1500">
+        Title="MainWindow" Height="1000" Width="1500" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="65*"/>
@@ -41,6 +41,7 @@
                             </LinearGradientBrush>
                         </Label.Foreground>
                     </Label>
+                    <Label x:Name="VersionDetails" Content="Label" HorizontalAlignment="Left" Height="828" Margin="766,113,0,0" VerticalAlignment="Top" Width="720" FontFamily="Courier New"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Configuration">
