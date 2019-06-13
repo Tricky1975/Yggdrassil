@@ -24,7 +24,8 @@
 // Version: 19.06.13
 // EndLic
 
-ï»¿using System;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,6 +39,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TrickyUnits;
 
 namespace Yggdrassil {
     /// <summary>
@@ -47,6 +49,7 @@ namespace Yggdrassil {
         public MainWindow() {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            Title = $"Yggdrassil version {MKL.Newest}";
         }
 
         private void CenterWindowOnScreen() {
@@ -59,4 +62,5 @@ namespace Yggdrassil {
         }
     }
 }
+
 

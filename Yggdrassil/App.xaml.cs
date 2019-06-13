@@ -1,6 +1,6 @@
 // Lic:
 // Yggrassil
-// Main GUI
+// Main Application
 // 
 // 
 // 
@@ -24,13 +24,17 @@
 // Version: 19.06.13
 // EndLic
 
-ï»¿using System;
+
+
+using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using TrickyUnits;
 
 namespace Yggdrassil {
     /// <summary>
@@ -38,6 +42,13 @@ namespace Yggdrassil {
     /// </summary>
     public partial class App : Application {
 
+        public App() {
+            Debug.WriteLine("Application loading!");
+            MKL.Version("Yggdrassil - App.xaml.cs","19.06.13");
+            MKL.Lic    ("Yggdrassil - App.xaml.cs","GNU General Public License 3");
+        }
     }
 }
+
+
 

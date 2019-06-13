@@ -59,6 +59,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="..\..\TrickyUnits\Dirry.cs">
+      <Link>Needed\Units\Dirry.cs</Link>
+    </Compile>
+    <Compile Include="..\..\TrickyUnits\GINI Is Not Ini.cs">
+      <Link>Needed\Units\GINI Is Not Ini.cs</Link>
+    </Compile>
+    <Compile Include="..\..\TrickyUnits\mkl.cs">
+      <Link>Needed\Units\mkl.cs</Link>
+    </Compile>
+    <Compile Include="..\..\TrickyUnits\OpenURI.cs">
+      <Link>Needed\Units\OpenURI.cs</Link>
+    </Compile>
+    <Compile Include="..\..\TrickyUnits\qstr.cs">
+      <Link>Needed\Units\qstr.cs</Link>
+    </Compile>
+    <Compile Include="..\..\TrickyUnits\qstream.cs">
+      <Link>Needed\Units\qstream.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -94,5 +112,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

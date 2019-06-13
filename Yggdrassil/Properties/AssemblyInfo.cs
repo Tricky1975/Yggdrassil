@@ -24,7 +24,8 @@
 // Version: 19.06.13
 // EndLic
 
-ï»¿using System.Reflection;
+
+using System.Reflection;
 using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -38,7 +39,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Yggdrassil")]
-[assembly: AssemblyCopyright("Copyright Â©  2019")]
+[assembly: AssemblyCopyright("Copyright Ã‚Â©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -79,4 +80,5 @@ using System.Windows;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+
 
