@@ -21,8 +21,9 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 19.06.13
+// Version: 19.06.14
 // EndLic
+
 
 
 
@@ -51,7 +52,7 @@ namespace Yggdrassil {
         public MainWindow() {
             Debug.WriteLine("Loading main window");
             MKL.Lic    ("Yggdrassil - MainWindow.xaml.cs","GNU General Public License 3");
-            MKL.Version("Yggdrassil - MainWindow.xaml.cs","19.06.13");
+            MKL.Version("Yggdrassil - MainWindow.xaml.cs","19.06.14");
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             Title = $"Yggdrassil version {MKL.Newest}";
@@ -69,6 +70,7 @@ namespace Yggdrassil {
         }
     }
 }
+
 
 
 
