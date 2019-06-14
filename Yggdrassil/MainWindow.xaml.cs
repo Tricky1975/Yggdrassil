@@ -60,6 +60,7 @@ namespace Yggdrassil {
             Title = $"Yggdrassil version {MKL.Newest}";
             Debug.WriteLine(MKL.All());
             VersionDetails.Content = MKL.All();
+            Copyrightlabel.Content = $"(c) {MKL.CYear(2019)} Jeroen P. Broks, released under the terms of the GPL3";
             RefreshProjectList();
         }
 
@@ -82,7 +83,7 @@ namespace Yggdrassil {
         private void CreateButton_Click(object sender, RoutedEventArgs e) {
             var prj = TBox_NewProject.Text;
             if (!(Fout.NFAssert(!Project.Exists(prj), $"Project '{prj}' already exists") ||
-                Fout.NFAssert(!System.IO.File.Exists($"{Config.ProjectsDir}/{prj}"), "There is a file name '{prj}' in the projects directory\n(no files should be there. Please remove it!)")))
+                Fout.NFAssert(!System.IO.File.Exists($"{Config.ProjectsDir}/{prj}"), $"There is a file name '{prj}' in the projects directory\n(no files should be there. Please remove it!)")))
                 return;
             Debug.WriteLine($"Creating Project: {prj}");
             Project.Load(prj);

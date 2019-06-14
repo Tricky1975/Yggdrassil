@@ -82,6 +82,7 @@
                             </Button>
                         </Grid>
                     </Border>
+                    <Label x:Name="Copyrightlabel" Content="..." HorizontalContentAlignment="Center" Height="25" Margin="720,896,0,0" VerticalAlignment="Top" Width="731"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Configuration">
