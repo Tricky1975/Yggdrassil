@@ -41,7 +41,7 @@ namespace Yggdrassil.Needed.XSource {
             MKL.Version("Yggdrassil - Fout.cs","19.06.13");
         }
         public static void Crash(string foutmelding) {
-            MessageBox.Show($"FATAL ERROR!\n\n{foutmelding}", "That doesn't work!");
+            MessageBox.Show($"FATAL ERROR!\n\n{foutmelding}", "That doesn't work!", MessageBoxButton.OK, MessageBoxImage.Error);
             Debug.WriteLine($"FATAL ERROR:> {foutmelding}");
 
 #if !FOUT_DoNotCrash
@@ -49,7 +49,13 @@ namespace Yggdrassil.Needed.XSource {
 #endif
         }
 
+
         public static void Crash(Exception foutmelding) => Crash(foutmelding.Message);
+
+        public static void Error(string foutmelding) {
+            MessageBox.Show($"ERROR!\n\n{foutmelding}", "That doesn't work!",MessageBoxButton.OK,MessageBoxImage.Error);
+            Debug.WriteLine($"ERROR:> {foutmelding}");
+        }
 
         public static void Assert(bool voorwaarde,string foutmelding) {
             if (!voorwaarde) Crash(foutmelding);               
@@ -58,6 +64,19 @@ namespace Yggdrassil.Needed.XSource {
         public static void Assert(int voorwaarde, string foutmelding) => Assert(voorwaarde != 0, foutmelding);
         public static void Assert(string voorwaarde, string foutmelding) => Assert(voorwaarde.Length, foutmelding);
         public static void Assert(object voorwaarde, string foutmelding) => Assert(voorwaarde != null, foutmelding);
+
+
+
+        public static bool NFAssert(bool voorwaarde, string foutmelding) {
+            if (!voorwaarde) Error(foutmelding);
+            return voorwaarde;
+        }
+
+        public static bool NFAssert(int voorwaarde, string foutmelding) => NFAssert(voorwaarde != 0, foutmelding);
+        public static bool NFAssert(string voorwaarde, string foutmelding) => NFAssert(voorwaarde.Length, foutmelding);
+        public static bool NFAssert(object voorwaarde, string foutmelding) => NFAssert(voorwaarde != null, foutmelding);
+
+
     }
 }
 
