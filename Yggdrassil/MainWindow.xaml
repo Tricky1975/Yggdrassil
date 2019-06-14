@@ -14,7 +14,7 @@
         <TabControl HorizontalAlignment="Left" Height="969" VerticalAlignment="Top" Width="1492" Grid.ColumnSpan="2">
             <TabItem Header="Projects">
                 <Grid Background="#FFE5E5E5">
-                    <ListBox HorizontalAlignment="Left" Height="941" VerticalAlignment="Top" Width="354">
+                    <ListBox x:Name="ListProjects" HorizontalAlignment="Left" Height="941" VerticalAlignment="Top" Width="354">
                         <ListBox.Foreground>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#FFFFFFB4" Offset="0"/>
@@ -58,7 +58,7 @@
                                     </LinearGradientBrush>
                                 </Label.Foreground>
                             </Label>
-                            <TextBox Margin="10,40,22,196">
+                            <TextBox x:Name="TBox_NewProject" Margin="10,40,22,196">
                                 <TextBox.Foreground>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="Yellow" Offset="0"/>
@@ -72,7 +72,7 @@
                                     </LinearGradientBrush>
                                 </TextBox.Background>
                             </TextBox>
-                            <Button x:Name="CreateButton" Content="Create" Margin="0,84,0,0" FontFamily="Ink Free" FontSize="48" Foreground="#FFB4FF00">
+                            <Button x:Name="CreateButton" Content="Create" Margin="0,84,0,0" FontFamily="Ink Free" FontSize="48" Foreground="#FFB4FF00" Click="CreateButton_Click">
                                 <Button.Background>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="#FF001900" Offset="0"/>

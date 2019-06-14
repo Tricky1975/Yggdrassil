@@ -24,9 +24,9 @@
 // Version: 19.06.14
 // EndLic
 
-ï»¿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Diagnostics;
 using System.Text;
 using System.IO;
 using TrickyUnits;
@@ -47,13 +47,14 @@ namespace Yggdrassil.Needed.XSource {
             }
         }
 
-        static void Load(string name) {
+        static public void Load(string name) {
             var P = new Project();
             PrjDict[name.ToUpper()] = P;
+            P.Name = name.ToUpper();
             P.Load();
         }
 
-        static Project Get(string name,bool setcurrent=false) {
+        static public Project Get(string name,bool setcurrent=false) {
             name = name.ToUpper();
             if (setcurrent) CrPrjName = name;
             if (name == "") return null;
@@ -61,7 +62,10 @@ namespace Yggdrassil.Needed.XSource {
             return PrjDict[name];
         }
 
-        static Project SetCurrent(string name) => Get(name, true);
+        static public Project SetCurrent(string name) => Get(name, true);
+
+        static public bool Exists(string name) => Directory.Exists($"{Config.ProjectsDir}/{name}");
+        
         #endregion
 
         #region Actual project data
@@ -72,6 +76,7 @@ namespace Yggdrassil.Needed.XSource {
 
         public void Load() {
             try {
+                Debug.WriteLine($"Loading project: {Name}");
                 Directory.CreateDirectory(Dir);
                 if (File.Exists(GlobalFile))
                     Global = GINI.ReadFromFile(GlobalFile);

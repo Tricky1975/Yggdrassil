@@ -80,6 +80,9 @@
     <Compile Include="..\..\TrickyUnits\Dirry.cs">
       <Link>Needed\Units\Dirry.cs</Link>
     </Compile>
+    <Compile Include="..\..\TrickyUnits\FileList.cs">
+      <Link>Needed\Units\FileList.cs</Link>
+    </Compile>
     <Compile Include="..\..\TrickyUnits\GINI Is Not Ini.cs">
       <Link>Needed\Units\GINI Is Not Ini.cs</Link>
     </Compile>

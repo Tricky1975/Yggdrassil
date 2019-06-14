@@ -43,6 +43,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TrickyUnits;
+using Yggdrassil.Needed.XSource;
 
 namespace Yggdrassil {
     /// <summary>
@@ -58,6 +59,14 @@ namespace Yggdrassil {
             Title = $"Yggdrassil version {MKL.Newest}";
             Debug.WriteLine(MKL.All());
             VersionDetails.Content = MKL.All();
+            RefreshProjectList();
+        }
+
+        void RefreshProjectList() {
+            var l = FileList.GetDir(Config.ProjectsDir, 2);
+            ListProjects.Items.Clear();
+            foreach (string p in l)
+                ListProjects.Items.Add(p);
         }
 
         private void CenterWindowOnScreen() {
@@ -67,6 +76,16 @@ namespace Yggdrassil {
             double windowHeight = this.Height;
             this.Left = (screenWidth / 2) - (windowWidth / 2);
             this.Top = (screenHeight / 2) - (windowHeight / 2);
+        }
+
+        private void CreateButton_Click(object sender, RoutedEventArgs e) {
+            var prj = TBox_NewProject.Text;
+            if (!(Fout.NFAssert(!Project.Exists(prj), $"Project '{prj}' already exists") ||
+                Fout.NFAssert(!System.IO.File.Exists($"{Config.ProjectsDir}/{prj}"), "There is a file name '{prj}' in the projects directory\n(no files should be there. Please remove it!)")))
+                return;
+            Debug.WriteLine($"Creating Project: {prj}");
+            Project.Load(prj);
+            RefreshProjectList();
         }
     }
 }
