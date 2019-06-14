@@ -42,6 +42,46 @@
                         </Label.Foreground>
                     </Label>
                     <Label x:Name="VersionDetails" Content="Label" HorizontalAlignment="Left" Height="828" Margin="766,113,0,0" VerticalAlignment="Top" Width="720" FontFamily="Courier New"/>
+                    <Border BorderThickness="1" HorizontalAlignment="Left" Height="267" Margin="359,664,0,0" VerticalAlignment="Top" Width="356">
+                        <Border.BorderBrush>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFFF0100" Offset="0"/>
+                                <GradientStop Color="#FFB400FF" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                        <Grid>
+                            <Label Content="New Project" FontFamily="Segoe Script" FontSize="24" Margin="1,1,-1,-1">
+                                <Label.Foreground>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="Red" Offset="0"/>
+                                        <GradientStop Color="Blue" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Label.Foreground>
+                            </Label>
+                            <TextBox Margin="10,40,22,196">
+                                <TextBox.Foreground>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="Yellow" Offset="0"/>
+                                        <GradientStop Color="#F8FFFFB4" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </TextBox.Foreground>
+                                <TextBox.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="Black" Offset="0"/>
+                                        <GradientStop Color="Blue" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </TextBox.Background>
+                            </TextBox>
+                            <Button x:Name="CreateButton" Content="Create" Margin="0,84,0,0" FontFamily="Ink Free" FontSize="48" Foreground="#FFB4FF00">
+                                <Button.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF001900" Offset="0"/>
+                                        <GradientStop Color="Lime" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Button.Background>
+                            </Button>
+                        </Grid>
+                    </Border>
                 </Grid>
             </TabItem>
             <TabItem Header="Configuration">

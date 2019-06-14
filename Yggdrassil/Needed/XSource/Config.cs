@@ -56,6 +56,14 @@ namespace Yggdrassil.Needed.XSource {
             config = GINI.ReadFromFile(File);
             Print("Ready"); // Yeah, I did use a Commodore 64, long ago!
             Fout.Assert(ProjectsDir, "DIR.PROJECTS has not been set in main config file!");
+            if (!Directory.Exists(Dir)) {
+                try {
+                    Print("Creating directory:", Dir);
+                    Directory.CreateDirectory(Dir);
+                } catch (Exception e) {
+                    Fout.Crash(e.Message);
+                }
+            }
         }
     }
 }
