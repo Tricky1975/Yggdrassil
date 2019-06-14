@@ -38,7 +38,7 @@ namespace Yggdrassil.Needed.XSource {
         static string Dir => Dirry.C("$AppSupport$").Replace("\\","/");
         static string File => $"{Dir}/Yggdrassil_MainConfig.GINI";
 
-        static string ProjectsDir => Dirry.AD(config.C("DIR.PROJECTS"));
+        static public string ProjectsDir => Dirry.AD(config.C("DIR.PROJECTS"));
 
         static void Print(params string[] s) {
             foreach (string qs in s) Debug.Write($"{qs}\t");

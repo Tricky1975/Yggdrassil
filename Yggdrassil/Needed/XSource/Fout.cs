@@ -49,6 +49,8 @@ namespace Yggdrassil.Needed.XSource {
 #endif
         }
 
+        public static void Crash(Exception foutmelding) => Crash(foutmelding.Message);
+
         public static void Assert(bool voorwaarde,string foutmelding) {
             if (!voorwaarde) Crash(foutmelding);               
         }
