@@ -51,6 +51,10 @@ namespace Yggdrassil {
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window {
+
+        List<UIElement> NeedsProject = new List<UIElement>();
+        public bool AutoAdept = true;
+
         public MainWindow() {
             Debug.WriteLine("Loading main window");
             MKL.Lic    ("Yggdrassil - MainWindow.xaml.cs","GNU General Public License 3");
@@ -61,7 +65,16 @@ namespace Yggdrassil {
             Debug.WriteLine(MKL.All());
             VersionDetails.Content = MKL.All();
             Copyrightlabel.Content = $"(c) {MKL.CYear(2019)} Jeroen P. Broks, released under the terms of the GPL3";
+            NeedsProject.Add(ConfigTab);
             RefreshProjectList();
+        }
+
+        bool HaveProject => ListProjects.SelectedItem != null;
+
+        void EnableElements() {
+            foreach(UIElement Elem in NeedsProject) {
+                Elem.IsEnabled = HaveProject;
+            }
         }
 
         void RefreshProjectList() {
@@ -69,6 +82,13 @@ namespace Yggdrassil {
             ListProjects.Items.Clear();
             foreach (string p in l)
                 ListProjects.Items.Add(p);
+            EnableElements();
+        }
+
+        public void UpdateUI() {
+            AutoAdept = false;
+            TBox_OutputFolder.Text = Project.Current.OutputDir;
+            AutoAdept = true;
         }
 
         private void CenterWindowOnScreen() {
@@ -88,6 +108,20 @@ namespace Yggdrassil {
             Debug.WriteLine($"Creating Project: {prj}");
             Project.Load(prj);
             RefreshProjectList();
+        }
+
+        private void ListProjects_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            var prj = ListProjects.SelectedItem.ToString();
+            Project.Load(prj);
+            Project.SetCurrent(prj);
+            UpdateUI();
+            EnableElements();
+        }
+
+        private void TBox_OutputFolder_TextChanged(object sender, TextChangedEventArgs e) {
+            if (AutoAdept) {
+                Project.Current.OutputDir = TBox_OutputFolder.Text;
+            }
         }
     }
 }

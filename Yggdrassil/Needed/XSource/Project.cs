@@ -49,6 +49,8 @@ namespace Yggdrassil.Needed.XSource {
         }
 
         static public void Load(string name) {
+            if (PrjDict.ContainsKey(name.ToUpper()))
+                return;
             var P = new Project();
             PrjDict[name.ToUpper()] = P;
             P.Name = name.ToUpper();
@@ -75,6 +77,8 @@ namespace Yggdrassil.Needed.XSource {
         string GlobalFile => $"{Dir}/{Name}.Global.GINI";
         TGINI Global;
 
+        public string OutputDir { get => Global.C("OUTPUTDIR"); set { Global.D("OUTPUTDIR", value); SaveGlobal(); } }
+
         public void Load() {
             try {
                 Debug.WriteLine($"Loading project: {Name}");
@@ -83,6 +87,14 @@ namespace Yggdrassil.Needed.XSource {
                     Global = GINI.ReadFromFile(GlobalFile);
                 else
                     Global = new TGINI();
+            } catch (Exception OhJee) {
+                Fout.Crash(OhJee);
+            }
+        }
+
+        public void SaveGlobal() {
+            try {
+                Global.SaveSource(GlobalFile);
             } catch (Exception OhJee) {
                 Fout.Crash(OhJee);
             }
