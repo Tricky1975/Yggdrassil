@@ -8,8 +8,8 @@
         Title="MainWindow" Height="1000" Width="1500" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="65*"/>
-            <ColumnDefinition Width="1427*"/>
+            <ColumnDefinition Width="11*"/>
+            <ColumnDefinition Width="238*"/>
         </Grid.ColumnDefinitions>
         <TabControl HorizontalAlignment="Left" Height="969" VerticalAlignment="Top" Width="1492" Grid.ColumnSpan="2">
             <TabItem Header="Projects">
@@ -87,7 +87,7 @@
             </TabItem>
             <TabItem x:Name="ConfigTab" Header="Configuration">
                 <Grid Background="#FFE5E5E5">
-                    <Label Content="Output folder" HorizontalAlignment="Left" Height="28" Margin="62,10,0,0" VerticalAlignment="Top" Width="231"/>
+                    <Label Content="Output folder:" HorizontalAlignment="Left" Height="28" Margin="62,10,0,0" VerticalAlignment="Top" Width="231"/>
                     <TextBox x:Name="TBox_OutputFolder" HorizontalAlignment="Left" Height="28" Margin="315,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="1122" TextChanged="TBox_OutputFolder_TextChanged">
                         <TextBox.Foreground>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -102,6 +102,22 @@
                             </LinearGradientBrush>
                         </TextBox.Background>
                     </TextBox>
+                    <Button x:Name="BrowseOutputFolder" Content="..." HorizontalAlignment="Left" Height="28" Margin="1442,10,0,0" VerticalAlignment="Top" Width="34" Click="BrowseOutputFolder_Click">
+                        <Button.Foreground>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFFFB400" Offset="0.003"/>
+                                <GradientStop Color="#FFFFFF01" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Foreground>
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="0"/>
+                                <GradientStop Color="Blue" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                    <Label x:Name="GitRepoLabel" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="9.079,2.615" Margin="315,43,0,0" Width="1161"/>
+                    <Label Content="Git respository Folder:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="62,38,0,0" Width="231"/>
                 </Grid>
             </TabItem>
         </TabControl>

@@ -21,8 +21,9 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 19.06.14
+// Version: 19.06.15
 // EndLic
+
 
 
 
@@ -58,7 +59,7 @@ namespace Yggdrassil {
         public MainWindow() {
             Debug.WriteLine("Loading main window");
             MKL.Lic    ("Yggdrassil - MainWindow.xaml.cs","GNU General Public License 3");
-            MKL.Version("Yggdrassil - MainWindow.xaml.cs","19.06.14");
+            MKL.Version("Yggdrassil - MainWindow.xaml.cs","19.06.15");
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             Title = $"Yggdrassil version {MKL.Newest}";
@@ -120,11 +121,17 @@ namespace Yggdrassil {
 
         private void TBox_OutputFolder_TextChanged(object sender, TextChangedEventArgs e) {
             if (AutoAdept) {
-                Project.Current.OutputDir = TBox_OutputFolder.Text;
+                Project.Current.OutputDir = TBox_OutputFolder.Text.Replace("\\","/");
             }
+            GitRepoLabel.Content = Project.Current.OutputGit;
+        }
+
+        private void BrowseOutputFolder_Click(object sender, RoutedEventArgs e) {
+            TBox_OutputFolder.Text = FFS.RequestDir();
         }
     }
 }
+
 
 
 

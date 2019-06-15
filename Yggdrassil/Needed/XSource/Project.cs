@@ -21,8 +21,9 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 19.06.14
+// Version: 19.06.15
 // EndLic
+
 
 
 using System;
@@ -75,10 +76,25 @@ namespace Yggdrassil.Needed.XSource {
         string Name = "";
         string Dir => $"{Config.ProjectsDir}/{Name}";
         string GlobalFile => $"{Dir}/{Name}.Global.GINI";
+        
         TGINI Global;
 
         public string OutputDir { get => Global.C("OUTPUTDIR"); set { Global.D("OUTPUTDIR", value); SaveGlobal(); } }
 
+        public string OutputGit {
+            get {
+                var s = OutputDir.Split('/');
+                for (int i = s.Length - 1; i > 0; i--) {
+                    var ts = "";
+                    for(int j = 0; j <= i; j++) {
+                        if (ts != "") ts += "/";
+                        ts += s[j];
+                    }
+                    if (Directory.Exists($"{ts}/.git")) return ts;
+                }
+                return "";
+            }
+        }
         public void Load() {
             try {
                 Debug.WriteLine($"Loading project: {Name}");
@@ -102,5 +118,6 @@ namespace Yggdrassil.Needed.XSource {
         #endregion
     }
 }
+
 
 
