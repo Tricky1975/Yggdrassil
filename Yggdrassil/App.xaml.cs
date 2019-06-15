@@ -49,6 +49,7 @@ namespace Yggdrassil {
             Debug.WriteLine("Application loading!");
             Dirry.InitAltDrives();
             Config.Load();
+            FFS.Hello();
             MKL.Version("Yggdrassil - App.xaml.cs","19.06.13");
             MKL.Lic    ("Yggdrassil - App.xaml.cs","GNU General Public License 3");
         }
