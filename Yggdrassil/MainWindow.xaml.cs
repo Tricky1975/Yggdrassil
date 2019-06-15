@@ -67,6 +67,8 @@ namespace Yggdrassil {
             VersionDetails.Content = MKL.All();
             Copyrightlabel.Content = $"(c) {MKL.CYear(2019)} Jeroen P. Broks, released under the terms of the GPL3";
             NeedsProject.Add(ConfigTab);
+            NeedsProject.Add(NewsTab);
+            Project.RegisterMainWindow(this);
             RefreshProjectList();
         }
 
