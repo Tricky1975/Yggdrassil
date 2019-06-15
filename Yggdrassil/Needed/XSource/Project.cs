@@ -40,6 +40,9 @@ namespace Yggdrassil.Needed.XSource {
         #region Static part
         static Dictionary<string, Project> PrjDict = new Dictionary<string, Project>();
         static public string CrPrjName { get; private set; } = "";
+        static MainWindow MW;
+
+        static public void RegisterMainWindow(MainWindow AMW) { MW = AMW; }
 
         static public Project Current {
             get {
@@ -60,7 +63,10 @@ namespace Yggdrassil.Needed.XSource {
 
         static public Project Get(string name,bool setcurrent=false) {
             name = name.ToUpper();
-            if (setcurrent) CrPrjName = name;
+            if (setcurrent) {
+                CrPrjName = name;
+                MW.Title = $"Yggdrasil version {MKL.Newest}; Project: {name}";
+            }
             if (name == "") return null;
             if (!PrjDict.ContainsKey(name)) return null;
             return PrjDict[name];
@@ -98,7 +104,7 @@ namespace Yggdrassil.Needed.XSource {
         public void Load() {
             try {
                 Debug.WriteLine($"Loading project: {Name}");
-                Directory.CreateDirectory(Dir);
+                Directory.CreateDirectory(Dir);                
                 if (File.Exists(GlobalFile))
                     Global = GINI.ReadFromFile(GlobalFile);
                 else
