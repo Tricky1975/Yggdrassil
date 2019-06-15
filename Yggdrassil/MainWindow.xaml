@@ -1,4 +1,4 @@
-﻿<Window x:Class="Yggdrassil.MainWindow"
+﻿<Window x:Name="YggdrassilMainWindow" x:Class="Yggdrassil.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -119,6 +119,9 @@
                     <Label x:Name="GitRepoLabel" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="9.079,2.615" Margin="315,43,0,0" Width="1161"/>
                     <Label Content="Git respository Folder:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="62,38,0,0" Width="231"/>
                 </Grid>
+            </TabItem>
+            <TabItem x:Name="NewsTab" Header="News" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="54">
+                <Grid Background="#FFE5E5E5"></Grid>
             </TabItem>
         </TabControl>
 
