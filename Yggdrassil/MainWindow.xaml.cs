@@ -74,6 +74,10 @@ namespace Yggdrassil {
             NeedsNewsBoard.Add(TBox_NewsTemplate);
             NeedsNewsBoard.Add(TBox_PreNewsText);
             NeedsNewsBoard.Add(CB_NewsEdit);
+            NeedsNewsBoard.Add(TBox_NewsSubject);
+            NeedsNewsBoard.Add(NewsCommit);
+            NeedsNewsBoard.Add(TBox_NewsContent);
+            NeedsNewsBoard.Add(SaveNewsItem);
             Project.RegisterMainWindow(this);
             RefreshProjectList();
         }
