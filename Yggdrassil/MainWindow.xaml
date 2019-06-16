@@ -172,6 +172,47 @@
                             </LinearGradientBrush>
                         </Button.Background>
                     </Button>
+                    <Label Content="Template" HorizontalAlignment="Left" Margin="212,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.816,-1.615" Height="32" Width="209" Foreground="#FFB400FF"/>
+                    <TextBox x:Name="TBox_NewsTemplate" HorizontalAlignment="Left" Height="23" Margin="436,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="968">
+                        <TextBox.Foreground>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFFFB400" Offset="0"/>
+                                <GradientStop Color="White" Offset="1"/>
+                            </LinearGradientBrush>
+                        </TextBox.Foreground>
+                        <TextBox.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="0"/>
+                                <GradientStop Color="#FFB400FF" Offset="1"/>
+                            </LinearGradientBrush>
+                        </TextBox.Background>
+                    </TextBox>
+                    <Label Content="Pre-Board Text:" HorizontalAlignment="Left" Margin="212,47,0,0" VerticalAlignment="Top" Width="209" Foreground="#FFB400FF"/>
+                    <TextBox x:Name="TBox_PreNewsText" HorizontalAlignment="Left" Height="190" Margin="436,47,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="968" AcceptsReturn="True">
+                        <TextBox.Foreground>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFFFB400" Offset="0"/>
+                                <GradientStop Color="White" Offset="1"/>
+                            </LinearGradientBrush>
+                        </TextBox.Foreground>
+                        <TextBox.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="0"/>
+                                <GradientStop Color="#FFB400FF" Offset="1"/>
+                            </LinearGradientBrush>
+                        </TextBox.Background>
+                    </TextBox>
+                    <Separator HorizontalAlignment="Left" Height="15" Margin="212,242,0,0" VerticalAlignment="Top" Width="1192" Background="#FFA03C00"/>
+                    <Label Content="Edit" HorizontalAlignment="Left" Margin="212,257,0,0" VerticalAlignment="Top" Width="209" Background="{x:Null}" Foreground="#FFB400FF"/>
+                    <ComboBox x:Name="CB_NewsEdit" HorizontalAlignment="Left" Margin="436,262,0,0" VerticalAlignment="Top" Width="968">
+                        <ComboBox.Background>
+                            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                <GradientStop Color="#FF120019" Offset="0"/>
+                                <GradientStop Color="#FFB400FF" Offset="1"/>
+                            </LinearGradientBrush>
+                        </ComboBox.Background>
+                        <ListBoxItem/>
+                    </ComboBox>
                 </Grid>
             </TabItem>
         </TabControl>

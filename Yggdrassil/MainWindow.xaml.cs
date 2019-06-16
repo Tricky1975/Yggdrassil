@@ -71,6 +71,9 @@ namespace Yggdrassil {
             NeedsProject.Add(ConfigTab);
             NeedsProject.Add(NewsTab);
             NeedsNewsBoard.Add(DoRemoveNewsPage);
+            NeedsNewsBoard.Add(TBox_NewsTemplate);
+            NeedsNewsBoard.Add(TBox_PreNewsText);
+            NeedsNewsBoard.Add(CB_NewsEdit);
             Project.RegisterMainWindow(this);
             RefreshProjectList();
         }
@@ -111,6 +114,27 @@ namespace Yggdrassil {
                     Debug.WriteLine($"= Denied file {p}\tNot a GINI file! What is it doing here?");
             }
             EnableElements();
+            RefreshNewsEntries();
+        }
+
+        void RefreshNewsEntries() {
+            Debug.WriteLine("Refresh news entries");
+            var cp = Project.Current;
+            if (cp == null) {
+                Debug.WriteLine("= REJECTED!\tNo project");
+                return;
+            }                
+            var nbchosen = ListNewsBoards.SelectedItem;
+            if (nbchosen == null) {
+                Debug.WriteLine("= REJECTED!\tNo newsboard");
+                return;
+            }
+            var nb = nbchosen.ToString();
+            var newsdir = $"{cp.NewsDir}/{nb}";
+            Directory.CreateDirectory(newsdir);
+            CB_NewsEdit.Items.Clear();
+            CB_NewsEdit.Items.Add("*NEW*");
+            CB_NewsEdit.SelectedIndex = 0;
         }
 
         public void UpdateUI() {
@@ -186,6 +210,7 @@ namespace Yggdrassil {
         }
 
         private void ListNewsBoards_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            RefreshNewsEntries();
             EnableElements();
         }
     }
