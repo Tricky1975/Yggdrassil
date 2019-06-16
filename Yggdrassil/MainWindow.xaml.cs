@@ -163,7 +163,7 @@ namespace Yggdrassil {
         private void CreateButton_Click(object sender, RoutedEventArgs e) {
             var prj = TBox_NewProject.Text;
             if (!(Fout.NFAssert(!Project.Exists(prj), $"Project '{prj}' already exists") ||
-                Fout.NFAssert(!System.IO.File.Exists($"{Config.ProjectsDir}/{prj}"), $"There is a file name '{prj}' in the projects directory\n(no files should be there. Please remove it!)")))
+                Fout.NFAssert(!File.Exists($"{Config.ProjectsDir}/{prj}"), $"There is a file name '{prj}' in the projects directory\n(no files should be there. Please remove it!)")))
                 return;
             Debug.WriteLine($"Creating Project: {prj}");
             Project.Load(prj);
