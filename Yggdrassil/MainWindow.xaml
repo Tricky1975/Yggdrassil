@@ -121,7 +121,58 @@
                 </Grid>
             </TabItem>
             <TabItem x:Name="NewsTab" Header="News" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="54">
-                <Grid Background="#FFE5E5E5"></Grid>
+                <Grid>
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black" Offset="0"/>
+                            <GradientStop Color="#FF191919" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <ListBox x:Name="ListNewsBoards" HorizontalAlignment="Left" Height="903" Margin="7,6,0,0" VerticalAlignment="Top" Width="191" FontSize="18" SelectionChanged="ListNewsBoards_SelectionChanged">
+                        <ListBox.Foreground>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Red" Offset="0"/>
+                                <GradientStop Color="#FFFFB400" Offset="1"/>
+                            </LinearGradientBrush>
+                        </ListBox.Foreground>
+                        <ListBox.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="0"/>
+                                <GradientStop Color="#FF7F0000" Offset="1"/>
+                            </LinearGradientBrush>
+                        </ListBox.Background>
+                    </ListBox>
+                    <TextBox x:Name="AddNewsBoardName" HorizontalAlignment="Left" Height="23" Margin="10,908,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144">
+                        <TextBox.Foreground>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFFFB400" Offset="0"/>
+                                <GradientStop Color="Yellow" Offset="1"/>
+                            </LinearGradientBrush>
+                        </TextBox.Foreground>
+                        <TextBox.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="0"/>
+                                <GradientStop Color="Lime" Offset="1"/>
+                            </LinearGradientBrush>
+                        </TextBox.Background>
+                    </TextBox>
+                    <Button x:Name="DoAddNewsPage" Content="+" HorizontalAlignment="Left" Margin="154,909,0,0" VerticalAlignment="Top" Width="20" RenderTransformOrigin="-2.188,3.45" Foreground="#FF64FF00" Height="22" Click="DoAddNewsPage_Click">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Lime" Offset="0"/>
+                                <GradientStop Color="#FF001900" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                    <Button x:Name="DoRemoveNewsPage" Content="-" HorizontalAlignment="Left" Margin="174,909,0,0" VerticalAlignment="Top" Width="24" Height="22" Foreground="#FFFF6464" Click="DoRemoveNewsPage_Click">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Red" Offset="0"/>
+                                <GradientStop Color="#FF190000" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                </Grid>
             </TabItem>
         </TabControl>
 

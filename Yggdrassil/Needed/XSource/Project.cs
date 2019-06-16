@@ -21,8 +21,9 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 19.06.15
+// Version: 19.06.16
 // EndLic
+
 
 
 
@@ -86,6 +87,7 @@ namespace Yggdrassil.Needed.XSource {
         TGINI Global;
 
         public string OutputDir { get => Global.C("OUTPUTDIR"); set { Global.D("OUTPUTDIR", value); SaveGlobal(); } }
+        public string NewsDir { get => $"{Dir}/NewsBoards"; }
 
         public string OutputGit {
             get {
@@ -124,6 +126,7 @@ namespace Yggdrassil.Needed.XSource {
         #endregion
     }
 }
+
 
 
 

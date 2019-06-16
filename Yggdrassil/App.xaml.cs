@@ -21,8 +21,9 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 19.06.13
+// Version: 19.06.16
 // EndLic
+
 
 
 
@@ -50,11 +51,12 @@ namespace Yggdrassil {
             Dirry.InitAltDrives();
             Config.Load();
             FFS.Hello();
-            MKL.Version("Yggdrassil - App.xaml.cs","19.06.13");
+            MKL.Version("Yggdrassil - App.xaml.cs","19.06.16");
             MKL.Lic    ("Yggdrassil - App.xaml.cs","GNU General Public License 3");
         }
     }
 }
+
 
 
 

@@ -21,8 +21,9 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 19.06.14
+// Version: 19.06.16
 // EndLic
+
 
 
 #undef FOUT_DoNotCrash
@@ -39,7 +40,7 @@ namespace Yggdrassil.Needed.XSource {
     static class Fout {
         static Fout() {
             MKL.Lic    ("Yggdrassil - Fout.cs","GNU General Public License 3");
-            MKL.Version("Yggdrassil - Fout.cs","19.06.14");
+            MKL.Version("Yggdrassil - Fout.cs","19.06.16");
         }
         public static void Crash(string foutmelding) {
             MessageBox.Show($"FATAL ERROR!\n\n{foutmelding}", "That doesn't work!", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -57,6 +58,8 @@ namespace Yggdrassil.Needed.XSource {
             MessageBox.Show($"ERROR!\n\n{foutmelding}", "That doesn't work!",MessageBoxButton.OK,MessageBoxImage.Error);
             Debug.WriteLine($"ERROR:> {foutmelding}");
         }
+
+        public static void Error(Exception ex) => Error(ex.Message);
 
         public static void Assert(bool voorwaarde,string foutmelding) {
             if (!voorwaarde) Crash(foutmelding);               
@@ -80,5 +83,6 @@ namespace Yggdrassil.Needed.XSource {
 
     }
 }
+
 
 
