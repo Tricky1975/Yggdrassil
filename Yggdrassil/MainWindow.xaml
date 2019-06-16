@@ -86,7 +86,13 @@
                 </Grid>
             </TabItem>
             <TabItem x:Name="ConfigTab" Header="Configuration">
-                <Grid Background="#FFE5E5E5">
+                <Grid>
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF96C3FF" Offset="0"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
                     <Label Content="Output folder:" HorizontalAlignment="Left" Height="28" Margin="62,10,0,0" VerticalAlignment="Top" Width="231"/>
                     <TextBox x:Name="TBox_OutputFolder" HorizontalAlignment="Left" Height="28" Margin="315,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="1122" TextChanged="TBox_OutputFolder_TextChanged">
                         <TextBox.Foreground>
@@ -118,6 +124,21 @@
                     </Button>
                     <Label x:Name="GitRepoLabel" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="9.079,2.615" Margin="315,43,0,0" Width="1161"/>
                     <Label Content="Git respository Folder:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="62,38,0,0" Width="231"/>
+                    <Label Content="Default Template" HorizontalAlignment="Left" Margin="62,69,0,0" VerticalAlignment="Top" Width="231"/>
+                    <TextBox x:Name="TBox_DefaultTemplate" HorizontalAlignment="Left" Height="23" Margin="315,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="1122" TextChanged="TBox_DefaultTemplate_TextChanged">
+                        <TextBox.Foreground>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFB46400" Offset="0"/>
+                                <GradientStop Color="#FFFFB400" Offset="1"/>
+                            </LinearGradientBrush>
+                        </TextBox.Foreground>
+                        <TextBox.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="0"/>
+                                <GradientStop Color="#FF780000" Offset="1"/>
+                            </LinearGradientBrush>
+                        </TextBox.Background>
+                    </TextBox>
                 </Grid>
             </TabItem>
             <TabItem x:Name="NewsTab" Header="News" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="54">

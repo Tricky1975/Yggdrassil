@@ -145,6 +145,7 @@ namespace Yggdrassil {
         public void UpdateUI() {
             AutoAdept = false;
             TBox_OutputFolder.Text = Project.Current.OutputDir;
+            TBox_DefaultTemplate.Text = Project.Current.DefaultTemplate;
             RefreshNewsBoards();
             AutoAdept = true;
         }
@@ -217,6 +218,13 @@ namespace Yggdrassil {
         private void ListNewsBoards_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             RefreshNewsEntries();
             EnableElements();
+        }
+
+        private void TBox_DefaultTemplate_TextChanged(object sender, TextChangedEventArgs e) {
+            if (AutoAdept) {
+                Project.Current.DefaultTemplate = TBox_DefaultTemplate.Text.Replace("\\", "/");
+            }
+
         }
     }
 }
