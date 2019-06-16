@@ -77,7 +77,9 @@ namespace Yggdrassil.Needed.XSource {
     class NewsBoard {
         readonly public Project Parent;
         readonly public string id;
-        public string ItemDir => $"{Parent.NewsDir}/NewsItems";
+        readonly public TGINI data;
+        public string ItemDir => $"{Parent.NewsDir}/{id}";
+        public string GINIFile => $"{Parent.NewsDir}/{id}.GINI";
         public NewsBoard(Project ouwe, string idcode) {
             Parent = ouwe;
             id = idcode;

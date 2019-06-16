@@ -90,6 +90,7 @@ namespace Yggdrassil.Needed.XSource {
         public string OutputDir { get => Global.C("OUTPUTDIR"); set { Global.D("OUTPUTDIR", value); SaveGlobal(); } }
         public string DefaultTemplate { get => Global.C("DEFAULTTEMPLATE"); set { Global.D("DEFAULTTEMPLATE", value); SaveGlobal(); } }
         public string NewsDir { get => $"{Dir}/NewsBoards"; }
+        public Dictionary<string, NewsBoard> NewsBoards = new Dictionary<string, NewsBoard>();
 
         public string OutputGit {
             get {
@@ -124,6 +125,13 @@ namespace Yggdrassil.Needed.XSource {
             } catch (Exception OhJee) {
                 Fout.Crash(OhJee);
             }
+        }
+
+        public NewsBoard GetNewsBoard(string id) {
+            if (NewsBoards.ContainsKey(id)) {
+                NewsBoards[id] = new NewsBoard(this, id);
+            }
+            return NewsBoards[id];
         }
         #endregion
     }
