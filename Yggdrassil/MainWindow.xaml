@@ -299,6 +299,34 @@
                     </Button>
                 </Grid>
             </TabItem>
+            <TabItem Header="Page" ></TabItem>
+            <TabItem Header="Wiki"></TabItem>
+            <TabItem Header="Git">
+                <Grid>
+                    <TextBox x:Name="GitOutput" Foreground="#FFFFB400" Text="No Git requests done yet!" FontFamily="Courier New" FontSize="16" Margin="0,0,0,25" IsReadOnly="True">
+                        <TextBox.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF321900" Offset="0"/>
+                                <GradientStop Color="#FF191200" Offset="1"/>
+                            </LinearGradientBrush>
+                        </TextBox.Background>
+                    </TextBox>
+                    <Button x:Name="GitPush" Content="Push" HorizontalAlignment="Left" Margin="10,921,0,0" VerticalAlignment="Top" Width="1466" Click="GitPush_Click">
+                        <Button.Foreground>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Lime" Offset="0"/>
+                                <GradientStop Color="#FF00C800" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Foreground>
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="0"/>
+                                <GradientStop Color="#FF00C800" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                </Grid>
+            </TabItem>
         </TabControl>
 
     </Grid>

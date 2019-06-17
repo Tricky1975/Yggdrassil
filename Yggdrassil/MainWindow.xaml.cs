@@ -72,6 +72,7 @@ namespace Yggdrassil {
             Copyrightlabel.Content = $"(c) {MKL.CYear(2019)} Jeroen P. Broks, released under the terms of the GPL3";
             NeedsProject.Add(ConfigTab);
             NeedsProject.Add(NewsTab);
+            NeedsProject.Add(GitPush);
             NeedsNewsBoard.Add(DoRemoveNewsPage);
             NeedsNewsBoard.Add(TBox_NewsTemplate);
             NeedsNewsBoard.Add(TBox_PreNewsText);
@@ -81,6 +82,7 @@ namespace Yggdrassil {
             NeedsNewsBoard.Add(TBox_NewsContent);
             NeedsNewsBoard.Add(SaveNewsItem);
             Project.RegisterMainWindow(this);
+            Git.Register(this);
             RefreshProjectList();
         }
 
@@ -259,6 +261,15 @@ namespace Yggdrassil {
 
             // Generate News
             nb.Generate();
+
+            // Git call
+            var cmm = NewsCommit.Text;
+            if (cmm == "") cmm = "Update news";
+            Git.Commit(cmm, "-a");
+        }
+
+        private void GitPush_Click(object sender, RoutedEventArgs e) {
+            Git.Push();
         }
     }
 }
