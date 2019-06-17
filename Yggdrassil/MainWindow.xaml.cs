@@ -250,6 +250,16 @@ namespace Yggdrassil {
                 Project.Current.GetNewsBoard(cp).PreText = TBox_PreNewsText.Text;
             }
         }
+
+        private void SaveNewsItem_Click(object sender, RoutedEventArgs e) {
+            var cp = ListNewsBoards.SelectedItem.ToString();
+            var nb = Project.Current.GetNewsBoard(cp);
+            // Update news if an item has been written or edited
+            // TODO: This comes later!
+
+            // Generate News
+            nb.Generate();
+        }
     }
 }
 
