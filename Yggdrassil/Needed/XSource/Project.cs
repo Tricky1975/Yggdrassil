@@ -128,7 +128,7 @@ namespace Yggdrassil.Needed.XSource {
         }
 
         public NewsBoard GetNewsBoard(string id) {
-            if (NewsBoards.ContainsKey(id)) {
+            if (!NewsBoards.ContainsKey(id)) {
                 NewsBoards[id] = new NewsBoard(this, id);
             }
             return NewsBoards[id];

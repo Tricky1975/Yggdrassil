@@ -135,12 +135,20 @@ namespace Yggdrassil {
                 Debug.WriteLine("= REJECTED!\tNo newsboard");
                 return;
             }
+            AutoAdept = false;
             var nb = nbchosen.ToString();
             var newsdir = $"{cp.NewsDir}/{nb}";
             Directory.CreateDirectory(newsdir);
             CB_NewsEdit.Items.Clear();
             CB_NewsEdit.Items.Add("*NEW*");
             CB_NewsEdit.SelectedIndex = 0;
+
+            if (ListNewsBoards.SelectedItem != null) {
+                var nnb = Project.Current.GetNewsBoard(ListNewsBoards.SelectedItem.ToString());
+                TBox_NewsTemplate.Text = nnb.Template;
+                TBox_PreNewsText.Text = nnb.PreText;
+            }
+            AutoAdept = true;
         }
 
         public void UpdateUI() {
@@ -218,6 +226,7 @@ namespace Yggdrassil {
 
         private void ListNewsBoards_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             RefreshNewsEntries();
+            //UpdateUI();
             EnableElements();
         }
 
@@ -226,6 +235,20 @@ namespace Yggdrassil {
                 Project.Current.DefaultTemplate = TBox_DefaultTemplate.Text.Replace("\\", "/");
             }
 
+        }
+
+        private void TBox_NewsTemplate_TextChanged(object sender, TextChangedEventArgs e) {
+            if (AutoAdept) {
+                var cp = ListNewsBoards.SelectedItem.ToString();
+                Project.Current.GetNewsBoard(cp).Template=TBox_NewsTemplate.Text;
+            }
+        }
+
+        private void TBox_PreNewsText_TextChanged(object sender, TextChangedEventArgs e) {
+            if (AutoAdept) {
+                var cp = ListNewsBoards.SelectedItem.ToString();
+                Project.Current.GetNewsBoard(cp).PreText = TBox_PreNewsText.Text;
+            }
         }
     }
 }

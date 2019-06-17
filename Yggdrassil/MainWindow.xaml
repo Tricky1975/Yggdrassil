@@ -194,7 +194,7 @@
                         </Button.Background>
                     </Button>
                     <Label Content="Template" HorizontalAlignment="Left" Margin="212,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.816,-1.615" Height="32" Width="209" Foreground="#FFB400FF"/>
-                    <TextBox x:Name="TBox_NewsTemplate" HorizontalAlignment="Left" Height="23" Margin="436,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="968">
+                    <TextBox x:Name="TBox_NewsTemplate" HorizontalAlignment="Left" Height="23" Margin="436,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="968" TextChanged="TBox_NewsTemplate_TextChanged">
                         <TextBox.Foreground>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#FFFFB400" Offset="0"/>
@@ -209,7 +209,7 @@
                         </TextBox.Background>
                     </TextBox>
                     <Label Content="Pre-Board Text:" HorizontalAlignment="Left" Margin="212,47,0,0" VerticalAlignment="Top" Width="209" Foreground="#FFB400FF"/>
-                    <TextBox x:Name="TBox_PreNewsText" HorizontalAlignment="Left" Height="190" Margin="436,47,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="968" AcceptsReturn="True">
+                    <TextBox x:Name="TBox_PreNewsText" HorizontalAlignment="Left" Height="190" Margin="436,47,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="968" AcceptsReturn="True" TextChanged="TBox_PreNewsText_TextChanged">
                         <TextBox.Foreground>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#FFFFB400" Offset="0"/>

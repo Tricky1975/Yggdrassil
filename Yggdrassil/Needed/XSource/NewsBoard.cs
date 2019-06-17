@@ -27,6 +27,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using TrickyUnits;
@@ -77,13 +78,23 @@ namespace Yggdrassil.Needed.XSource {
     class NewsBoard {
         readonly public Project Parent;
         readonly public string id;
-        readonly public TGINI data;
+        readonly public TGINI data = new TGINI();
         public string ItemDir => $"{Parent.NewsDir}/{id}";
         public string GINIFile => $"{Parent.NewsDir}/{id}.GINI";
+        public string Template { get => data.C("Template"); set { data.D("Template", qstr.OrText(value,"*DEFAULT*")); Save(); } }
+        public string PreText { get => data.ListToString("PreText"); set { data.StringToList("PreText", value); Save(); } }
+        readonly public SortedDictionary<string, NewsItem> Items = new SortedDictionary<string, NewsItem>();
+
         public NewsBoard(Project ouwe, string idcode) {
             Parent = ouwe;
             id = idcode;
             Directory.CreateDirectory(ItemDir);
+            if (File.Exists(GINIFile)) data = GINI.ReadFromFile(GINIFile);
+        }
+
+        void Save() {
+            Debug.WriteLine($"Saving newsboard: {GINIFile}");
+            data.SaveSource(GINIFile);
         }
     }
 }
