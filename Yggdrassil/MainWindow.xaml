@@ -140,7 +140,22 @@
                         </TextBox.Background>
                     </TextBox>
                     <Label Content="Translations of pages and wikis:" HorizontalAlignment="Left" Margin="62,113,0,0" VerticalAlignment="Top" RenderTransformOrigin="-3.237,-0.077" Width="231"/>
-                    <TextBox x:Name="TBox_Languages" HorizontalAlignment="Left" Height="130" Margin="315,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="1122" FontFamily="Courier New" FontSize="18">
+                    <TextBox x:Name="TBox_Languages" AcceptsReturn="True" HorizontalAlignment="Left" Height="130" Margin="315,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="1122" FontFamily="Courier New" FontSize="18">
+                        <TextBox.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF00B4FF" Offset="0"/>
+                                <GradientStop Color="#FF009B9B" Offset="1"/>
+                            </LinearGradientBrush>
+                        </TextBox.Background>
+                        <TextBox.Foreground>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF000F0F" Offset="0"/>
+                                <GradientStop Color="Blue" Offset="1"/>
+                            </LinearGradientBrush>
+                        </TextBox.Foreground>
+                    </TextBox>
+                    <Label Content="Users + Avatars:" HorizontalAlignment="Left" Margin="62,248,0,0" VerticalAlignment="Top" RenderTransformOrigin="-3.237,-0.077" Width="231"/>
+                    <TextBox x:Name="TBox_Users" AcceptsReturn="True" HorizontalAlignment="Left" Height="130" Margin="315,248,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="1122" FontFamily="Courier New" FontSize="18">
                         <TextBox.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#FF00B4FF" Offset="0"/>

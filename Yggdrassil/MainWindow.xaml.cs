@@ -277,6 +277,10 @@ namespace Yggdrassil {
         private void TBox_Languages_TextChanged(object sender, TextChangedEventArgs e) {
             if (AutoAdept) Project.Current.Translations = TBox_Languages.Text;
         }
+
+        private void TBox_Users_TextChanged(object sender, TextChangedEventArgs e) {
+            if (AutoAdept) Project.Current.Users = TBox_Users.Text;
+        }
     }
 }
 
