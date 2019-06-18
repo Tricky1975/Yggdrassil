@@ -24,6 +24,7 @@
 // Version: 19.06.18
 // EndLic
 
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -38,10 +39,11 @@ namespace Yggdrassil.Needed.XSource {
         static public void Register(MainWindow MW) { MainWindow = MW; }
         static Project Prj => Project.Current;
 
-        static void Call(string cmd, string parameters) {
-            if (Prj == null) return;
+        static bool Call(string cmd, string parameters) {
+            if (Prj == null) return false;
             if (Prj.OutputGit == "") {
                 Debug.WriteLine($"Git request denied! No git repository");
+                return false;
             }
             var output = new StringBuilder($"{Prj.OutputDir}$ {cmd} {parameters}\n\n");
             QuickStream.PushDir();
@@ -65,11 +67,18 @@ namespace Yggdrassil.Needed.XSource {
             MainWindow.GitOutput.Text = output.ToString();
             if (pgit.ExitCode != 0) {
                 Fout.Error($"git call returned exit code {pgit.ExitCode}");
+                return false;
             }
+            return true;
         }
 
-        static void GIT(string parameters) {
-            Call("git", parameters);
+        static bool GIT(string parameters) {
+            return Call("git", parameters);
+        }
+
+        static public void AddAndCommit(string commitmessage,params string[] files) {
+            if (GIT($"add {string.Join(" ", files)}"))
+                Commit(commitmessage, files);
         }
 
         static public void Commit(string commitmessage,params string[] files) {
@@ -81,4 +90,5 @@ namespace Yggdrassil.Needed.XSource {
         }
     }
 }
+
 

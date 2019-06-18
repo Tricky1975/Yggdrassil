@@ -23,6 +23,7 @@
 // 
 // Version: 19.06.18
 // EndLic
+
 using System;
 using System.Diagnostics;
 using System.Collections.Generic;
@@ -410,9 +411,11 @@ namespace Yggdrassil {
             var pageid = Pages.SelectedItem.ToString();
             var page = Project.Current.GetPage(Pages.SelectedItem.ToString());
             page.Save();
+            page.Generate();
         }
     }
 }
+
 
 
 
