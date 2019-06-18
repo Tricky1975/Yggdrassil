@@ -391,6 +391,8 @@
                             </LinearGradientBrush>
                         </Button.Background>
                     </Button>
+                    <Label Content="Language:" HorizontalAlignment="Left" Margin="280,10,0,0" VerticalAlignment="Top" Width="225"/>
+                    <ComboBox x:Name="PageLanguage" HorizontalAlignment="Left" Margin="529,10,0,0" VerticalAlignment="Top" Width="813"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Wiki"></TabItem>

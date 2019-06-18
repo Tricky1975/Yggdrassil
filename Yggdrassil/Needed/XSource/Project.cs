@@ -152,7 +152,7 @@ namespace Yggdrassil.Needed.XSource {
                 foreach (string lin in Global.List("Users")) {
                     string cmd, value,avatar;
                     int isteken = lin.IndexOf('=');
-                    if (Fout.NFAssert(isteken > 0, "Illegal line in avatar bindings!\n\n{lin}")) {
+                    if (Fout.NFAssert(isteken > 0, $"Illegal line in avatar bindings!\n\n{lin}")) {
                         cmd = lin.Substring(0, isteken);
                         value = lin.Substring(isteken+1);  /* 123456789 */
                         avatar = value;
@@ -167,6 +167,27 @@ namespace Yggdrassil.Needed.XSource {
                 return ret;
             }
         }
+
+        Dictionary<string, string> LngRetOld = null;
+        public Dictionary<string, string> Language {
+            get {
+                if (LngRetOld != null) return LngRetOld;
+                var ret = new Dictionary<string, string>();
+                foreach (string lin in Global.List("Translations")) {
+                    string cmd, value, language;
+                    int isteken = lin.IndexOf('=');
+                    if (Fout.NFAssert(isteken > 0, $"Illegal line in language/translation bindings!\n\n{lin}")) {
+                        cmd = lin.Substring(0, isteken);
+                        value = lin.Substring(isteken + 1); 
+                        language = value;
+                        ret[cmd] = language;
+                    }
+                }
+                LngRetOld = ret;
+                return ret;
+            }
+        }
+
 
         public string LastUser {
             get => Global.C("LastUser");

@@ -59,6 +59,7 @@ namespace Yggdrassil {
 
         List<UIElement> NeedsProject = new List<UIElement>();
         List<UIElement> NeedsNewsBoard = new List<UIElement>();
+        List<ComboBox> LanguageCombo = new List<ComboBox>();
         public bool AutoAdept = true;
 
         public MainWindow() {
@@ -83,6 +84,7 @@ namespace Yggdrassil {
             NeedsNewsBoard.Add(NewsCommit);
             NeedsNewsBoard.Add(TBox_NewsContent);
             NeedsNewsBoard.Add(SaveNewsItem);
+            LanguageCombo.Add(PageLanguage);
             Project.RegisterMainWindow(this);
             Git.Register(this);
             RefreshProjectList();
@@ -155,6 +157,14 @@ namespace Yggdrassil {
             AutoAdept = true;
         }
 
+        void RefreshLanguages() {
+            foreach(ComboBox Lng in LanguageCombo) {
+                Lng.Items.Clear();
+                foreach (string code in Project.Current.Language.Keys) Lng.Items.Add(code);
+                Lng.SelectedIndex = 0;
+            }
+        }
+
         public void UpdateUI() {
             AutoAdept = false;
             TBox_OutputFolder.Text = Project.Current.OutputDir;
@@ -163,6 +173,7 @@ namespace Yggdrassil {
             TBox_Users.Text = Project.Current.Users;
             TBox_NewsItem_User.Text = Project.Current.LastUser;
             RefreshNewsBoards();
+            RefreshLanguages();
             AutoAdept = true;
         }
 
@@ -300,6 +311,18 @@ namespace Yggdrassil {
                 Debug.WriteLine($"No avatar for user {nu} so skipping that request!");
             }
         }
+
+        void SyncLanguages(ComboBox caller) {
+            foreach(ComboBox Lng in LanguageCombo) {
+                if (Lng != caller) Lng.SelectedIndex = caller.SelectedIndex;
+            }
+        }
+
+        private void PageLanguage_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            SyncLanguages(PageLanguage);
+        }
+
+        
     }
 }
 
