@@ -24,7 +24,7 @@
 // Version: 19.06.18
 // EndLic
 
-ï»¿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
