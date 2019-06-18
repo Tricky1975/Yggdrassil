@@ -94,6 +94,8 @@ namespace Yggdrassil.Needed.XSource {
         public string TemplateDir => $"{Dir}/Templates";
         public Dictionary<string, NewsBoard> NewsBoards = new Dictionary<string, NewsBoard>();
 
+
+
         public string OutputGit {
             get {
                 var s = OutputDir.Split('/');
@@ -127,6 +129,42 @@ namespace Yggdrassil.Needed.XSource {
                 k = k.Replace(";", "\n");
                 Global.StringToList("Translations", k);
                 SaveGlobal();
+            }
+        }
+
+
+        public string Users {
+            get => Global.ListToString("Users");
+            set {
+                var k = value.Replace("\r", "");
+                AvRetOld = null;
+                k = k.Replace(";", "\n");
+                Global.StringToList("Users", k);
+                SaveGlobal();
+            }
+        }
+
+        Dictionary<string, string> AvRetOld = null;
+        public Dictionary<string,string> Avatar {
+            get {
+                if (AvRetOld != null) return AvRetOld;
+                var ret = new Dictionary<string, string>();
+                foreach (string lin in Global.List("Users")) {
+                    string cmd, value,avatar;
+                    int isteken = lin.IndexOf('=');
+                    if (Fout.NFAssert(isteken > 0, "Illegal line in avatar bindings!\n\n{lin}")) {
+                        cmd = lin.Substring(0, isteken);
+                        value = lin.Substring(isteken);  /* 123456789 */
+                        avatar = value;
+                        if (qstr.Prefixed(value.ToUpper(), "GRAVATAR:")) {
+                            // The odd HTTP thing was to prevent links in my Syntax Highlight, as this spooks things up and I don't like that!
+                            avatar = $"{"https://"}secure.gravatar.com/avatar/{qstr.md5(value.Substring(9))}?s=200&r=pg"; // &d=https%3A%2F%2Fb6d3e9q9.ssl.hwcdn.net%2Fimg%2Fno-avatar-3.png";
+                        }
+                        ret[cmd] = avatar;
+                    }
+                }
+                AvRetOld = ret;
+                return ret;
             }
         }
 
