@@ -159,6 +159,7 @@ namespace Yggdrassil {
             TBox_OutputFolder.Text = Project.Current.OutputDir;
             TBox_DefaultTemplate.Text = Project.Current.DefaultTemplate;
             TBox_Languages.Text = Project.Current.Translations;
+            TBox_Users.Text = Project.Current.Users;
             RefreshNewsBoards();
             AutoAdept = true;
         }
