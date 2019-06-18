@@ -391,8 +391,70 @@
                             </LinearGradientBrush>
                         </Button.Background>
                     </Button>
-                    <Label Content="Language:" HorizontalAlignment="Left" Margin="280,10,0,0" VerticalAlignment="Top" Width="225"/>
-                    <ComboBox x:Name="PageLanguage" HorizontalAlignment="Left" Margin="529,10,0,0" VerticalAlignment="Top" Width="813"/>
+                    <GroupBox Header="General" Margin="280,0,10,804">
+                        <Grid>
+                            <Label Content="Language:" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top" Width="225"/>
+                            <ComboBox x:Name="PageLanguage" HorizontalAlignment="Left" Margin="240,10,0,0" VerticalAlignment="Top" Width="839" SelectionChanged="PageLanguage_SelectionChanged"/>
+                            <Label Content="User:" HorizontalAlignment="Left" Margin="21,37,0,0" VerticalAlignment="Top" Width="225"/>
+                            <TextBox x:Name="TBox_PageUser" HorizontalAlignment="Left" Height="23" Margin="240,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="839" TextChanged="TBox_PageUser_TextChanged">
+                                <TextBox.Foreground>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF00B4FF" Offset="0"/>
+                                        <GradientStop Color="Cyan" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </TextBox.Foreground>
+                                <TextBox.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="Black" Offset="0"/>
+                                        <GradientStop Color="Blue" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </TextBox.Background>
+                            </TextBox>
+                            <Image x:Name="Page_Avatar" HorizontalAlignment="Left" Height="100" Margin="1084,10,0,0" VerticalAlignment="Top" Width="100"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Content" HorizontalAlignment="Left" Height="777" Margin="282,154,0,0" VerticalAlignment="Top" Width="1194">
+                        <GroupBox.BorderBrush>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Red" Offset="0"/>
+                                <GradientStop Color="#FFFFB400" Offset="1"/>
+                            </LinearGradientBrush>
+                        </GroupBox.BorderBrush>
+                        <Grid>
+                            <Label Content="Page Congent:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                            <TextBox x:Name="PageContent" Margin="191,0,10,65" AcceptsReturn="True">
+                                <TextBox.Foreground>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF00B4FF" Offset="0"/>
+                                        <GradientStop Color="#FF00647D" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </TextBox.Foreground>
+                                <TextBox.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="Black" Offset="0"/>
+                                        <GradientStop Color="Blue" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </TextBox.Background>
+                            </TextBox>
+                            <Label Content="Commit message:" Margin="10,691,1004,28" RenderTransformOrigin="0.494,3.306"></Label>
+                            <TextBox x:Name="TBox_PageCommit" HorizontalAlignment="Left" Height="23" Margin="191,695,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="981" Foreground="#FF00B4FF">
+                                <TextBox.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="Black" Offset="0"/>
+                                        <GradientStop Color="Blue" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </TextBox.Background>
+                            </TextBox>
+                            <Button x:Name="Button_Save_page" Content="Save" HorizontalAlignment="Left" Margin="10,727,0,0" VerticalAlignment="Top" Width="1162" Foreground="#FFB4FF00">
+                                <Button.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="Black" Offset="0"/>
+                                        <GradientStop Color="Lime" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Button.Background>
+                            </Button>
+                        </Grid>
+                    </GroupBox>
                 </Grid>
             </TabItem>
             <TabItem Header="Wiki"></TabItem>

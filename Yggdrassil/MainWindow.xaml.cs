@@ -60,6 +60,8 @@ namespace Yggdrassil {
         List<UIElement> NeedsProject = new List<UIElement>();
         List<UIElement> NeedsNewsBoard = new List<UIElement>();
         List<ComboBox> LanguageCombo = new List<ComboBox>();
+        List<Image> Avatars = new List<Image>();
+        List<TextBox> Users = new List<TextBox>();
         public bool AutoAdept = true;
 
         public MainWindow() {
@@ -85,6 +87,10 @@ namespace Yggdrassil {
             NeedsNewsBoard.Add(TBox_NewsContent);
             NeedsNewsBoard.Add(SaveNewsItem);
             LanguageCombo.Add(PageLanguage);
+            Avatars.Add(Avatar_NewsItem);
+            Avatars.Add(Page_Avatar);
+            Users.Add(TBox_NewsItem_User);
+            Users.Add(TBox_PageUser);
             Project.RegisterMainWindow(this);
             Git.Register(this);
             RefreshProjectList();
@@ -172,6 +178,7 @@ namespace Yggdrassil {
             TBox_Languages.Text = Project.Current.Translations;
             TBox_Users.Text = Project.Current.Users;
             TBox_NewsItem_User.Text = Project.Current.LastUser;
+            TBox_PageUser.Text = Project.Current.LastUser;
             RefreshNewsBoards();
             RefreshLanguages();
             AutoAdept = true;
@@ -296,20 +303,39 @@ namespace Yggdrassil {
             if (AutoAdept) Project.Current.Users = TBox_Users.Text;
         }
 
-        private void TBox_NewsItem_User_TextChanged(object sender, TextChangedEventArgs e) {
-            var nu = TBox_NewsItem_User.Text;
-            if (AutoAdept) Project.Current.LastUser = nu;
+        void UpdateAvatars(string nu) {
             if (Project.Current.Avatar.ContainsKey(nu)) {
                 Debug.WriteLine($"Avatar found for user {nu} -- Loading: {Project.Current.Avatar[nu]}");
                 BitmapImage bi3 = new BitmapImage();
                 bi3.BeginInit();
                 bi3.UriSource = new Uri(Project.Current.Avatar[nu]); //, UriKind.Relative);
                 bi3.EndInit();
-                Avatar_NewsItem.Stretch = Stretch.Fill;
-                Avatar_NewsItem.Source = bi3;                
+                foreach (Image av in Avatars) {
+                    av.Stretch = Stretch.Fill;
+                    av.Source = bi3;
+                }
             } else {
                 Debug.WriteLine($"No avatar for user {nu} so skipping that request!");
             }
+
+        }
+
+        void SyncUsers(TextBox u) {
+            var aa = AutoAdept;
+            AutoAdept = false;
+            foreach(TextBox iu in Users) {
+                if (iu != u) iu.Text = u.Text;
+            }
+            AutoAdept = aa;
+        }
+
+        private void TBox_NewsItem_User_TextChanged(object sender, TextChangedEventArgs e) {
+            var nu = TBox_NewsItem_User.Text;
+            if (AutoAdept) {
+                Project.Current.LastUser = nu;
+                SyncUsers(TBox_NewsItem_User);
+            }
+            UpdateAvatars(nu);
         }
 
         void SyncLanguages(ComboBox caller) {
@@ -322,7 +348,15 @@ namespace Yggdrassil {
             SyncLanguages(PageLanguage);
         }
 
-        
+        private void TBox_PageUser_TextChanged(object sender, TextChangedEventArgs e) {
+            var nu = TBox_PageUser.Text;
+            if (AutoAdept) {
+                Project.Current.LastUser = nu;
+                SyncUsers(TBox_PageUser);
+            }
+            UpdateAvatars(nu);
+
+        }
     }
 }
 
