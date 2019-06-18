@@ -21,8 +21,9 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 19.06.16
+// Version: 19.06.18
 // EndLic
+
 
 
 
@@ -119,6 +120,15 @@ namespace Yggdrassil.Needed.XSource {
                 Fout.Crash(OhJee);
             }
         }
+        public string Translations {
+            get => Global.ListToString("Translations");
+            set {
+                var k = value.Replace("\r","");
+                k = k.Replace(";", "\n");
+                Global.StringToList("Translations", k);
+                SaveGlobal();
+            }
+        }
 
         public void SaveGlobal() {
             try {
@@ -137,6 +147,7 @@ namespace Yggdrassil.Needed.XSource {
         #endregion
     }
 }
+
 
 
 

@@ -139,6 +139,21 @@
                             </LinearGradientBrush>
                         </TextBox.Background>
                     </TextBox>
+                    <Label Content="Translations of pages and wikis:" HorizontalAlignment="Left" Margin="62,113,0,0" VerticalAlignment="Top" RenderTransformOrigin="-3.237,-0.077" Width="231"/>
+                    <TextBox x:Name="TBox_Languages" HorizontalAlignment="Left" Height="130" Margin="315,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="1122" FontFamily="Courier New" FontSize="18" TextChanged="TBox_Languages_TextChanged">
+                        <TextBox.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF00B4FF" Offset="0"/>
+                                <GradientStop Color="#FF009B9B" Offset="1"/>
+                            </LinearGradientBrush>
+                        </TextBox.Background>
+                        <TextBox.Foreground>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF000F0F" Offset="0"/>
+                                <GradientStop Color="Blue" Offset="1"/>
+                            </LinearGradientBrush>
+                        </TextBox.Foreground>
+                    </TextBox>
                 </Grid>
             </TabItem>
             <TabItem x:Name="NewsTab" Header="News" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="54">
@@ -303,7 +318,7 @@
             <TabItem Header="Wiki"></TabItem>
             <TabItem Header="Git">
                 <Grid>
-                    <TextBox x:Name="GitOutput" Foreground="#FFFFB400" Text="No Git requests done yet!" FontFamily="Courier New" FontSize="16" Margin="0,0,0,25" IsReadOnly="True">
+                    <TextBox x:Name="GitOutput" Foreground="#FFFFB400" Text="No Git requests done yet!" FontFamily="Courier New" FontSize="16" Margin="0,0,0,50" IsReadOnly="True">
                         <TextBox.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#FF321900" Offset="0"/>
@@ -311,7 +326,7 @@
                             </LinearGradientBrush>
                         </TextBox.Background>
                     </TextBox>
-                    <Button x:Name="GitPush" Content="Push" HorizontalAlignment="Left" Margin="10,921,0,0" VerticalAlignment="Top" Width="1466" Click="GitPush_Click">
+                    <Button x:Name="GitPush" Content="Push" HorizontalAlignment="Left" Margin="10,896,0,0" VerticalAlignment="Top" Width="1466" Click="GitPush_Click" Height="45">
                         <Button.Foreground>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="Lime" Offset="0"/>
