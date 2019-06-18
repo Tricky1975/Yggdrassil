@@ -85,6 +85,7 @@ namespace Yggdrassil {
             Users.Add(TBox_NewsItem_User);
             Users.Add(TBox_PageUser);
             Project.RegisterMainWindow(this);
+            Needed.XSource.Page.Register(this);
             Git.Register(this);
             RefreshProjectList();
         }
@@ -341,10 +342,11 @@ namespace Yggdrassil {
             foreach(ComboBox Lng in LanguageCombo) {
                 if (Lng != caller) Lng.SelectedIndex = caller.SelectedIndex;
             }
+            PageContent_Update();
         }
 
         private void PageLanguage_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            SyncLanguages(PageLanguage);
+            SyncLanguages(PageLanguage);            
         }
 
         private void TBox_PageUser_TextChanged(object sender, TextChangedEventArgs e) {
@@ -378,7 +380,7 @@ namespace Yggdrassil {
                 )) return;
             var np = new TGINI();
             np.D("CreationDate", DateTime.Now.ToLongDateString());
-            np.D("ModifyData", DateTime.Now.ToLongDateString());
+            np.D("ModifyDate", DateTime.Now.ToLongDateString());
             np.D("CreationUser", user);
             np.D("ModifyUser", user);
             Debug.WriteLine($"Creating: {file}");
@@ -391,8 +393,23 @@ namespace Yggdrassil {
             RefreshPages();
         }
 
+        void PageContent_Update() {
+            if (HavePage) PageContent.Text = Project.Current.GetPage(Pages.SelectedItem.ToString()).Content;
+        }
+
         private void Pages_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            PageContent_Update();
             EnableElements();
+        }
+
+        private void PageContent_TextChanged(object sender, TextChangedEventArgs e) {
+            Project.Current.GetPage(Pages.SelectedItem.ToString()).Content = PageContent.Text;
+        }
+
+        private void Button_Save_page_Click(object sender, RoutedEventArgs e) {
+            var pageid = Pages.SelectedItem.ToString();
+            var page = Project.Current.GetPage(Pages.SelectedItem.ToString());
+            page.Save();
         }
     }
 }

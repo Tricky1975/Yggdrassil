@@ -94,6 +94,7 @@ namespace Yggdrassil.Needed.XSource {
         public string TemplateDir => $"{Dir}/Templates";
         public string PageDir => $"{Dir}/Pages";
         public Dictionary<string, NewsBoard> NewsBoards = new Dictionary<string, NewsBoard>();
+        public Dictionary<string, Page> Pages = new Dictionary<string, Page>();
 
 
 
@@ -211,6 +212,11 @@ namespace Yggdrassil.Needed.XSource {
                 NewsBoards[id] = new NewsBoard(this, id);
             }
             return NewsBoards[id];
+        }
+
+        public Page GetPage(string id) {
+            if (!Pages.ContainsKey(id)) Pages[id] = new Page(this, id);
+            return Pages[id];
         }
         #endregion
     }

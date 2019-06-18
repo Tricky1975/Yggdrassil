@@ -28,7 +28,7 @@
                             </LinearGradientBrush>
                         </ListBox.Background>
                     </ListBox>
-                    <Image x:Name="Yggdrassil" HorizontalAlignment="Left" Height="350" Margin="365,14,0,0" VerticalAlignment="Top" Width="350" Source="Needed/Assets/Yggdrassil.png">
+                    <Image x:Name="Yggdrassil_logo" HorizontalAlignment="Left" Height="350" Margin="365,14,0,0" VerticalAlignment="Top" Width="350" Source="Needed/Assets/Yggdrassil.png">
                         <Image.OpacityMask>
                             <ImageBrush ImageSource="Needed/Assets/Yggdrassil.png"/>
                         </Image.OpacityMask>
@@ -422,7 +422,7 @@
                         </GroupBox.BorderBrush>
                         <Grid>
                             <Label Content="Page Congent:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                            <TextBox x:Name="PageContent" Margin="191,0,10,65" AcceptsReturn="True">
+                            <TextBox x:Name="PageContent" Margin="191,0,10,65" AcceptsReturn="True" TextChanged="PageContent_TextChanged">
                                 <TextBox.Foreground>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="#FF00B4FF" Offset="0"/>
@@ -445,7 +445,7 @@
                                     </LinearGradientBrush>
                                 </TextBox.Background>
                             </TextBox>
-                            <Button x:Name="Button_Save_page" Content="Save" HorizontalAlignment="Left" Margin="10,727,0,0" VerticalAlignment="Top" Width="1162" Foreground="#FFB4FF00">
+                            <Button x:Name="Button_Save_page" Content="Save" HorizontalAlignment="Left" Margin="10,727,0,0" VerticalAlignment="Top" Width="1162" Foreground="#FFB4FF00" Click="Button_Save_page_Click">
                                 <Button.Background>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="Black" Offset="0"/>
