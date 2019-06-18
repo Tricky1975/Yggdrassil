@@ -140,7 +140,7 @@
                         </TextBox.Background>
                     </TextBox>
                     <Label Content="Translations of pages and wikis:" HorizontalAlignment="Left" Margin="62,113,0,0" VerticalAlignment="Top" RenderTransformOrigin="-3.237,-0.077" Width="231"/>
-                    <TextBox x:Name="TBox_Languages" HorizontalAlignment="Left" Height="130" Margin="315,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="1122" FontFamily="Courier New" FontSize="18" TextChanged="TBox_Languages_TextChanged">
+                    <TextBox x:Name="TBox_Languages" HorizontalAlignment="Left" Height="130" Margin="315,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="1122" FontFamily="Courier New" FontSize="18">
                         <TextBox.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#FF00B4FF" Offset="0"/>
@@ -314,7 +314,16 @@
                     </Button>
                 </Grid>
             </TabItem>
-            <TabItem Header="Page" ></TabItem>
+            <TabItem Header="Page" >
+                <Grid>
+                <Grid.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFFFAC00" Offset="0"/>
+                        <GradientStop Color="Red" Offset="1"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+                </Grid>
+            </TabItem>
             <TabItem Header="Wiki"></TabItem>
             <TabItem Header="Git">
                 <Grid>
