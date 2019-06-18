@@ -284,7 +284,7 @@
                     <Label Content="Modified" HorizontalAlignment="Left" Height="27" Margin="212,359,0,0" VerticalAlignment="Top" Width="209" Foreground="#FFB400FF"/>
                     <Label x:Name="Label_NewsModified" Content="N/A" HorizontalAlignment="Left" Margin="436,359,0,0" VerticalAlignment="Top" Width="968" Foreground="#FF00B4FF" RenderTransformOrigin="0.5,2.192"/>
                     <Label Content="Content" HorizontalAlignment="Left" Margin="212,391,0,0" VerticalAlignment="Top" Width="209" Foreground="#FFB400FF"/>
-                    <TextBox x:Name="TBox_NewsContent" HorizontalAlignment="Left" Height="450" Margin="436,391,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="968" AcceptsReturn="True">
+                    <TextBox x:Name="TBox_NewsContent" HorizontalAlignment="Left" Height="433" Margin="436,391,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="968" AcceptsReturn="True">
                         <TextBox.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#FC120019" Offset="0"/>
@@ -327,16 +327,32 @@
                             </LinearGradientBrush>
                         </Button.Foreground>
                     </Button>
+                    <Label Content="User:" HorizontalAlignment="Left" Margin="212,829,0,0" VerticalAlignment="Top" Width="209" Foreground="#FFB400FF"/>
+                    <Image x:Name="Avatar_NewsItem" HorizontalAlignment="Left" Height="100" Margin="212,724,0,0" VerticalAlignment="Top" Width="100"/>
+                    <TextBox x:Name="TBox_NewsItem_User" HorizontalAlignment="Left" Height="23" Margin="436,829,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="968" TextChanged="TBox_NewsItem_User_TextChanged">
+                        <TextBox.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="0"/>
+                                <GradientStop Color="#FFB400FF" Offset="1"/>
+                            </LinearGradientBrush>
+                        </TextBox.Background>
+                        <TextBox.Foreground>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Yellow" Offset="0"/>
+                                <GradientStop Color="#FFFFB400" Offset="1"/>
+                            </LinearGradientBrush>
+                        </TextBox.Foreground>
+                    </TextBox>
                 </Grid>
             </TabItem>
             <TabItem Header="Page" >
                 <Grid>
-                <Grid.Background>
-                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                        <GradientStop Color="#FFFFAC00" Offset="0"/>
-                        <GradientStop Color="Red" Offset="1"/>
-                    </LinearGradientBrush>
-                </Grid.Background>
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                            <GradientStop Color="#FFFFAC00" Offset="0"/>
+                            <GradientStop Color="Red" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
                 </Grid>
             </TabItem>
             <TabItem Header="Wiki"></TabItem>

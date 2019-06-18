@@ -154,7 +154,7 @@ namespace Yggdrassil.Needed.XSource {
                     int isteken = lin.IndexOf('=');
                     if (Fout.NFAssert(isteken > 0, "Illegal line in avatar bindings!\n\n{lin}")) {
                         cmd = lin.Substring(0, isteken);
-                        value = lin.Substring(isteken);  /* 123456789 */
+                        value = lin.Substring(isteken+1);  /* 123456789 */
                         avatar = value;
                         if (qstr.Prefixed(value.ToUpper(), "GRAVATAR:")) {
                             // The odd HTTP thing was to prevent links in my Syntax Highlight, as this spooks things up and I don't like that!
@@ -165,6 +165,14 @@ namespace Yggdrassil.Needed.XSource {
                 }
                 AvRetOld = ret;
                 return ret;
+            }
+        }
+
+        public string LastUser {
+            get => Global.C("LastUser");
+            set {
+                Global.D("LastUser", value);
+                SaveGlobal();
             }
         }
 

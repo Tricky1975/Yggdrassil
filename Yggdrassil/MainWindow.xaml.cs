@@ -282,6 +282,22 @@ namespace Yggdrassil {
         private void TBox_Users_TextChanged(object sender, TextChangedEventArgs e) {
             if (AutoAdept) Project.Current.Users = TBox_Users.Text;
         }
+
+        private void TBox_NewsItem_User_TextChanged(object sender, TextChangedEventArgs e) {
+            var nu = TBox_NewsItem_User.Text;
+            if (AutoAdept) Project.Current.LastUser = nu;
+            if (Project.Current.Avatar.ContainsKey(nu)) {
+                Debug.WriteLine($"Avatar found for user {nu} -- Loading: {Project.Current.Avatar[nu]}");
+                BitmapImage bi3 = new BitmapImage();
+                bi3.BeginInit();
+                bi3.UriSource = new Uri(Project.Current.Avatar[nu]); //, UriKind.Relative);
+                bi3.EndInit();
+                Avatar_NewsItem.Stretch = Stretch.Fill;
+                Avatar_NewsItem.Source = bi3;                
+            } else {
+                Debug.WriteLine($"No avatar for user {nu} so skipping that request!");
+            }
+        }
     }
 }
 
