@@ -23,16 +23,6 @@
 // 
 // Version: 19.06.18
 // EndLic
-
-
-
-
-
-
-
-
-
-
 using System;
 using System.Diagnostics;
 using System.Collections.Generic;
@@ -88,6 +78,7 @@ namespace Yggdrassil {
             NeedsNewsBoard.Add(TBox_NewsContent);
             NeedsNewsBoard.Add(SaveNewsItem);
             NeedsPage.Add(PageContentGroup);
+            NeedsPage.Add(DeletePage);
             LanguageCombo.Add(PageLanguage);
             Avatars.Add(Avatar_NewsItem);
             Avatars.Add(Page_Avatar);
@@ -187,6 +178,7 @@ namespace Yggdrassil {
             TBox_NewsItem_User.Text = Project.Current.LastUser;
             TBox_PageUser.Text = Project.Current.LastUser;
             RefreshNewsBoards();
+            RefreshPages();
             RefreshLanguages();
             AutoAdept = true;
         }
@@ -363,6 +355,44 @@ namespace Yggdrassil {
             }
             UpdateAvatars(nu);
 
+        }
+
+        void RefreshPages() {
+            Pages.Items.Clear();
+            if (Directory.Exists(Project.Current.PageDir)) {
+                foreach (string f in FileList.GetDir(Project.Current.PageDir)) {
+                    if (qstr.Suffixed(f, ".GINI") && qstr.Prefixed(f,"Page_")) Pages.Items.Add(qstr.Left(f, f.Length - 5).Substring(5)                        );
+                }
+            }
+        }
+
+        private void CreatePage_Click(object sender, RoutedEventArgs e) {
+            var newpage = NameNewPage.Text.Trim().ToUpper();
+            var cp = Project.Current;
+            var lng = PageLanguage.SelectedItem.ToString();
+            var file = $"{cp.PageDir}/Page_{newpage}.GINI";
+            var user = TBox_PageUser.Text.ToUpper();            
+            if (!(
+                Fout.NFAssert(newpage, "The new page needs a name!") &&
+                Fout.NFAssert(!File.Exists(file), "That page already exists!")
+                )) return;
+            var np = new TGINI();
+            np.D("CreationDate", DateTime.Now.ToLongDateString());
+            np.D("ModifyData", DateTime.Now.ToLongDateString());
+            np.D("CreationUser", user);
+            np.D("ModifyUser", user);
+            Debug.WriteLine($"Creating: {file}");
+            try {
+                Directory.CreateDirectory(cp.PageDir);
+                np.SaveSource(file);
+            } catch (Exception X) {
+                Fout.Error(X);
+            }
+            RefreshPages();
+        }
+
+        private void Pages_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            EnableElements();
         }
     }
 }

@@ -92,6 +92,7 @@ namespace Yggdrassil.Needed.XSource {
         public string DefaultTemplate { get => Global.C("DEFAULTTEMPLATE"); set { Global.D("DEFAULTTEMPLATE", value); SaveGlobal(); } }
         public string NewsDir { get => $"{Dir}/NewsBoards"; }
         public string TemplateDir => $"{Dir}/Templates";
+        public string PageDir => $"{Dir}/Pages";
         public Dictionary<string, NewsBoard> NewsBoards = new Dictionary<string, NewsBoard>();
 
 

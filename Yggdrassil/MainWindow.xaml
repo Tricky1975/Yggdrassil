@@ -345,7 +345,7 @@
                     </TextBox>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="Tab_Page" Header="Page" >
+            <TabItem x:Name="Tab_Page" Header="Page" Height="22" VerticalAlignment="Bottom" >
                 <Grid>
                     <Grid.Background>
                         <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
@@ -353,7 +353,7 @@
                             <GradientStop Color="Red" Offset="1"/>
                         </LinearGradientBrush>
                     </Grid.Background>
-                    <ListBox x:Name="Pages" HorizontalAlignment="Left" Height="896" Margin="10,10,0,0" VerticalAlignment="Top" Width="265">
+                    <ListBox x:Name="Pages" HorizontalAlignment="Left" Height="896" Margin="10,10,0,0" VerticalAlignment="Top" Width="265" SelectionChanged="Pages_SelectionChanged">
                         <ListBox.Foreground>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#FF00B4FF" Offset="0"/>
@@ -367,7 +367,7 @@
                             </LinearGradientBrush>
                         </ListBox.Background>
                     </ListBox>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="10,911,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="205">
+                    <TextBox x:Name="NameNewPage" HorizontalAlignment="Left" Height="23" Margin="10,911,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="205">
                         <TextBox.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#FFB4FFB4" Offset="0"/>
@@ -375,7 +375,7 @@
                             </LinearGradientBrush>
                         </TextBox.Background>
                     </TextBox>
-                    <Button Content="+" HorizontalAlignment="Left" Margin="215,911,0,0" VerticalAlignment="Top" Width="27" Height="23" Foreground="#FFB4FF00">
+                    <Button x:Name="CreatePage" Content="+" HorizontalAlignment="Left" Margin="215,911,0,0" VerticalAlignment="Top" Width="27" Height="23" Foreground="#FFB4FF00" Click="CreatePage_Click">
                         <Button.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="DarkGreen" Offset="0"/>
@@ -383,7 +383,7 @@
                             </LinearGradientBrush>
                         </Button.Background>
                     </Button>
-                    <Button Content="-" HorizontalAlignment="Left" Margin="242,911,0,0" VerticalAlignment="Top" Width="33" RenderTransformOrigin="-0.267,0.45" Height="23" Foreground="#FFFFB464">
+                    <Button x:Name="DeletePage" Content="-" HorizontalAlignment="Left" Margin="242,911,0,0" VerticalAlignment="Top" Width="33" RenderTransformOrigin="-0.267,0.45" Height="23" Foreground="#FFFFB464">
                         <Button.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#FF640000" Offset="0"/>
