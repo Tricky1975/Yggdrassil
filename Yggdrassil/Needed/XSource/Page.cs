@@ -106,7 +106,7 @@ namespace Yggdrassil.Needed.XSource {
             QuickStream.SaveString($"{Project.Current.OutputDir}/PageLangsSelector.js", LanguageSelectJS);
 
 
-            Git.AddAndCommit(qstr.OrText(MW.TBox_PageCommit.Text.Trim(), "Update of page {id}"),$"*/Page_*_{id}.html","*/PageLangsSelector.js",$"*/PageLangs_{id}.js");
+            Git.AddAndCommit(qstr.OrText(MW.TBox_PageCommit.Text.Trim(), $"Update of page {id}"),$"*/Page_*_{id}.html","*/PageLangsSelector.js",$"*/PageLangs_{id}.js");
             MW.TBox_PageCommit.Text = "";
         }
     }
