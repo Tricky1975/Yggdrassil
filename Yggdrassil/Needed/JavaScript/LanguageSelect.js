@@ -19,6 +19,7 @@
 // Version 19.06.18
 // EndLic
 
+
 // This file should be attached to every multi-language page, in order to make selecting languages possible.
 
 let pgName
