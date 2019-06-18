@@ -74,6 +74,7 @@ namespace Yggdrassil {
             NeedsProject.Add(ConfigTab);
             NeedsProject.Add(NewsTab);
             NeedsProject.Add(GitPush);
+            NeedsProject.Add(Tab_Page);
             NeedsNewsBoard.Add(DoRemoveNewsPage);
             NeedsNewsBoard.Add(TBox_NewsTemplate);
             NeedsNewsBoard.Add(TBox_PreNewsText);
@@ -160,6 +161,7 @@ namespace Yggdrassil {
             TBox_DefaultTemplate.Text = Project.Current.DefaultTemplate;
             TBox_Languages.Text = Project.Current.Translations;
             TBox_Users.Text = Project.Current.Users;
+            TBox_NewsItem_User.Text = Project.Current.LastUser;
             RefreshNewsBoards();
             AutoAdept = true;
         }
