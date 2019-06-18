@@ -49,6 +49,16 @@ namespace Yggdrassil.Needed.XSource {
             get => Data.ListToString("Content");
             set { Data.StringToList("Content", value); Modified = DateTime.Now; Data.D("Modified", Modified.ToLongDateString()); }
         }
+        public string Author {
+            get => Data.ListToString("Author");
+            set {
+                Data.StringToList("Author", value);
+                Modified = DateTime.Now;
+                Data.D("Author", Modified.ToLongDateString());
+                // To Do: Autoset: Avatar/Gravatar
+            }
+
+        }
         public string FileName => $"{Parent.ItemDir}/{id}.GINI";
 
 
