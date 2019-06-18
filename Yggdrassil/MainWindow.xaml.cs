@@ -62,6 +62,7 @@ namespace Yggdrassil {
         List<ComboBox> LanguageCombo = new List<ComboBox>();
         List<Image> Avatars = new List<Image>();
         List<TextBox> Users = new List<TextBox>();
+        List<UIElement> NeedsPage = new List<UIElement>();
         public bool AutoAdept = true;
 
         public MainWindow() {
@@ -86,6 +87,7 @@ namespace Yggdrassil {
             NeedsNewsBoard.Add(NewsCommit);
             NeedsNewsBoard.Add(TBox_NewsContent);
             NeedsNewsBoard.Add(SaveNewsItem);
+            NeedsPage.Add(PageContentGroup);
             LanguageCombo.Add(PageLanguage);
             Avatars.Add(Avatar_NewsItem);
             Avatars.Add(Page_Avatar);
@@ -98,14 +100,19 @@ namespace Yggdrassil {
 
         bool HaveProject => ListProjects.SelectedItem != null;
         bool HaveNewsBoard => HaveProject && ListNewsBoards.SelectedItem != null;
+        bool HavePage => HaveProject && Pages.SelectedItem != null && PageLanguage.SelectedItem != null && TBox_PageUser.Text.Trim()!="";
+
+        void AutoEnable(List<UIElement> GadgetList,bool condition) {
+            foreach (UIElement Elem in GadgetList) {
+                Elem.IsEnabled = condition;
+            }
+
+        }
 
         void EnableElements() {
-            foreach(UIElement Elem in NeedsProject) {
-                Elem.IsEnabled = HaveProject;
-            }
-            foreach(UIElement Elem in NeedsNewsBoard) {
-                Elem.IsEnabled = HaveNewsBoard;
-            }
+            AutoEnable(NeedsProject, HaveProject);
+            AutoEnable(NeedsNewsBoard, HaveNewsBoard);
+            AutoEnable(NeedsPage, HavePage);
         }
 
         void RefreshProjectList() {
