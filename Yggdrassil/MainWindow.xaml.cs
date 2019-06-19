@@ -443,6 +443,23 @@ namespace Yggdrassil {
             page.Save();
             page.Generate();
         }
+
+        private void CB_NewsEdit_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            if (!Fout.NFAssert(CB_NewsEdit.SelectedItem,"INTERNAL ERROR!\n\nFor some silly reasons the news selector returns 'null'.")) return;
+            var eid = CB_NewsEdit.SelectedItem.ToString();
+            if (eid=="*NEW*") {
+                TBox_NewsSubject.Text = "";
+                TBox_NewsContent.Text = "";
+            } else {
+                var puntkomma = eid.IndexOf(";"); Fout.NFAssert(puntkomma > 0, "HUH?");
+                var gid = eid.Substring(0, puntkomma); Debug.WriteLine($"eid={eid}; puntkomma={puntkomma}; gid={gid}");
+                var cnb = ListNewsBoards.SelectedItem.ToString();
+                var NEB = Project.Current.GetNewsBoard(cnb);
+                var NEI = new NewsItem(NEB, gid);
+                TBox_NewsSubject.Text = NEI.Subject;
+                TBox_NewsContent.Text = NEI.Content;
+            }
+        }
     }
 }
 

@@ -255,7 +255,7 @@
                     </TextBox>
                     <Separator HorizontalAlignment="Left" Height="15" Margin="212,242,0,0" VerticalAlignment="Top" Width="1192" Background="#FFA03C00"/>
                     <Label Content="Edit" HorizontalAlignment="Left" Margin="212,257,0,0" VerticalAlignment="Top" Width="209" Background="{x:Null}" Foreground="#FFB400FF"/>
-                    <ComboBox x:Name="CB_NewsEdit" HorizontalAlignment="Left" Margin="436,262,0,0" VerticalAlignment="Top" Width="968">
+                    <ComboBox x:Name="CB_NewsEdit" HorizontalAlignment="Left" Margin="436,262,0,0" VerticalAlignment="Top" Width="968" SelectionChanged="CB_NewsEdit_SelectionChanged">
                         <ComboBox.Background>
                             <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                                 <GradientStop Color="#FF120019" Offset="0"/>

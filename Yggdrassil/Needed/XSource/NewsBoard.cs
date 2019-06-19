@@ -98,6 +98,7 @@ namespace Yggdrassil.Needed.XSource {
             try {
                 Parent.Items[id] = this;
                 Data = GINI.ReadFromFile(FileName);
+                Fout.NFAssert(Data, $"Something didn't go well in loading {FileName}!\n\nCrashes can be expected from this point!");
             } catch(Exception crap) {
                 Fout.Error($"Error loading: {FileName}\n{crap.Message}\n\nThings may not be loaded correctly (if it is loaded at all)");
             }
@@ -116,7 +117,16 @@ namespace Yggdrassil.Needed.XSource {
         public int ainii { get => qstr.ToInt(data.C("Auto_Increment_News_Item_Index")); set { data.D("Auto_Increment_News_Item_Index", $"{value}"); data.SaveSource(GINIFile); } }
         public string POST_Subject => Project.MW.TBox_NewsSubject.Text;
         public string POST_Content => Project.MW.TBox_NewsContent.Text;
-        public string POST_ID => Project.MW.CB_NewsEdit.SelectedItem.ToString();
+        public string POST_ID {
+            get {
+                var r = Project.MW.CB_NewsEdit.SelectedItem.ToString();
+                if (r != "*NEW*") {
+                    var pk = r.IndexOf(';');
+                    r = r.Substring(0, pk);
+                }
+                return r;
+            }
+        }
         public bool POST => POST_Content != "" && POST_Subject != "";
 
         public NewsBoard(Project ouwe, string idcode) {
@@ -128,8 +138,8 @@ namespace Yggdrassil.Needed.XSource {
 
         void SavePOST() {
             var Item = new NewsItem(this, POST_ID);
-            if (Item.Author == "") Item.Author = Project.MW.TBox_NewsItem_User.Text;
             Debug.WriteLine($"Saving news item: {Item.id}");
+            if (Item.Author == "") Item.Author = Project.MW.TBox_NewsItem_User.Text;
             Item.Subject = POST_Subject;
             Item.Content = POST_Content;
             Item.Save();
