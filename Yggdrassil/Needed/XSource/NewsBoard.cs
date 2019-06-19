@@ -38,10 +38,10 @@ namespace Yggdrassil.Needed.XSource {
 
     class NewsItem {
         readonly public NewsBoard Parent;
-        readonly string id;
+        readonly public string id;
         public readonly DateTime Created;
         public DateTime Modified { get; private set; }
-        TGINI Data;
+        internal TGINI Data = new TGINI();
         public string Subject {
             get => Data.C("Subject");
             set { Data.D("Subject",value); Modified = DateTime.Now; Data.D("Modified", Modified.ToLongDateString()); }
@@ -62,6 +62,9 @@ namespace Yggdrassil.Needed.XSource {
         }
         public string FileName => $"{Parent.ItemDir}/{id}.GINI";
 
+        public void Save() => Data.SaveSource(FileName);
+        
+
 
         public NewsItem(NewsBoard ouwe,string idcode) {
             Created = DateTime.Now;
@@ -71,15 +74,27 @@ namespace Yggdrassil.Needed.XSource {
             Parent = ouwe;
             id = idcode;
             if (id == "*NEW*") {
+                /*
                 int i = -1;
                 do {
                     i++;
                     id = qstr.Right($"000000000{i}", 9);
                 } while(File.Exists(FileName));
                 Data.SaveSource(id);
+                */
+                var pid = "";
+                if (idcode == "*NEW*") {
+                    do {
+                        Parent.ainii++;
+                        id = qstr.Right($"000000000{Parent.ainii}", 9);
+                        pid = $"{id}.GINI";
+                    } while (File.Exists($"{Parent.ItemDir}/{pid}"));
+                }
+                Parent.Items[id] = this;
                 return;
             }
             try {
+                Parent.Items[id] = this;
                 Data = GINI.ReadFromFile(FileName);
             } catch(Exception crap) {
                 Fout.Error($"Error loading: {FileName}\n{crap.Message}\n\nThings may not be loaded correctly (if it is loaded at all)");
@@ -96,6 +111,11 @@ namespace Yggdrassil.Needed.XSource {
         public string Template { get => data.C("Template"); set { data.D("Template", qstr.OrText(value,"*DEFAULT*")); Save(); } }
         public string PreText { get => data.ListToString("PreText"); set { data.StringToList("PreText", value); Save(); } }
         readonly public SortedDictionary<string, NewsItem> Items = new SortedDictionary<string, NewsItem>();
+        public int ainii { get => qstr.ToInt(data.C("Auto_Increment_News_Item_Index")); set { data.D("Auto_Increment_News_Item_Index", $"{value}"); data.SaveSource(GINIFile); } }
+        public string POST_Subject => Project.MW.TBox_NewsSubject.Text;
+        public string POST_Content => Project.MW.TBox_NewsContent.Text;
+        public string POST_ID => Project.MW.CB_NewsEdit.SelectedItem.ToString();
+        public bool POST => POST_Content != "" && POST_Subject != "";
 
         public NewsBoard(Project ouwe, string idcode) {
             Parent = ouwe;
@@ -104,9 +124,17 @@ namespace Yggdrassil.Needed.XSource {
             if (File.Exists(GINIFile)) data = GINI.ReadFromFile(GINIFile);
         }
 
+        void SavePOST() {
+            var Item = new NewsItem(this, POST_ID);
+            Debug.WriteLine($"Saving news item: {Item.id}");
+            Item.Subject = POST_Subject;
+            Item.Content = POST_Content;
+            Item.Save();
+        }
+
         void Save() {
             Debug.WriteLine($"Saving newsboard: {GINIFile}");
-            data.SaveSource(GINIFile);
+            data.SaveSource(GINIFile);            
         }
 
         public void Generate() {
@@ -117,6 +145,7 @@ namespace Yggdrassil.Needed.XSource {
             content.Append($"<p>{PreText}</p>\n\n");
 
             // News Items
+            if (POST) SavePOST();
             // TODO: This comes later!
 
             // Convert to HTML

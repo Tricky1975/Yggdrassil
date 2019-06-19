@@ -29,7 +29,7 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using System.Threading.Tasks;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -123,7 +123,7 @@ namespace Yggdrassil {
                 return;
             }
             Directory.CreateDirectory(Project.Current.NewsDir);
-            var l = FileList.GetDir(Project.Current.NewsDir, 1);
+            var l = FileList.GetDir(Project.Current.NewsDir, 0);
             ListNewsBoards.Items.Clear();
             foreach (string p in l) {
                 if (qstr.ExtractExt(p.ToUpper()) == "GINI")
@@ -159,6 +159,16 @@ namespace Yggdrassil {
                 var nnb = Project.Current.GetNewsBoard(ListNewsBoards.SelectedItem.ToString());
                 TBox_NewsTemplate.Text = nnb.Template;
                 TBox_PreNewsText.Text = nnb.PreText;
+                for (int i = nnb.ainii; i > 0; --i) {
+                    var tid = qstr.Right($"000000000{i}", 9);
+                    if (File.Exists($"{nnb.ItemDir}/{tid}.GINI")) {
+                        if (nnb.Items.ContainsKey(tid)) {
+                            CB_NewsEdit.Items.Add($"{tid}; {nnb.Items[tid].Subject}");
+                        } else {
+                            CB_NewsEdit.Items.Add($"{tid}; << NOT LOADED >>");
+                        }
+                    }
+                }
             }
             AutoAdept = true;
         }

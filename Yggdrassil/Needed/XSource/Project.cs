@@ -44,7 +44,7 @@ namespace Yggdrassil.Needed.XSource {
         #region Static part
         static Dictionary<string, Project> PrjDict = new Dictionary<string, Project>();
         static public string CrPrjName { get; private set; } = "";
-        static MainWindow MW;
+        static public MainWindow MW;
 
         static public void RegisterMainWindow(MainWindow AMW) { MW = AMW; }
 
