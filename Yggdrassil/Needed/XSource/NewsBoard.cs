@@ -32,6 +32,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+//using System.Linq;
 using TrickyUnits;
 
 namespace Yggdrassil.Needed.XSource {
@@ -42,6 +43,7 @@ namespace Yggdrassil.Needed.XSource {
         public readonly DateTime Created;
         public DateTime Modified { get; private set; }
         internal TGINI Data = new TGINI();
+        public string StrCreated => Data.C("Created");
         public string Subject {
             get => Data.C("Subject");
             set { Data.D("Subject",value); Modified = DateTime.Now; Data.D("Modified", Modified.ToLongDateString()); }
@@ -51,11 +53,11 @@ namespace Yggdrassil.Needed.XSource {
             set { Data.StringToList("Content", value); Modified = DateTime.Now; Data.D("Modified", Modified.ToLongDateString()); }
         }
         public string Author {
-            get => Data.ListToString("Author");
+            get => Data.C("Author");
             set {
-                Data.StringToList("Author", value);
+                Data.D("Author", value);
                 Modified = DateTime.Now;
-                Data.D("Author", Modified.ToLongDateString());
+                Data.D("Modified", Modified.ToLongDateString());
                 // To Do: Autoset: Avatar/Gravatar
             }
 
@@ -126,6 +128,7 @@ namespace Yggdrassil.Needed.XSource {
 
         void SavePOST() {
             var Item = new NewsItem(this, POST_ID);
+            if (Item.Author == "") Item.Author = Project.MW.TBox_NewsItem_User.Text;
             Debug.WriteLine($"Saving news item: {Item.id}");
             Item.Subject = POST_Subject;
             Item.Content = POST_Content;
@@ -146,7 +149,21 @@ namespace Yggdrassil.Needed.XSource {
 
             // News Items
             if (POST) SavePOST();
-            // TODO: This comes later!
+            var countdown = 10;
+            content.Append("<table id='NewsTable' width='100%'>\n");
+            for(int idx=ainii;idx>0 && countdown > 0; idx--) {
+                var nid = qstr.Right($"000000000{idx}", 9);
+                if (File.Exists($"{ItemDir}/{nid}.GINI")) {
+                    countdown--;
+                    var bericht = new NewsItem(this, nid);
+                    content.Append("\t<tr valign=top><td width='100'>");
+                    if (Parent.Avatar.ContainsKey(bericht.Author))
+                        content.Append($"<img src=\"{Parent.Avatar[bericht.Author]}\" width=\"100\" alt=\"{bericht.Author}\">");
+                    content.Append($"</td><td><h1>{bericht.Subject}</h1><small>By: {bericht.Author}<br>{bericht.StrCreated}</td></tr>");
+                    content.Append($"<tr valign=top><td colspan=2>{bericht.Content}</td></tr>\n");
+                }
+            }
+            content.Append("</table>\n\n");
 
             // Convert to HTML
             var Temp = Template;

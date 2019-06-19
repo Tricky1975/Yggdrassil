@@ -29,7 +29,6 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -173,6 +172,19 @@ namespace Yggdrassil {
             AutoAdept = true;
         }
 
+        public void ReSelectNews(string id) {
+            var idx = -1;
+            foreach (var it in CB_NewsEdit.Items) {
+                idx++;
+                var istr = it.ToString();
+                if (qstr.Prefixed(istr, id)) CB_NewsEdit.SelectedIndex = idx;
+            }
+        }
+
+        public void ReSelectNews(int id) => ReSelectNews(qstr.Right($"000000000{id}", 9));
+
+        
+
         void RefreshLanguages() {
             foreach(ComboBox Lng in LanguageCombo) {
                 Lng.Items.Clear();
@@ -290,8 +302,6 @@ namespace Yggdrassil {
         private void SaveNewsItem_Click(object sender, RoutedEventArgs e) {
             var cp = ListNewsBoards.SelectedItem.ToString();
             var nb = Project.Current.GetNewsBoard(cp);
-            // Update news if an item has been written or edited
-            // TODO: This comes later!
 
             // Generate News
             nb.Generate();
@@ -299,7 +309,17 @@ namespace Yggdrassil {
             // Git call
             var cmm = NewsCommit.Text;
             if (cmm == "") cmm = "Update news";
-            Git.Commit(cmm, "-a");
+            Git.AddAndCommit(cmm, "*");
+            NewsCommit.Text = "";
+
+            // Cleanup after new!
+            var nin = CB_NewsEdit.SelectedItem.ToString();
+            if (nin=="*NEW*") {
+                TBox_NewsContent.Text = "";
+                TBox_NewsSubject.Text = "";
+            }
+            // Update news if an item has been written or edited
+            RefreshNewsEntries();
         }
 
         private void GitPush_Click(object sender, RoutedEventArgs e) {
