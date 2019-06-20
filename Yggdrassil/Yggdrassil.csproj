@@ -118,6 +118,7 @@
     <Compile Include="Needed\XSource\NewsBoard.cs" />
     <Compile Include="Needed\XSource\Page.cs" />
     <Compile Include="Needed\XSource\Project.cs" />
+    <Compile Include="Needed\XSource\Wiki.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

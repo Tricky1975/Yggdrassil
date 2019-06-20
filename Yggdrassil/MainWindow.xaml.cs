@@ -207,6 +207,7 @@ namespace Yggdrassil {
             RefreshNewsBoards();
             RefreshPages();
             RefreshLanguages();
+            RefreshWikis();
             AutoAdept = true;
         }
 
@@ -461,6 +462,36 @@ namespace Yggdrassil {
                 var NEI = new NewsItem(NEB, gid);
                 TBox_NewsSubject.Text = NEI.Subject;
                 TBox_NewsContent.Text = NEI.Content;
+            }
+        }
+
+        void RefreshWikis() {
+            Directory.CreateDirectory($"{Project.Current.WikiMainDir}");
+            var wikil = FileList.GetDir(Project.Current.WikiMainDir);
+            var suf = ".Profiles.GINI";
+            List_Wikis.Items.Clear();
+            foreach (string wk in wikil) {
+                if (qstr.Suffixed(wk,suf)) {
+                    List_Wikis.Items.Add(wk.Substring(0, wk.Length - suf.Length));
+                }
+            }
+        }
+
+        private void DoAddWiki_Click(object sender, RoutedEventArgs e) {
+            var nw = AddWikiName.Text;
+            if (!(
+                Fout.NFAssert(nw,"I need a NAME!") &&
+                Fout.NFAssert(!File.Exists($"{Project.Current.WikiMainDir}/{nw}.Profiles.GINI"),"That wiki already exists") &&
+                Fout.NFAssert(!Directory.Exists($"{Project.Current.WikiMainDir}/{nw}.Articles"),"Article directory exists, yet profile directory doesn't")
+                )) return;
+            try {
+                QuickStream.SaveString($"{Project.Current.WikiMainDir}/{nw}.Profiles.GINI", "[rem]\nThere is no life in the void!");
+                Directory.CreateDirectory($"{Project.Current.WikiMainDir}/{nw}.Articles");
+                AddWikiName.Text = "";
+            } catch (Exception FoutjeBedankt) {
+                Fout.Error(FoutjeBedankt);
+            } finally {
+                RefreshWikis();
             }
         }
     }
