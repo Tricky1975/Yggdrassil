@@ -21,8 +21,9 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 19.06.18
+// Version: 19.06.20
 // EndLic
+
 
 
 
@@ -35,7 +36,7 @@ using TrickyUnits;
 namespace Yggdrassil.Needed.XSource {
     class Page {
         Project Parent;
-        TGINI Data;
+        TGINI Data;        
 
         static MainWindow MW;
         static public void Register(MainWindow RMW) { MW = RMW; }
@@ -112,6 +113,7 @@ namespace Yggdrassil.Needed.XSource {
         }
     }
 }
+
 
 
 
