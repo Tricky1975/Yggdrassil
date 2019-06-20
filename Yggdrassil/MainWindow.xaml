@@ -474,7 +474,7 @@
                         </ListBox.Background>
 
                     </ListBox>
-                    <Button x:Name="DoAddWiki" Content="+" HorizontalAlignment="Left" Margin="154,909,0,0" VerticalAlignment="Top" Width="20" RenderTransformOrigin="-2.188,3.45" Foreground="#FF64FF00" Height="22" Click="DoAddNewsPage_Click">
+                    <Button x:Name="DoAddWiki" Content="+" HorizontalAlignment="Left" Margin="154,909,0,0" VerticalAlignment="Top" Width="20" RenderTransformOrigin="-2.188,3.45" Foreground="#FF64FF00" Height="22" Click="DoAddWiki_Click">
                         <Button.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="Lime" Offset="0"/>
