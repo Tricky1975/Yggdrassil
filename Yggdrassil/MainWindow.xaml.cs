@@ -54,6 +54,7 @@ namespace Yggdrassil {
         List<Image> Avatars = new List<Image>();
         List<TextBox> Users = new List<TextBox>();
         List<UIElement> NeedsPage = new List<UIElement>();
+        List<UIElement> NeedsWiki = new List<UIElement>();
         public bool AutoAdept = true;
 
         public MainWindow() {
@@ -81,6 +82,7 @@ namespace Yggdrassil {
             NeedsNewsBoard.Add(SaveNewsItem);
             NeedsPage.Add(PageContentGroup);
             NeedsPage.Add(DeletePage);
+            NeedsWiki.Add(WikiSubTab);
             LanguageCombo.Add(PageLanguage);
             Avatars.Add(Avatar_NewsItem);
             Avatars.Add(Page_Avatar);
@@ -96,6 +98,7 @@ namespace Yggdrassil {
         bool HaveProject => ListProjects.SelectedItem != null;
         bool HaveNewsBoard => HaveProject && ListNewsBoards.SelectedItem != null;
         bool HavePage => HaveProject && Pages.SelectedItem != null && PageLanguage.SelectedItem != null && TBox_PageUser.Text.Trim()!="";
+        bool HaveWiki => HaveProject && List_Wikis.SelectedItem != null;
 
         void AutoEnable(List<UIElement> GadgetList,bool condition) {
             foreach (UIElement Elem in GadgetList) {
@@ -108,6 +111,7 @@ namespace Yggdrassil {
             AutoEnable(NeedsProject, HaveProject);
             AutoEnable(NeedsNewsBoard, HaveNewsBoard);
             AutoEnable(NeedsPage, HavePage);
+            AutoEnable(NeedsWiki, HaveWiki);
         }
 
         void RefreshProjectList() {
@@ -493,6 +497,22 @@ namespace Yggdrassil {
             } finally {
                 RefreshWikis();
             }
+        }
+
+        private void DoRemoveWiki_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void DoAddWikiProfile_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void DoRemoveWikiProfile_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void List_Wikis_SelectionChanged(object sender, SelectionChangedEventArgs e) {            
+            EnableElements();
         }
     }
 }

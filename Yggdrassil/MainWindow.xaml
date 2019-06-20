@@ -465,7 +465,7 @@
                             <GradientStop Color="Blue" Offset="1"/>
                         </LinearGradientBrush>
                     </Grid.Background>
-                    <ListBox x:Name="List_Wikis" Margin="0,0,1288,28">
+                    <ListBox x:Name="List_Wikis" Margin="0,0,1288,28" SelectionChanged="List_Wikis_SelectionChanged">
                         <ListBox.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#F300FFFF" Offset="0"/>
@@ -482,7 +482,7 @@
                             </LinearGradientBrush>
                         </Button.Background>
                     </Button>
-                    <Button x:Name="DoRemoveWiki" Content="-" HorizontalAlignment="Left" Margin="174,909,0,0" VerticalAlignment="Top" Width="24" Height="22" Foreground="#FFFF6464" Click="DoRemoveNewsPage_Click">
+                    <Button x:Name="DoRemoveWiki" Content="-" HorizontalAlignment="Left" Margin="174,909,0,0" VerticalAlignment="Top" Width="24" Height="22" Foreground="#FFFF6464" Click="DoRemoveWiki_Click">
                         <Button.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="Red" Offset="0"/>
@@ -498,7 +498,7 @@
                             </LinearGradientBrush>
                         </TextBox.Background>
                     </TextBox>
-                    <TabControl HorizontalAlignment="Left" Height="907" Margin="232,22,0,0" VerticalAlignment="Top" Width="1221" RenderTransformOrigin="0.498,0.557">
+                    <TabControl x:Name="WikiSubTab" HorizontalAlignment="Left" Height="907" Margin="232,22,0,0" VerticalAlignment="Top" Width="1221" RenderTransformOrigin="0.498,0.557">
                         <TabItem Header="Profiles">
                             <Grid>
                                 <Grid.Background>
@@ -507,7 +507,44 @@
                                         <GradientStop Color="#F9120019" Offset="1"/>
                                     </LinearGradientBrush>
                                 </Grid.Background>
-                                
+                                <ListBox x:Name="List_Profile" Width="200" Margin="0,0,1015,29">
+                                    <ListBox.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#F7001219" Offset="0"/>
+                                            <GradientStop Color="#FF00B4FF" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </ListBox.Background>
+                                </ListBox>
+                                <Button x:Name="DoAddWikiProfile" Content="+" HorizontalAlignment="Left" Margin="156,850,0,0" VerticalAlignment="Top" Width="20" RenderTransformOrigin="-2.188,3.45" Foreground="#FF64FF00" Height="22" Click="DoAddWikiProfile_Click">
+                                    <Button.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="Lime" Offset="0"/>
+                                            <GradientStop Color="#FF001900" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Button.Background>
+                                </Button>
+                                <Button x:Name="DoRemoveWikiProfile" Content="-" HorizontalAlignment="Left" Margin="176,850,0,0" VerticalAlignment="Top" Width="24" Height="22" Foreground="#FFFF6464" Click="DoRemoveWikiProfile_Click">
+                                    <Button.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="Red" Offset="0"/>
+                                            <GradientStop Color="#FF190000" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Button.Background>
+                                </Button>
+                                <TextBox x:Name="TBox_NewWikiProfileName" RenderTransformOrigin="0.25,5.208" Margin="0,850,1059,10">
+                                    <TextBox.Foreground>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FD00B4FF" Offset="0"/>
+                                            <GradientStop Color="#FF001219" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </TextBox.Foreground>
+                                    <TextBox.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FF001219" Offset="0"/>
+                                            <GradientStop Color="#FF00B4FF" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </TextBox.Background>
+                                </TextBox>
                             </Grid>
                         </TabItem>
                         <TabItem Header="Pages">
