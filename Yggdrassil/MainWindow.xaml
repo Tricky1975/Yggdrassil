@@ -457,7 +457,74 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
-            <TabItem Header="Wiki"></TabItem>
+            <TabItem x:Name="Tab_Wiki" Header="Wiki">
+                <Grid>
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Red" Offset="0"/>
+                            <GradientStop Color="Blue" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <ListBox Margin="0,0,1288,28">
+                        <ListBox.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#F300FFFF" Offset="0"/>
+                                <GradientStop Color="Yellow" Offset="1"/>
+                            </LinearGradientBrush>
+                        </ListBox.Background>
+
+                    </ListBox>
+                    <Button x:Name="DoAddWiki" Content="+" HorizontalAlignment="Left" Margin="154,909,0,0" VerticalAlignment="Top" Width="20" RenderTransformOrigin="-2.188,3.45" Foreground="#FF64FF00" Height="22" Click="DoAddNewsPage_Click">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Lime" Offset="0"/>
+                                <GradientStop Color="#FF001900" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                    <Button x:Name="DoRemoveWiki" Content="-" HorizontalAlignment="Left" Margin="174,909,0,0" VerticalAlignment="Top" Width="24" Height="22" Foreground="#FFFF6464" Click="DoRemoveNewsPage_Click">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Red" Offset="0"/>
+                                <GradientStop Color="#FF190000" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                    <TextBox x:Name="AddWikiName" HorizontalAlignment="Left" Height="18" Margin="0,911,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="154">
+                        <TextBox.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Yellow" Offset="0"/>
+                                <GradientStop Color="Cyan" Offset="1"/>
+                            </LinearGradientBrush>
+                        </TextBox.Background>
+                    </TextBox>
+                    <TabControl HorizontalAlignment="Left" Height="907" Margin="232,22,0,0" VerticalAlignment="Top" Width="1221" RenderTransformOrigin="0.498,0.557">
+                        <TabItem Header="Profiles">
+                            <Grid>
+                                <Grid.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFB400FF" Offset="0"/>
+                                        <GradientStop Color="#F9120019" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Grid.Background>
+                                
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Pages">
+                            <Grid>
+                                <Grid.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="Lime" Offset="0"/>
+                                        <GradientStop Color="Red" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Grid.Background>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Scripted Pages"></TabItem>
             <TabItem Header="Git">
                 <Grid>
                     <TextBox x:Name="GitOutput" Foreground="#FFFFB400" Text="No Git requests done yet!" FontFamily="Courier New" FontSize="16" Margin="0,0,0,50" IsReadOnly="True">

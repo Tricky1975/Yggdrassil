@@ -69,6 +69,7 @@ namespace Yggdrassil {
             NeedsProject.Add(NewsTab);
             NeedsProject.Add(GitPush);
             NeedsProject.Add(Tab_Page);
+            NeedsProject.Add(Tab_Wiki);
             NeedsNewsBoard.Add(DoRemoveNewsPage);
             NeedsNewsBoard.Add(TBox_NewsTemplate);
             NeedsNewsBoard.Add(TBox_PreNewsText);
