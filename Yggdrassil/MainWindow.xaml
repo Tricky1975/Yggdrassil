@@ -465,7 +465,7 @@
                             <GradientStop Color="Blue" Offset="1"/>
                         </LinearGradientBrush>
                     </Grid.Background>
-                    <ListBox Margin="0,0,1288,28">
+                    <ListBox x:Name="List_Wikis" Margin="0,0,1288,28">
                         <ListBox.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#F300FFFF" Offset="0"/>
