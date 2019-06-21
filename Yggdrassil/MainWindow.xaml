@@ -551,6 +551,25 @@
                                         </LinearGradientBrush>
                                     </TextBox.Background>
                                 </TextBox>
+                                <ComboBox x:Name="WikiProfileSelectType" HorizontalAlignment="Left" Margin="220,850,0,0" VerticalAlignment="Top" Width="144" AutomationProperties.HelpText="Which type do you want your profile variable to have?" SelectedIndex="2">
+                                    <ListBoxItem Background="#F8190000" Content="Picture" Foreground="#FFFF0700"/>
+                                    <ListBoxItem Background="#FB001219" Content="Int" Foreground="#FF0096FF"/>
+                                    <ListBoxItem Background="#FB120019" Content="String" Foreground="#FF9600FF"/>
+                                </ComboBox>
+                                <TextBox x:Name="WikiProfileVar" HorizontalAlignment="Left" Height="23" Margin="386,850,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="269" Background="Black" Foreground="#FFA000C8" FontFamily="SimSun"/>
+                                <TextBox x:Name="WikiProfileVariableShow" HorizontalAlignment="Left" Height="23" Margin="680,850,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="489" Background="Black" Foreground="#FF00B4FF"/>
+                                <Label Content="Type" HorizontalAlignment="Left" Margin="220,819,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="Yellow" Width="67"/>
+                                <Label Content="Variable" HorizontalAlignment="Left" Margin="386,819,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.237,-0.192" Foreground="Yellow"/>
+                                <Label Content="ShowName" HorizontalAlignment="Left" Margin="680,819,0,0" VerticalAlignment="Top" Width="140" Foreground="Yellow"/>
+                                <Button x:Name="AddVariable" Content="💾" HorizontalAlignment="Left" Margin="1174,821,0,0" VerticalAlignment="Top" Width="28" Height="48" RenderTransformOrigin="2.684,1.697"/>
+                                <TextBox x:Name="OverviewProfileVariables" HorizontalAlignment="Left" Height="797" Margin="220,19,0,0" TextWrapping="Wrap" Text="" IsReadOnly="True" VerticalAlignment="Top" Width="973" Background="#19000000" FontFamily="Courier New" FontSize="20">
+                                    <TextBox.Foreground>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FFFFB400" Offset="0.5"/>
+                                            <GradientStop Color="#FF00B4FF" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </TextBox.Foreground>
+                                </TextBox>
                             </Grid>
                         </TabItem>
                         <TabItem Header="Pages">
