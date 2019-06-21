@@ -21,8 +21,9 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 19.06.20
+// Version: 19.06.21
 // EndLic
+
 
 
 
@@ -98,6 +99,7 @@ namespace Yggdrassil.Needed.XSource {
         public string PageDir => $"{Dir}/Pages";
         public Dictionary<string, NewsBoard> NewsBoards = new Dictionary<string, NewsBoard>();
         public Dictionary<string, Page> Pages = new Dictionary<string, Page>();
+        public Dictionary<string, Wiki> Wikis = new Dictionary<string, Wiki>();
 
 
 
@@ -221,9 +223,15 @@ namespace Yggdrassil.Needed.XSource {
             if (!Pages.ContainsKey(id)) Pages[id] = new Page(this, id);
             return Pages[id];
         }
+
+        public Wiki GetWiki(string id) {
+            if (!Wikis.ContainsKey(id)) Wikis[id] = new Wiki(this, id);
+            return Wikis[id];
+        }
         #endregion
     }
 }
+
 
 
 

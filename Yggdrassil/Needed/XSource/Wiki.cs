@@ -21,12 +21,13 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 19.06.20
+// Version: 19.06.21
 // EndLic
+
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Diagnostics;
 using System.Text;
 using TrickyUnits;
 
@@ -38,8 +39,24 @@ namespace Yggdrassil.Needed.XSource {
 
     class Wiki {
         public static MainWindow MW;
+        public readonly Project Parent;
+        public readonly string WikiName;
         Dictionary<string, WikiProfile> Profiles = new Dictionary<string, WikiProfile>();
         TGINI Data = new TGINI();
+        public string[] ProfileList { get { if (Data != null) return Data.List("Profiles").ToArray(); else return null; } }
+        public string WikiFile => $"{Parent.WikiMainDir}/{WikiName}.Profiles.GINI";
+
+        public Wiki(Project Ouwe,string wikiName) {
+            Parent = Ouwe;
+            Parent.Wikis[wikiName] = this;
+            WikiName = wikiName;            
+            Data = GINI.ReadFromFile(WikiFile);
+            if (!Fout.NFAssert(Data, $"Wiki profile file {WikiFile} could not be properly read!")) return;
+            Data.CL("Profiles");
+            Data.List("Profiles").Sort();
+            Debug.WriteLine($"Wiki {wikiName} has {Data.List("Profiles").Count} profile(s) => (Check {ProfileList.Length})");
+        }
     }
 }
+
 

@@ -21,8 +21,9 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 19.06.20
+// Version: 19.06.21
 // EndLic
+
 
 
 using System;
@@ -60,7 +61,7 @@ namespace Yggdrassil {
         public MainWindow() {
             Debug.WriteLine("Loading main window");
             MKL.Lic    ("Yggdrassil - MainWindow.xaml.cs","GNU General Public License 3");
-            MKL.Version("Yggdrassil - MainWindow.xaml.cs","19.06.20");
+            MKL.Version("Yggdrassil - MainWindow.xaml.cs","19.06.21");
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             Title = $"Yggdrassil version {MKL.Newest}";
@@ -513,9 +514,28 @@ namespace Yggdrassil {
 
         private void List_Wikis_SelectionChanged(object sender, SelectionChangedEventArgs e) {            
             EnableElements();
+            RefreshWikiProfiles();
+        }
+
+        string CurrentWiki {
+            get {
+                if (List_Wikis.SelectedItem == null) return "";
+                return List_Wikis.SelectedItem.ToString();
+            }
+        }
+        void RefreshWikiProfiles() {
+            List_WikiProfile.Items.Clear();
+            if (CurrentWiki == "") return;
+            Debug.WriteLine($"Loading profiles for wiki {CurrentWiki}");
+            var W = Project.Current.GetWiki(CurrentWiki);
+            foreach (string wkp in W.ProfileList) {
+                Debug.WriteLine($"Added profile: {wkp}");
+                List_WikiProfile.Items.Add(wkp);
+            }
         }
     }
 }
+
 
 
 

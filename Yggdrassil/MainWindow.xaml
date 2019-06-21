@@ -507,7 +507,13 @@
                                         <GradientStop Color="#F9120019" Offset="1"/>
                                     </LinearGradientBrush>
                                 </Grid.Background>
-                                <ListBox x:Name="List_Profile" Width="200" Margin="0,0,1015,29">
+                                <ListBox x:Name="List_WikiProfile" Width="200" Margin="0,0,1015,29">
+                                    <ListBox.Foreground>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="Yellow" Offset="0"/>
+                                            <GradientStop Color="#FFFFFFB4" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </ListBox.Foreground>
                                     <ListBox.Background>
                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                             <GradientStop Color="#F7001219" Offset="0"/>
