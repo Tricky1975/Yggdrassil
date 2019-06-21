@@ -44,6 +44,7 @@ namespace Yggdrassil.Needed.XSource {
         Dictionary<string, WikiProfile> Profiles = new Dictionary<string, WikiProfile>();
         TGINI Data = new TGINI();
         public string[] ProfileList { get { if (Data != null) return Data.List("Profiles").ToArray(); else return null; } }
+        public List<string> ProfileListList => Data.List("Profiles");
         public string WikiFile => $"{Parent.WikiMainDir}/{WikiName}.Profiles.GINI";
 
         public Wiki(Project Ouwe,string wikiName) {
@@ -55,6 +56,14 @@ namespace Yggdrassil.Needed.XSource {
             Data.CL("Profiles");
             Data.List("Profiles").Sort();
             Debug.WriteLine($"Wiki {wikiName} has {Data.List("Profiles").Count} profile(s) => (Check {ProfileList.Length})");
+        }
+
+        public void Save() {
+            try {
+                Data.SaveSource(WikiFile);
+            } catch (Exception ex) {
+                Fout.Error(ex);
+            }
         }
     }
 }

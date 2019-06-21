@@ -505,7 +505,19 @@ namespace Yggdrassil {
         }
 
         private void DoAddWikiProfile_Click(object sender, RoutedEventArgs e) {
-
+            if (CurrentWiki == "") return;
+            Debug.WriteLine($"Checking profiles for wiki {CurrentWiki}");
+            var W = Project.Current.GetWiki(CurrentWiki);
+            var WPL = W.ProfileListList;
+            var WPName = TBox_NewWikiProfileName.Text;
+            if (!(
+                Fout.NFAssert(WPName,"Profile needs a NAME!") &&
+                Fout.NFAssert(!WPL.Contains(WPName),"That profile already exists!")
+                )) return;
+            WPL.Add(WPName);
+            WPL.Sort();
+            W.Save();
+            RefreshWikiProfiles();
         }
 
         private void DoRemoveWikiProfile_Click(object sender, RoutedEventArgs e) {
