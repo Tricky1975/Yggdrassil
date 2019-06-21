@@ -56,6 +56,7 @@ namespace Yggdrassil {
         List<TextBox> Users = new List<TextBox>();
         List<UIElement> NeedsPage = new List<UIElement>();
         List<UIElement> NeedsWiki = new List<UIElement>();
+        List<UIElement> NeedsWikiProfile = new List<UIElement>();
         public bool AutoAdept = true;
 
         public MainWindow() {
@@ -84,6 +85,10 @@ namespace Yggdrassil {
             NeedsPage.Add(PageContentGroup);
             NeedsPage.Add(DeletePage);
             NeedsWiki.Add(WikiSubTab);
+            NeedsWikiProfile.Add(WikiProfileSelectType);
+            NeedsWikiProfile.Add(WikiProfileVar);
+            NeedsWikiProfile.Add(WikiProfileVariableShow);
+            NeedsWikiProfile.Add(AddVariable);
             LanguageCombo.Add(PageLanguage);
             Avatars.Add(Avatar_NewsItem);
             Avatars.Add(Page_Avatar);
@@ -100,6 +105,7 @@ namespace Yggdrassil {
         bool HaveNewsBoard => HaveProject && ListNewsBoards.SelectedItem != null;
         bool HavePage => HaveProject && Pages.SelectedItem != null && PageLanguage.SelectedItem != null && TBox_PageUser.Text.Trim()!="";
         bool HaveWiki => HaveProject && List_Wikis.SelectedItem != null;
+        bool HaveProfile => HaveWiki && List_WikiProfile.SelectedItem != null;
 
         void AutoEnable(List<UIElement> GadgetList,bool condition) {
             foreach (UIElement Elem in GadgetList) {
@@ -113,6 +119,7 @@ namespace Yggdrassil {
             AutoEnable(NeedsNewsBoard, HaveNewsBoard);
             AutoEnable(NeedsPage, HavePage);
             AutoEnable(NeedsWiki, HaveWiki);
+            AutoEnable(NeedsWikiProfile, HaveProfile);
         }
 
         void RefreshProjectList() {
@@ -544,6 +551,10 @@ namespace Yggdrassil {
                 Debug.WriteLine($"Added profile: {wkp}");
                 List_WikiProfile.Items.Add(wkp);
             }
+        }
+
+        private void List_WikiProfile_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            EnableElements();
         }
     }
 }
