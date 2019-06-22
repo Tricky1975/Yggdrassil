@@ -80,7 +80,10 @@ namespace Yggdrassil.Needed.XSource {
         public static bool NFAssert(string voorwaarde, string foutmelding) => NFAssert(voorwaarde.Length, foutmelding);
         public static bool NFAssert(object voorwaarde, string foutmelding) => NFAssert(voorwaarde != null, foutmelding);
 
-
+        public static bool Yes(string Question,string Caption="") {
+            MessageBoxResult dr = MessageBox.Show(Question,Caption, MessageBoxButton.YesNo);
+            return dr == MessageBoxResult.Yes;            
+        }
     }
 }
 

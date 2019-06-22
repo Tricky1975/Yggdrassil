@@ -564,23 +564,24 @@ namespace Yggdrassil {
         }
         
         void RefreshWpVars() {
-            var r = new StringBuilder(1);
+            var r = new StringBuilder("// Profile variable overview\n\n");
             var W = Project.Current.GetWiki(CurrentWiki);
             if (CurrentWikiProfile == "") {
                 OverviewProfileVariables.Text = "Alright, move along!\nThere's nothing to see here!";
                 return;
             }
             foreach (string vr in W.Vars) {
-                if (qstr.Prefixed(vr, $"VAR.{CurrentWikiProfile}.")) {
+                if (qstr.Prefixed(vr, $"VAR.{CurrentWikiProfile.ToUpper()}.")) {
                     var v = qstr.RemPrefix(vr,$"VAR.{CurrentWikiProfile}.");
                     var dsplit = W.GetVar(v).Split(':');
                     if (Fout.NFAssert(dsplit.Length>0,$"Invalid definition for {v}")) {
                         r.Append(dsplit[0].ToLower());
                         for (int i = dsplit[0].Length; i <= 10; i++) r.Append(" ");
-                        r.Append(vr);
+                        var vs = v.Split('.');
+                        r.Append(vs[2]);
                         if (dsplit[1].Trim() != "") {
-                            if (vr.Length < 12)
-                                for (int i = vr.Length; i <= 11; i++) r.Append(" ");
+                            if (vs[2].Length < 12)
+                                for (int i = vs[2].Length; i <= 11; i++) r.Append(" ");
                             else {
                                 r.Append("\r");
                                 for (int i = 1; i <= 21; i++) r.Append(" ");
@@ -596,6 +597,24 @@ namespace Yggdrassil {
 
         private void List_WikiProfile_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             EnableElements();
+            RefreshWpVars();
+        }
+
+        private void AddVariable_Click(object sender, RoutedEventArgs e) {
+            var W = Project.Current.GetWiki(CurrentWiki);
+            var v = WikiProfileVar.Text;
+            var construct = $"VAR.{CurrentWikiProfile}.{v}".ToUpper();
+            var t = WikiProfileSelectType.SelectedItem.ToString();
+            var d = WikiProfileVariableShow.Text;
+            var constructv = $"{t.ToLower()}:{d}";
+            if (qstr.Prefixed(constructv, "system.window")) {
+                constructv = constructv.Substring(constructv.IndexOf(':') + 1).Trim();
+            }
+            foreach (string cv in W.Vars) {
+                if (cv == construct)
+                    if (!Fout.Yes($"Variable {v} exists\n\nOverwrite it?")) return;
+            }
+            W.SetVar(construct, constructv);
             RefreshWpVars();
         }
     }

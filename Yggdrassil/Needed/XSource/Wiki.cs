@@ -61,6 +61,7 @@ namespace Yggdrassil.Needed.XSource {
 
         public string[] Vars => Data.Vars();
         public string GetVar(string key) => Data.C(key);
+        public void SetVar(string key, string value) { Data.D(key, value); Data.SaveSource(WikiFile); }
 
         public void Save() {
             

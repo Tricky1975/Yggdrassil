@@ -568,7 +568,7 @@
                                 <Label Content="Type" HorizontalAlignment="Left" Margin="220,819,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="Yellow" Width="67"/>
                                 <Label Content="Variable" HorizontalAlignment="Left" Margin="386,819,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.237,-0.192" Foreground="Yellow"/>
                                 <Label Content="ShowName" HorizontalAlignment="Left" Margin="680,819,0,0" VerticalAlignment="Top" Width="140" Foreground="Yellow"/>
-                                <Button x:Name="AddVariable" Content="💾" HorizontalAlignment="Left" Margin="1174,821,0,0" VerticalAlignment="Top" Width="28" Height="48" RenderTransformOrigin="2.684,1.697"/>
+                                <Button x:Name="AddVariable" Content="💾" HorizontalAlignment="Left" Margin="1174,821,0,0" VerticalAlignment="Top" Width="28" Height="48" RenderTransformOrigin="2.684,1.697" Click="AddVariable_Click"/>
                                 <TextBox x:Name="OverviewProfileVariables" HorizontalAlignment="Left" Height="797" Margin="220,19,0,0" TextWrapping="Wrap" Text="" IsReadOnly="True" VerticalAlignment="Top" Width="973" Background="#19000000" FontFamily="Courier New" FontSize="20">
                                     <TextBox.Foreground>
                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
