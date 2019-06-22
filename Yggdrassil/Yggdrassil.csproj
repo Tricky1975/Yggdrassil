@@ -167,5 +167,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Needed\JavaScript\LanguageSelect.js" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Needed\JavaScript\WikiScript.js" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
