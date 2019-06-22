@@ -542,6 +542,15 @@ namespace Yggdrassil {
                 return List_Wikis.SelectedItem.ToString();
             }
         }
+
+        string CurrentWikiProfile {
+            get {
+                if (List_WikiProfile.SelectedItem == null) return "";
+                return List_WikiProfile.SelectedItem.ToString();
+
+            }
+        }
+
         void RefreshWikiProfiles() {
             List_WikiProfile.Items.Clear();
             if (CurrentWiki == "") return;
@@ -552,9 +561,41 @@ namespace Yggdrassil {
                 List_WikiProfile.Items.Add(wkp);
             }
         }
+        
+        void RefreshWpVars() {
+            var r = new StringBuilder(1);
+            var W = Project.Current.GetWiki(CurrentWiki);
+            if (CurrentWikiProfile == "") {
+                OverviewProfileVariables.Text = "Alright, move along!\nThere's nothing to see here!";
+                return;
+            }
+            foreach (string vr in W.Vars) {
+                if (qstr.Prefixed(vr, $"VAR.{CurrentWikiProfile}.")) {
+                    var v = qstr.RemPrefix(vr,$"VAR.{CurrentWikiProfile}.");
+                    var dsplit = W.GetVar(v).Split(':');
+                    if (Fout.NFAssert(dsplit.Length>0,$"Invalid definition for {v}")) {
+                        r.Append(dsplit[0].ToLower());
+                        for (int i = dsplit[0].Length; i <= 10; i++) r.Append(" ");
+                        r.Append(vr);
+                        if (dsplit[1].Trim() != "") {
+                            if (vr.Length < 12)
+                                for (int i = vr.Length; i <= 11; i++) r.Append(" ");
+                            else {
+                                r.Append("\r");
+                                for (int i = 1; i <= 21; i++) r.Append(" ");
+                            }
+                            r.Append($" // {dsplit[1]}");
+                        }
+                        r.Append("\r");
+                    }
+                }
+            }
+            OverviewProfileVariables.Text = r.ToString();
+        }
 
         private void List_WikiProfile_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             EnableElements();
+            RefreshWpVars();
         }
     }
 }

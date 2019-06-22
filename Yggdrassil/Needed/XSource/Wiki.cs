@@ -58,7 +58,11 @@ namespace Yggdrassil.Needed.XSource {
             Debug.WriteLine($"Wiki {wikiName} has {Data.List("Profiles").Count} profile(s) => (Check {ProfileList.Length})");
         }
 
+        public string[] Vars => Data.Vars();
+        public string GetVar(string key) => Data.C(key);
+
         public void Save() {
+            
             try {
                 Data.SaveSource(WikiFile);
             } catch (Exception ex) {
