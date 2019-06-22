@@ -86,6 +86,7 @@ namespace Yggdrassil {
             NeedsPage.Add(PageContentGroup);
             NeedsPage.Add(DeletePage);
             NeedsWiki.Add(WikiSubTab);
+            NeedsWiki.Add(WikiPageGeneral);
             NeedsWikiProfile.Add(WikiProfileSelectType);
             NeedsWikiProfile.Add(WikiProfileVar);
             NeedsWikiProfile.Add(WikiProfileVariableShow);
@@ -93,8 +94,10 @@ namespace Yggdrassil {
             LanguageCombo.Add(PageLanguage);
             Avatars.Add(Avatar_NewsItem);
             Avatars.Add(Page_Avatar);
+            Avatars.Add(WikiPageAvatar);
             Users.Add(TBox_NewsItem_User);
             Users.Add(TBox_PageUser);
+            Users.Add(TBox_WikiPageUser);
             Project.RegisterMainWindow(this);
             Needed.XSource.Page.Register(this);
             Wiki.MW = this;
@@ -107,12 +110,13 @@ namespace Yggdrassil {
         bool HavePage => HaveProject && Pages.SelectedItem != null && PageLanguage.SelectedItem != null && TBox_PageUser.Text.Trim()!="";
         bool HaveWiki => HaveProject && List_Wikis.SelectedItem != null;
         bool HaveProfile => HaveWiki && List_WikiProfile.SelectedItem != null;
+        bool HavePageData => HaveWiki && TBox_WikiPageUser.Text != "" && WikiPageLanguage.SelectedItem != null && WikiPageProfile.SelectedItem != null;
 
         void AutoEnable(List<UIElement> GadgetList,bool condition) {
             foreach (UIElement Elem in GadgetList) {
                 Elem.IsEnabled = condition;
             }
-
+            WikiPageGroup.IsEnabled = HavePageData;
         }
 
         void EnableElements() {
@@ -616,6 +620,11 @@ namespace Yggdrassil {
             }
             W.SetVar(construct, constructv);
             RefreshWpVars();
+        }
+
+        private void TBox_WikiPageUser_TextChanged(object sender, TextChangedEventArgs e) {
+            UpdateAvatars(TBox_WikiPageUser.Text);
+            SyncUsers(TBox_WikiPageUser);
         }
     }
 }

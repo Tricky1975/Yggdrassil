@@ -587,8 +587,60 @@
                                         <GradientStop Color="Red" Offset="1"/>
                                     </LinearGradientBrush>
                                 </Grid.Background>
+                                <GroupBox Header="General info" x:Name="WikiPageGeneral" HorizontalAlignment="Left" Height="146" Margin="10,10,0,0" VerticalAlignment="Top" Width="1195">
+                                    <Grid>
+                                        <Grid.Background>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="#FFFFB400" Offset="0.5"/>
+                                                <GradientStop Color="#FF00B4FF" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Grid.Background>
+                                        <Image x:Name="WikiPageAvatar" Width="100" Height="100" Margin="10,10,1073,47" Stretch="Fill" Cursor="No" />
+                                        <Label Content="User" HorizontalAlignment="Left" Margin="110,10,0,0" VerticalAlignment="Top"/>
+                                        <Label Content="Languge" HorizontalAlignment="Left" Margin="110,36,0,0" VerticalAlignment="Top"/>
+                                        <Label Content="WikiProfile" HorizontalAlignment="Left" Margin="110,62,0,0" VerticalAlignment="Top"/>
+                                        <TextBox x:Name="TBox_WikiPageUser" Margin="212,10,10,88" Height="25" FontFamily="Arial Black" TextChanged="TBox_WikiPageUser_TextChanged">
+                                            <TextBox.Foreground>
+                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                    <GradientStop Color="#FFFFB400" Offset="1"/>
+                                                    <GradientStop Color="#FF00B4FF"/>
+                                                </LinearGradientBrush>
+                                            </TextBox.Foreground>
+                                            <TextBox.Background>
+                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                    <GradientStop Color="#FF644000" Offset="0"/>
+                                                    <GradientStop Color="#FF004064" Offset="1"/>
+                                                </LinearGradientBrush>
+                                            </TextBox.Background>
+                                        </TextBox>
+                                        <ComboBox x:Name="WikiPageLanguage" HorizontalAlignment="Left" Margin="212,40,0,0" VerticalAlignment="Top" Width="961"/>
+                                        <ComboBox x:Name="WikiPageProfile" HorizontalAlignment="Left" Margin="212,67,0,0" VerticalAlignment="Top" Width="961"/>
+                                    </Grid>
+                                </GroupBox>
+                                <GroupBox x:Name="WikiPageGroup" Header="Page" HorizontalAlignment="Left" Height="679" Margin="10,161,0,0" VerticalAlignment="Top" Width="1195">
+                                    <Grid>
+                                        <ComboBox HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="192"/>
+                                        <TextBox x:Name="WikiPageContentVarValue" Height="20" Margin="236,12,20,625">
+                                            <TextBox.Background>
+                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                    <GradientStop Color="Lime" Offset="1"/>
+                                                    <GradientStop Color="Red" Offset="0"/>
+                                                </LinearGradientBrush>
+                                            </TextBox.Background>
+                                        </TextBox>
+                                        <TextBox x:Name="WikiPageContentMainContent" FontFamily="Courier New" FontSize="20" Margin="10,37,20,10" Foreground="#FF00B4FF" AcceptsReturn="True">
+                                            <TextBox.Background>
+                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                    <GradientStop Color="#F9004061" Offset="0"/>
+                                                    <GradientStop Color="#FF000019" Offset="1"/>
+                                                </LinearGradientBrush>
+                                            </TextBox.Background>
+                                        </TextBox>
+                                    </Grid>
+                                </GroupBox>
                             </Grid>
                         </TabItem>
+                        <TabItem Header="Generation"></TabItem>
                     </TabControl>
 
                 </Grid>
