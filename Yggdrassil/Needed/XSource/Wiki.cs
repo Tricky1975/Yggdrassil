@@ -38,6 +38,21 @@ namespace Yggdrassil.Needed.XSource {
 
     using WikiProfile = Dictionary<string, string>;
 
+    class WikiPage {
+        TGINI Data;
+        public readonly Wiki ParentWiki;
+        public Project Ancestor => ParentWiki.Parent;
+        string _Lang;
+        public string Lang { set { _Lang = value; }
+            get {
+                Fout.NFAssert(_Lang, "Request to language done, while this has not yet been set!");
+                return _Lang;
+            }
+        }
+        public string Profile { get => Data.C($"{Lang}.PROFILE"); set => Data.D($"{Lang}.Profile", value); }
+
+    }
+
     class Wiki {
         public static MainWindow MW;
         public readonly Project Parent;
