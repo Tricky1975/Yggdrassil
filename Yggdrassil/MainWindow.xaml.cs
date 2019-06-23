@@ -558,12 +558,14 @@ namespace Yggdrassil {
 
         void RefreshWikiProfiles() {
             List_WikiProfile.Items.Clear();
+            WikiPageProfile.Items.Clear();
             if (CurrentWiki == "") return;
             Debug.WriteLine($"Loading profiles for wiki {CurrentWiki}");
             var W = Project.Current.GetWiki(CurrentWiki);
             foreach (string wkp in W.ProfileList) {
                 Debug.WriteLine($"Added profile: {wkp}");
                 List_WikiProfile.Items.Add(wkp);
+                WikiPageProfile.Items.Add(wkp);
             }
         }
         
