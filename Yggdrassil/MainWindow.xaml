@@ -595,10 +595,11 @@
                                                 <GradientStop Color="#FF00B4FF" Offset="1"/>
                                             </LinearGradientBrush>
                                         </Grid.Background>
-                                        <Image x:Name="WikiPageAvatar" Width="100" Height="100" Margin="10,10,1073,47" Stretch="Fill" Cursor="No" />
+                                        <Image x:Name="WikiPageAvatar" Width="100" Height="100" Margin="10,10,1073,10" Stretch="Fill" Cursor="No" />
                                         <Label Content="User" HorizontalAlignment="Left" Margin="110,10,0,0" VerticalAlignment="Top"/>
                                         <Label Content="Languge" HorizontalAlignment="Left" Margin="110,36,0,0" VerticalAlignment="Top"/>
                                         <Label Content="WikiProfile" HorizontalAlignment="Left" Margin="110,62,0,0" VerticalAlignment="Top"/>
+                                        <Label Content="Page" HorizontalAlignment="Left" Margin="110,88,0,0" VerticalAlignment="Top"/>
                                         <TextBox x:Name="TBox_WikiPageUser" Margin="212,10,10,88" Height="25" FontFamily="Arial Black" TextChanged="TBox_WikiPageUser_TextChanged">
                                             <TextBox.Foreground>
                                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -615,6 +616,33 @@
                                         </TextBox>
                                         <ComboBox x:Name="WikiPageLanguage" HorizontalAlignment="Left" Margin="212,40,0,0" VerticalAlignment="Top" Width="961"/>
                                         <ComboBox x:Name="WikiPageProfile" HorizontalAlignment="Left" Margin="212,67,0,0" VerticalAlignment="Top" Width="961"/>
+                                        <ComboBox x:Name="WikiPagePage" HorizontalAlignment="Left" Margin="212,93,0,0" VerticalAlignment="Top" Width="480"/>
+                                        
+                                        <TextBox x:Name="WikiPageNewPageName" Margin="726,93,30,11" Height="20" Foreground="#FF64FF00">
+                                            <TextBox.Background>
+                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                    <GradientStop Color="DarkGreen" Offset="0"/>
+                                                    <GradientStop Color="Lime" Offset="1"/>
+                                                </LinearGradientBrush>
+                                            </TextBox.Background>
+                                        </TextBox>
+                                        <Button x:Name="DoAddWikiPage" Content="+" HorizontalAlignment="Left" Margin="1153,93,0,0" VerticalAlignment="Top" Width="20" RenderTransformOrigin="-2.188,3.45" Foreground="#FF64FF00" Height="22" >
+                                            <Button.Background>
+                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                    <GradientStop Color="Lime" Offset="0"/>
+                                                    <GradientStop Color="#FF001900" Offset="1"/>
+                                                </LinearGradientBrush>
+                                            </Button.Background>
+                                        </Button>
+                                        <Button x:Name="DoRemoveWikiPage" Content="-" HorizontalAlignment="Left" Margin="692,93,0,0" VerticalAlignment="Top" Width="24" Height="22" Foreground="#FFFF6464">
+                                            <Button.Background>
+                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                    <GradientStop Color="Red" Offset="0"/>
+                                                    <GradientStop Color="#FF190000" Offset="1"/>
+                                                </LinearGradientBrush>
+                                            </Button.Background>
+                                        </Button>
+
                                     </Grid>
                                 </GroupBox>
                                 <GroupBox x:Name="WikiPageGroup" Header="Page" HorizontalAlignment="Left" Height="679" Margin="10,161,0,0" VerticalAlignment="Top" Width="1195">
