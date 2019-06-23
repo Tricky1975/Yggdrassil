@@ -16,8 +16,9 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-// Version 19.06.22
+// Version 19.06.23
 // EndLic
+
 
 // This script just needs to be attached to every Wiki Page
 
@@ -29,4 +30,5 @@ const Var2ScriptCall = (vcall,value) => {
 	}
 	return Var2Script[vcall](vcall,value)
 }
+
 
