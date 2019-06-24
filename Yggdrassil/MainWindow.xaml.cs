@@ -645,6 +645,24 @@ namespace Yggdrassil {
                 Fout.Error(ErrareHumanumEst);
             }
         }
+
+        private void DoAddWikiPage_Click(object sender, RoutedEventArgs e) {
+            try {
+                var name = WikiPageNewPageName.Text;
+                WikiPageNewPageName.Text = "";
+                var W = Project.Current.GetWiki(CurrentWiki);
+                var filename = $"{W.WikiPageDir}/{name}.GINI";
+                Directory.CreateDirectory(W.WikiPageDir);
+                if (!(
+                    Fout.NFAssert(name, "I need a name!") &&
+                    Fout.NFAssert(!File.Exists(filename), $"Page {name} already exists") &&
+                    Fout.NFAssert(name.IndexOf(' ') < 0, "No spaces allowed!")
+                    )) return;
+                QuickStream.SaveString(filename, "[rem]\nIn this world, one thing counts\nOn the bank large amounts\nI'm afraid these won't grow on trees\nYou've got to pick a pocket or two you've\ngot to pick a pocket or two\nYou've got to pick a pocket or two!");
+                RefreshPages();
+            } catch (Exception Noway) { Fout.Error(Noway); }
+
+        }
     }
 }
 
