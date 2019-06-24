@@ -93,6 +93,7 @@ namespace Yggdrassil {
             NeedsWikiProfile.Add(WikiProfileVariableShow);
             NeedsWikiProfile.Add(AddVariable);
             LanguageCombo.Add(PageLanguage);
+            LanguageCombo.Add(WikiPageLanguage);
             Avatars.Add(Avatar_NewsItem);
             Avatars.Add(Page_Avatar);
             Avatars.Add(WikiPageAvatar);
