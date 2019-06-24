@@ -63,6 +63,7 @@ namespace Yggdrassil.Needed.XSource {
         public string[] ProfileList { get { if (Data != null) return Data.List("Profiles").ToArray(); else return null; } }
         public List<string> ProfileListList => Data.List("Profiles");
         public string WikiFile => $"{Parent.WikiMainDir}/{WikiName}.Profiles.GINI";
+        public string WikiPageDir => $"{Parent.WikiMainDir}/{WikiName}.Pages";
 
         public Wiki(Project Ouwe,string wikiName) {
             Parent = Ouwe;

@@ -630,6 +630,21 @@ namespace Yggdrassil {
             UpdateAvatars(TBox_WikiPageUser.Text);
             SyncUsers(TBox_WikiPageUser);
         }
+
+        void RefreshWikiPages() {
+            try {
+                var items = WikiPagePage.Items;
+                var W = Project.Current.GetWiki(CurrentWiki);
+                var WPages = FileList.GetDir(W.WikiPageDir);
+                if (!Fout.NFAssert(WPages, $"{W.WikiPageDir} could not be access somehow!")) return;
+                items.Clear();
+                foreach(string p in WPages) {
+                    if (qstr.ExtractExt(p).ToUpper() == "GINI") items.Add(qstr.Left(p, p.Length - 4));
+                }
+            } catch (Exception ErrareHumanumEst) {
+                Fout.Error(ErrareHumanumEst);
+            }
+        }
     }
 }
 
