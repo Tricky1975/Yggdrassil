@@ -541,6 +541,7 @@ namespace Yggdrassil {
         private void List_Wikis_SelectionChanged(object sender, SelectionChangedEventArgs e) {            
             EnableElements();
             RefreshWikiProfiles();
+            RefreshWikiPages();
         }
 
         string CurrentWiki {
@@ -639,7 +640,7 @@ namespace Yggdrassil {
                 if (!Fout.NFAssert(WPages, $"{W.WikiPageDir} could not be access somehow!")) return;
                 items.Clear();
                 foreach(string p in WPages) {
-                    if (qstr.ExtractExt(p).ToUpper() == "GINI") items.Add(qstr.Left(p, p.Length - 4));
+                    if (qstr.ExtractExt(p).ToUpper() == "GINI") items.Add(qstr.Left(p, p.Length - 5));
                 }
             } catch (Exception ErrareHumanumEst) {
                 Fout.Error(ErrareHumanumEst);
@@ -659,7 +660,7 @@ namespace Yggdrassil {
                     Fout.NFAssert(name.IndexOf(' ') < 0, "No spaces allowed!")
                     )) return;
                 QuickStream.SaveString(filename, "[rem]\nIn this world, one thing counts\nOn the bank large amounts\nI'm afraid these won't grow on trees\nYou've got to pick a pocket or two you've\ngot to pick a pocket or two\nYou've got to pick a pocket or two!");
-                RefreshPages();
+                RefreshWikiPages();
             } catch (Exception Noway) { Fout.Error(Noway); }
 
         }
