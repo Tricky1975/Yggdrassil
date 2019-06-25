@@ -113,7 +113,7 @@ namespace Yggdrassil {
         bool HavePage => HaveProject && Pages.SelectedItem != null && PageLanguage.SelectedItem != null && TBox_PageUser.Text.Trim()!="";
         bool HaveWiki => HaveProject && List_Wikis.SelectedItem != null;
         bool HaveProfile => HaveWiki && List_WikiProfile.SelectedItem != null;
-        bool HavePageData => HaveWiki && TBox_WikiPageUser.Text != "" && WikiPageLanguage.SelectedItem != null && WikiPageProfile.SelectedItem != null;
+        bool HavePageData => HaveWiki && TBox_WikiPageUser.Text != "" && WikiPageLanguage.SelectedItem != null && WikiPageProfile.SelectedItem != null && WikiPagePage.SelectedItem != null;
 
         void AutoEnable(List<UIElement> GadgetList,bool condition) {
             foreach (UIElement Elem in GadgetList) {
@@ -673,10 +673,44 @@ namespace Yggdrassil {
 
         private void WikiPageProfile_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             EnableElements();
+            if (WikiPageProfile.SelectedItem!=null) RefreshPageVars();
         }
 
         private void WikiPagePage_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             EnableElements();
+        }
+
+        void RefreshPageVars() {
+            Debug.WriteLine("Refreshing Page Variable selector");
+            var W = Project.Current.GetWiki(CurrentWiki);
+            var WProfile = WikiPageProfile.SelectedItem.ToString();
+            WikiPageVars.Items.Clear();
+            foreach (string vr in W.Vars) {
+                if (qstr.Prefixed(vr, $"VAR.{WProfile.ToUpper()}.")) {
+                    var v = qstr.RemPrefix(vr, $"VAR.{WProfile}.");
+                    var dsplit = W.GetVar(v).Split(':');
+                    if (Fout.NFAssert(dsplit.Length > 0, $"Invalid definition for {v}")) {
+                        //WikiPageVars.Items.Add(dsplit[0]);
+                        //for (int i = dsplit[0].Length; i <= 10; i++) r.Append(" ");
+                        var vs = v.Split('.');
+                        WikiPageVars.Items.Add(vs[2]);
+                        /*
+                        if (dsplit[1].Trim() != "") {
+                            if (vs[2].Length < 12)
+                                for (int i = vs[2].Length; i <= 11; i++) r.Append(" ");
+                            else {
+                                //r.Append("\r");
+                                for (int i = 1; i <= 21; i++) r.Append(" ");
+                            }
+                            r.Append($" // {dsplit[1]}");
+                        }
+                        r.Append("\r");
+                        */
+                    }
+                }
+            }
+            //OverviewProfileVariables.Text = r.ToString();
+
         }
     }
 }

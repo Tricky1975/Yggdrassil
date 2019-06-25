@@ -647,7 +647,7 @@
                                 </GroupBox>
                                 <GroupBox x:Name="WikiPageGroup" Header="Page" HorizontalAlignment="Left" Height="679" Margin="10,161,0,0" VerticalAlignment="Top" Width="1195">
                                     <Grid>
-                                        <ComboBox HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="192"/>
+                                        <ComboBox x:Name="WikiPageVars" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="192"/>
                                         <TextBox x:Name="WikiPageContentVarValue" Height="20" Margin="236,12,20,625">
                                             <TextBox.Background>
                                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
