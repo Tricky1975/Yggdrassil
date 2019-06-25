@@ -21,8 +21,9 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 19.06.23
+// Version: 19.06.25
 // EndLic
+
 
 
 
@@ -90,6 +91,7 @@ namespace Yggdrassil.Needed.XSource {
         }
     }
 }
+
 
 
 
