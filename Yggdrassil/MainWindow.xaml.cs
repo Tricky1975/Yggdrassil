@@ -630,6 +630,7 @@ namespace Yggdrassil {
         private void TBox_WikiPageUser_TextChanged(object sender, TextChangedEventArgs e) {
             UpdateAvatars(TBox_WikiPageUser.Text);
             SyncUsers(TBox_WikiPageUser);
+            EnableElements();
         }
 
         void RefreshWikiPages() {
@@ -663,6 +664,18 @@ namespace Yggdrassil {
                 RefreshWikiPages();
             } catch (Exception Noway) { Fout.Error(Noway); }
 
+        }
+
+        private void WikiPageLanguage_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            EnableElements();
+        }
+
+        private void WikiPageProfile_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            EnableElements();
+        }
+
+        private void WikiPagePage_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            EnableElements();
         }
     }
 }

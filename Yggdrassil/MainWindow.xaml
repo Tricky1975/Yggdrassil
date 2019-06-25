@@ -614,9 +614,9 @@
                                                 </LinearGradientBrush>
                                             </TextBox.Background>
                                         </TextBox>
-                                        <ComboBox x:Name="WikiPageLanguage" HorizontalAlignment="Left" Margin="212,40,0,0" VerticalAlignment="Top" Width="961"/>
-                                        <ComboBox x:Name="WikiPageProfile" HorizontalAlignment="Left" Margin="212,67,0,0" VerticalAlignment="Top" Width="961"/>
-                                        <ComboBox x:Name="WikiPagePage" HorizontalAlignment="Left" Margin="212,93,0,0" VerticalAlignment="Top" Width="480"/>
+                                        <ComboBox x:Name="WikiPageLanguage" HorizontalAlignment="Left" Margin="212,40,0,0" VerticalAlignment="Top" Width="961" SelectionChanged="WikiPageLanguage_SelectionChanged"/>
+                                        <ComboBox x:Name="WikiPageProfile" HorizontalAlignment="Left" Margin="212,67,0,0" VerticalAlignment="Top" Width="961" SelectionChanged="WikiPageProfile_SelectionChanged"/>
+                                        <ComboBox x:Name="WikiPagePage" HorizontalAlignment="Left" Margin="212,93,0,0" VerticalAlignment="Top" Width="480" SelectionChanged="WikiPagePage_SelectionChanged"/>
                                         
                                         <TextBox x:Name="WikiPageNewPageName" Margin="726,93,30,11" Height="20" Foreground="#FF64FF00">
                                             <TextBox.Background>
