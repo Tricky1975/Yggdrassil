@@ -24,11 +24,6 @@
 // Version: 19.06.25
 // EndLic
 
-
-
-
-
-
 using System;
 using System.Diagnostics;
 using System.Collections.Generic;
@@ -120,6 +115,7 @@ namespace Yggdrassil {
                 Elem.IsEnabled = condition;
             }
             WikiPageGroup.IsEnabled = HavePageData;
+            SaveWikiPage.IsEnabled = HavePageData;
         }
 
         void EnableElements() {

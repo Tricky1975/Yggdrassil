@@ -666,6 +666,14 @@
                                         </TextBox>
                                     </Grid>
                                 </GroupBox>
+                                <Button x:Name="SaveWikiPage" Content="Save Page" Margin="0,840,0,0" Foreground="#FF001906">
+                                    <Button.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="Yellow" Offset="0"/>
+                                            <GradientStop Color="Lime" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Button.Background>
+                                </Button>
                             </Grid>
                         </TabItem>
                         <TabItem Header="Generation"></TabItem>
