@@ -29,6 +29,7 @@
 
 
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
@@ -44,6 +45,7 @@ namespace Yggdrassil.Needed.XSource {
         TGINI Data;
         public readonly Wiki ParentWiki;
         public Project Ancestor => ParentWiki.Parent;
+        readonly string Name;
         string _Lang;
         public string Lang { set { _Lang = value; }
             get {
@@ -52,7 +54,7 @@ namespace Yggdrassil.Needed.XSource {
             }
         }
         private string ContentTag => $"{Lang}.{Profile}.Content";
-        public string Profile { get => Data.C($"{Lang}.PROFILE"); set => Data.D($"{Lang}.Profile", value); }
+        public string Profile { get => Data.C($"{Lang}.PROFILE"); set { Data.D($"{Lang}.Profile", value); Modified(); } }
         public string Content {
             get {
                 var ret = new StringBuilder(1);
@@ -114,8 +116,33 @@ namespace Yggdrassil.Needed.XSource {
                 } else {
                     Data.List(ContentTag).Add("WL: << White Line >>");
                 }
+            Modified();
             }
+        }
 
+        public string WikiPageFile => $"{ParentWiki.WikiPageDir}/{Name}";
+
+        void Modified() {
+            Data.D("MODIFIED.BY", Wiki.MW.TBox_WikiPageUser.Text);
+            Data.D("MODIFIED.ON", $"{DateTime.Now.ToLongDateString()}; {DateTime.Now.ToLongTimeString()}");
+        }
+
+        public void Save() {
+            Data.SaveSource(WikiPageFile);
+        }
+
+        public WikiPage(Wiki Ouwe, string PageName) {
+            ParentWiki = Ouwe;
+            Name = PageName;
+            if (File.Exists(WikiPageFile))
+                Data = GINI.ReadFromFile(WikiPageFile);
+            else {
+                Data = new TGINI();
+                Data.D("CREATED.BY", Wiki.MW.TBox_WikiPageUser.Text);
+                Data.D("CREATED.ON", $"{DateTime.Now.ToLongDateString()}; {DateTime.Now.ToLongTimeString()}");
+                Modified();
+                Save();
+            }
         }
     }
 
@@ -124,6 +151,7 @@ namespace Yggdrassil.Needed.XSource {
         public readonly Project Parent;
         public readonly string WikiName;
         Dictionary<string, WikiProfile> Profiles = new Dictionary<string, WikiProfile>();
+        Dictionary<string, WikiPage> Pages = new Dictionary<string, WikiPage>();
         TGINI Data = new TGINI();
         public string[] ProfileList { get { if (Data != null) return Data.List("Profiles").ToArray(); else return null; } }
         public List<string> ProfileListList => Data.List("Profiles");
@@ -145,8 +173,14 @@ namespace Yggdrassil.Needed.XSource {
         public string GetVar(string key) => Data.C(key);
         public void SetVar(string key, string value) { Data.D(key, value); Data.SaveSource(WikiFile); }
 
-        public void Save() {
-            
+        public WikiPage GetWikiPage(string wp) {
+            if (!Pages.ContainsKey(wp)) {
+                Pages[wp] = new WikiPage(this, wp);
+            }
+            return Pages[wp];
+        }
+
+        public void Save() {            
             try {
                 Data.SaveSource(WikiFile);
             } catch (Exception ex) {
