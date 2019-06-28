@@ -51,8 +51,72 @@ namespace Yggdrassil.Needed.XSource {
                 return _Lang;
             }
         }
+        private string ContentTag => $"{Lang}.{Profile}.Content";
         public string Profile { get => Data.C($"{Lang}.PROFILE"); set => Data.D($"{Lang}.Profile", value); }
+        public string Content {
+            get {
+                var ret = new StringBuilder(1);
+                foreach(string l in Data.List(ContentTag)) {
+                    var dubbelepunt = l.IndexOf(':');
+                    string cmd, val;
+                    if (dubbelepunt<0) { cmd = "IGNORE"; val = l; }
+                    cmd = l.Substring(0, dubbelepunt).ToUpper();
+                    val = l.Substring(dubbelepunt + 1);
+                    for (int i = 0; i < 256; i++) if (val.IndexOf('\\') >= 0) val = val.Replace($"\\{i}", qstr.Chr(i));
+                    switch (cmd) {
+                        case "WL":
+                        case "WHITELINE":
+                            ret.Append("\n");
+                            break;
+                        case "IG":
+                        case "IGNORE":
+                            break;
+                        case "NL":
+                        case "ADD":
+                        case "NEWLINE":
+                            ret.Append($"{val}\n");
+                            break;
+                        default:
+                            Fout.Error($"Illegal instruction: {cmd}");
+                            break;
+                    }
+                }
+                return ret.ToString();
+            }
 
+            set {
+                Data.CL(ContentTag, false);
+                var s = new StringBuilder(1);
+                for(int i = 0; i < value.Length; ++i) {
+                    var b = (byte)value[i];
+                    if (b>32 && value[i]!='\\' && b<128) {
+                        s.Append(value[i]);
+                    } else {
+                        switch (b) {
+                            case 10:
+                                if (s.Length > 0) {
+                                    Data.List(ContentTag).Add($"NL:{s.ToString()}");
+                                } else {
+                                    Data.List(ContentTag).Add("WL: << White Line >>");
+                                }
+                                s.Clear();
+                                break;
+                            case 13:
+                                break; // Only Unix line breaks;
+                            default:
+                                s.Append($"\\{b}");
+                                break;
+                        }
+                    }
+                }
+                if (s.Length > 0) {
+                    Data.List(ContentTag).Add($"NL:{s.ToString()}");
+                } else {
+                    Data.List(ContentTag).Add("WL: << White Line >>");
+                }
+            }
+
+        }
     }
 
     class Wiki {
