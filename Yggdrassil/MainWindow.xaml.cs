@@ -714,7 +714,7 @@ namespace Yggdrassil {
                 var _current = Project.Current;
                 var _wiki = _current.GetWiki(CurrentWiki);
                 var _profile = WikiPageProfile.SelectedItem.ToString();
-                var _wikipage = _wiki.GetWikiPage(,WikiPagePage.SelectedItem.ToString());
+                var _wikipage = _wiki.GetWikiPage(WikiPagePage.SelectedItem.ToString());
                 if (!(Fout.NFAssert(_wikipage, "INTERNAL ERROR!\nWiki page not retrieved from combobox!") && Fout.NFAssert(WikiPageContentMainContent,"XAML ERROR!\n\nPlease report!"))) return;
                 _wikipage.Lang = WikiPageLanguage.SelectedItem.ToString();
                 _wikipage.Content = WikiPageContentMainContent.Text;
@@ -732,6 +732,27 @@ namespace Yggdrassil {
             _wikipage.Save();
             _wiki.UpdateHash(WikiPagePage.SelectedItem.ToString());
             _wiki.Save();
+        }
+
+        private void WikiPageVars_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            var pushed = AutoAdept;
+            AutoAdept = false;
+            var _current = Project.Current;
+            var _wiki = _current.GetWiki(CurrentWiki);
+            var _profile = WikiPageProfile.SelectedItem.ToString();
+            var _wikipage = _wiki.GetWikiPage(WikiPagePage.SelectedItem.ToString());
+            WikiPageContentVarValue.Text = _wikipage.Get(_profile,WikiPageVars.SelectedItem.ToString());
+            AutoAdept = pushed; 
+        }
+
+        private void WikiPageContentVarValue_TextChanged(object sender, TextChangedEventArgs e) {
+            if (AutoAdept) {
+                var _current = Project.Current;
+                var _wiki = _current.GetWiki(CurrentWiki);
+                var _profile = WikiPageProfile.SelectedItem.ToString();
+                var _wikipage = _wiki.GetWikiPage(WikiPagePage.SelectedItem.ToString());
+                _wikipage.Set(_profile, WikiPageVars.SelectedItem.ToString(), WikiPageContentVarValue.Text);
+            }
         }
     }
 }

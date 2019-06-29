@@ -55,6 +55,8 @@ namespace Yggdrassil.Needed.XSource {
         }
         private string ContentTag => $"{Lang}.{Profile}.Content";
         public string Profile { get => Data.C($"{Lang}.PROFILE"); set { Data.D($"{Lang}.Profile", value); Modified(); } }
+        public void Set(string Profile, string Key, string Value) => Data.D($"VARIABLE.{Lang}.{Profile}.{Key}", Value);
+        public string Get(string Profile, string Key) => Data.C($"VARIABLE.{Lang}.{Profile}.{Key}");
         public string Content {
             get {
                 var ret = new StringBuilder(1);
@@ -179,8 +181,8 @@ namespace Yggdrassil.Needed.XSource {
         }
 
         public string[] Vars => Data.Vars();
-        public string GetVar(string pf,string key) => Data.C($"{pf}.{key}");
-        public void SetVar(string pf,string key, string value) { Data.D($"{pf}.{key}", value); Data.SaveSource(WikiFile); }
+        public string GetVar(string key) => Data.C($"{key}");
+        public void SetVar(string key, string value) { Data.D($"{key}", value); Data.SaveSource(WikiFile); }
 
         public WikiPage GetWikiPage (string wp) {
             var pt = $"{wp}";
