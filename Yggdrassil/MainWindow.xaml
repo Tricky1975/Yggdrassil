@@ -656,7 +656,7 @@
                                                 </LinearGradientBrush>
                                             </TextBox.Background>
                                         </TextBox>
-                                        <TextBox x:Name="WikiPageContentMainContent" FontFamily="Courier New" FontSize="20" Margin="10,37,20,10" Foreground="#FF00B4FF" AcceptsReturn="True">
+                                        <TextBox x:Name="WikiPageContentMainContent" FontFamily="Courier New" FontSize="20" Margin="10,37,20,10" Foreground="#FF00B4FF" AcceptsReturn="True" TextChanged="WikiPageContentMainContent_TextChanged">
                                             <TextBox.Background>
                                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                                     <GradientStop Color="#F9004061" Offset="0"/>
@@ -666,7 +666,7 @@
                                         </TextBox>
                                     </Grid>
                                 </GroupBox>
-                                <Button x:Name="SaveWikiPage" Content="Save Page" Margin="0,840,0,0" Foreground="#FF001906">
+                                <Button x:Name="SaveWikiPage" Content="Save Page" Margin="0,840,0,0" Foreground="#FF001906" Click="SaveWikiPage_Click">
                                     <Button.Background>
                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                             <GradientStop Color="Yellow" Offset="0"/>

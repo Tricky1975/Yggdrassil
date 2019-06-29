@@ -708,6 +708,31 @@ namespace Yggdrassil {
             //OverviewProfileVariables.Text = r.ToString();
 
         }
+
+        private void WikiPageContentMainContent_TextChanged(object sender, TextChangedEventArgs stuffIdontNeed) {
+            try {
+                var _current = Project.Current;
+                var _wiki = _current.GetWiki(CurrentWiki);
+                var _profile = WikiPageProfile.SelectedItem.ToString();
+                var _wikipage = _wiki.GetWikiPage(,WikiPagePage.SelectedItem.ToString());
+                if (!(Fout.NFAssert(_wikipage, "INTERNAL ERROR!\nWiki page not retrieved from combobox!") && Fout.NFAssert(WikiPageContentMainContent,"XAML ERROR!\n\nPlease report!"))) return;
+                _wikipage.Lang = WikiPageLanguage.SelectedItem.ToString();
+                _wikipage.Content = WikiPageContentMainContent.Text;
+            } catch (Exception e) {
+                Fout.Error($"INTERNAL ISSUES!\n\n{e.Message}\n\n{e.StackTrace}\n\nPlease report!");
+            }
+        }
+
+        private void SaveWikiPage_Click(object sender, RoutedEventArgs e) {
+            var _current = Project.Current;
+            var _wiki = _current.GetWiki(CurrentWiki);
+            var _profile = WikiPageProfile.SelectedItem.ToString();
+            var _wikipage = _wiki.GetWikiPage(WikiPagePage.SelectedItem.ToString());
+            if (!(Fout.NFAssert(_wikipage, "INTERNAL ERROR!\nWiki page not retrieved from combobox!") && Fout.NFAssert(WikiPageContentMainContent, "XAML ERROR!\n\nPlease report!"))) return;
+            _wikipage.Save();
+            _wiki.UpdateHash(WikiPagePage.SelectedItem.ToString());
+            _wiki.Save();
+        }
     }
 }
 

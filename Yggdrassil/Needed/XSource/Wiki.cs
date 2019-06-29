@@ -91,7 +91,7 @@ namespace Yggdrassil.Needed.XSource {
                 var s = new StringBuilder(1);
                 for(int i = 0; i < value.Length; ++i) {
                     var b = (byte)value[i];
-                    if (b>32 && value[i]!='\\' && b<128) {
+                    if (b>=32 && value[i]!='\\' && b<128) {
                         s.Append(value[i]);
                     } else {
                         switch (b) {
@@ -120,7 +120,14 @@ namespace Yggdrassil.Needed.XSource {
             }
         }
 
-        public string WikiPageFile => $"{ParentWiki.WikiPageDir}/{Name}";
+        public string WikiPageFile => $"{ParentWiki.WikiPageDir}/{Name}.GINI";
+
+        public string MD5 {
+            get {
+                if (!File.Exists(WikiPageFile)) return "This has is probably on vacation!";
+                return qstr.md5(QuickStream.LoadString(WikiPageFile));
+            }
+        }
 
         void Modified() {
             Data.D("MODIFIED.BY", Wiki.MW.TBox_WikiPageUser.Text);
@@ -143,6 +150,8 @@ namespace Yggdrassil.Needed.XSource {
                 Modified();
                 Save();
             }
+            Debug.WriteLine($"Created wiki page: {PageName}");
+            Fout.Assert(Data,$"Data could not be properly set up on page {PageName}!");
         }
     }
 
@@ -158,10 +167,10 @@ namespace Yggdrassil.Needed.XSource {
         public string WikiFile => $"{Parent.WikiMainDir}/{WikiName}.Profiles.GINI";
         public string WikiPageDir => $"{Parent.WikiMainDir}/{WikiName}.Pages";
 
-        public Wiki(Project Ouwe,string wikiName) {
+        public Wiki(Project Ouwe, string wikiName) {
             Parent = Ouwe;
             Parent.Wikis[wikiName] = this;
-            WikiName = wikiName;            
+            WikiName = wikiName;
             Data = GINI.ReadFromFile(WikiFile);
             if (!Fout.NFAssert(Data, $"Wiki profile file {WikiFile} could not be properly read!")) return;
             Data.CL("Profiles");
@@ -170,14 +179,23 @@ namespace Yggdrassil.Needed.XSource {
         }
 
         public string[] Vars => Data.Vars();
-        public string GetVar(string key) => Data.C(key);
-        public void SetVar(string key, string value) { Data.D(key, value); Data.SaveSource(WikiFile); }
+        public string GetVar(string pf,string key) => Data.C($"{pf}.{key}");
+        public void SetVar(string pf,string key, string value) { Data.D($"{pf}.{key}", value); Data.SaveSource(WikiFile); }
 
-        public WikiPage GetWikiPage(string wp) {
-            if (!Pages.ContainsKey(wp)) {
-                Pages[wp] = new WikiPage(this, wp);
+        public WikiPage GetWikiPage (string wp) {
+            var pt = $"{wp}";
+            if (!Pages.ContainsKey(pt)) {
+                Pages[pt] = new WikiPage(this, pt);
             }
-            return Pages[wp];
+            return Pages[pt];
+        }
+
+        public void UpdateHash() {
+            foreach (string key in Pages.Keys) Data.D($"MD5[{key}]", Pages[key].MD5);
+        }
+
+        public void UpdateHash( string key) {
+            Data.D($"MD5[{key}]", GetWikiPage(key).MD5);
         }
 
         public void Save() {            
