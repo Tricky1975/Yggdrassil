@@ -741,6 +741,7 @@ namespace Yggdrassil {
             var _wiki = _current.GetWiki(CurrentWiki);
             var _profile = WikiPageProfile.SelectedItem.ToString();
             var _wikipage = _wiki.GetWikiPage(WikiPagePage.SelectedItem.ToString());
+            _wikipage.Lang = WikiPageLanguage.SelectedItem.ToString();
             WikiPageContentVarValue.Text = _wikipage.Get(_profile,WikiPageVars.SelectedItem.ToString());
             AutoAdept = pushed; 
         }
@@ -751,7 +752,11 @@ namespace Yggdrassil {
                 var _wiki = _current.GetWiki(CurrentWiki);
                 var _profile = WikiPageProfile.SelectedItem.ToString();
                 var _wikipage = _wiki.GetWikiPage(WikiPagePage.SelectedItem.ToString());
-                _wikipage.Set(_profile, WikiPageVars.SelectedItem.ToString(), WikiPageContentVarValue.Text);
+                _wikipage.Lang = WikiPageLanguage.SelectedItem.ToString();
+                if (WikiPageVars.SelectedItem == null)
+                    WikiPageContentVarValue.Text = "";
+                else
+                    _wikipage.Set(_profile, WikiPageVars.SelectedItem.ToString(), WikiPageContentVarValue.Text);
             }
         }
     }
