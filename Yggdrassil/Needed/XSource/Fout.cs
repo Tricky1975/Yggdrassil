@@ -78,7 +78,7 @@ namespace Yggdrassil.Needed.XSource {
         }
 
         public static bool NFAssert(int voorwaarde, string foutmelding) => NFAssert(voorwaarde != 0, foutmelding);
-        public static bool NFAssert(string voorwaarde, string foutmelding) => NFAssert(voorwaarde.Length, foutmelding);
+        public static bool NFAssert(string voorwaarde, string foutmelding) { try { return NFAssert(voorwaarde.Length, foutmelding); } catch { Error(foutmelding); return false; } }
         public static bool NFAssert(object voorwaarde, string foutmelding) => NFAssert(voorwaarde != null, foutmelding);
 
         public static bool Yes(string Question,string Caption="") {
