@@ -38,54 +38,60 @@ using TrickyUnits;
 
 
 namespace Yggdrassil.Needed.XSource {
-    static class Fout {
-        static Fout() {
-            MKL.Lic    ("Yggdrassil - Fout.cs","GNU General Public License 3");
-            MKL.Version("Yggdrassil - Fout.cs","19.06.23");
-        }
-        public static void Crash(string foutmelding) {
-            MessageBox.Show($"FATAL ERROR!\n\n{foutmelding}", "That doesn't work!", MessageBoxButton.OK, MessageBoxImage.Error);
-            Debug.WriteLine($"FATAL ERROR:> {foutmelding}");
+	static class Fout {
+		static Fout() {
+			MKL.Lic    ("Yggdrassil - Fout.cs","GNU General Public License 3");
+			MKL.Version("Yggdrassil - Fout.cs","19.06.23");
+		}
+		public static void Crash(string foutmelding) {
+			MessageBox.Show($"FATAL ERROR!\n\n{foutmelding}", "That doesn't work!", MessageBoxButton.OK, MessageBoxImage.Error);
+			Debug.WriteLine($"FATAL ERROR:> {foutmelding}");
 
 #if !FOUT_DoNotCrash
-            Environment.Exit(1);
+			Environment.Exit(1);
 #endif
-        }
+		}
 
 
-        public static void Crash(Exception foutmelding) => Crash(foutmelding.Message);
+		public static void Crash(Exception foutmelding) => Crash(foutmelding.Message);
 
-        public static void Error(string foutmelding) {
-            MessageBox.Show($"ERROR!\n\n{foutmelding}", "That doesn't work!",MessageBoxButton.OK,MessageBoxImage.Error);
-            Debug.WriteLine($"ERROR:> {foutmelding}");
-        }
+		public static void Error(string foutmelding) {
+			MessageBox.Show($"ERROR!\n\n{foutmelding}", "That doesn't work!",MessageBoxButton.OK,MessageBoxImage.Error);
+			Debug.WriteLine($"ERROR:> {foutmelding}");
+		}
 
-        public static void Error(Exception ex) => Error(ex.Message);
+		public static void Error(Exception ex) => Error(ex.Message);
 
-        public static void Assert(bool voorwaarde,string foutmelding) {
-            if (!voorwaarde) Crash(foutmelding);               
-        }
+		public static void Assert(bool voorwaarde,string foutmelding) {
+			if (!voorwaarde) Crash(foutmelding);               
+		}
 
-        public static void Assert(int voorwaarde, string foutmelding) => Assert(voorwaarde != 0, foutmelding);
-        public static void Assert(string voorwaarde, string foutmelding) => Assert(voorwaarde.Length, foutmelding);
-        public static void Assert(object voorwaarde, string foutmelding) => Assert(voorwaarde != null, foutmelding);
+		public static void Assert(int voorwaarde, string foutmelding) => Assert(voorwaarde != 0, foutmelding);
+		public static void Assert(string voorwaarde, string foutmelding) => Assert(voorwaarde.Length, foutmelding);
+		public static void Assert(object voorwaarde, string foutmelding) => Assert(voorwaarde != null, foutmelding);
 
 
 
-        public static bool NFAssert(bool voorwaarde, string foutmelding) {
-            if (!voorwaarde) Error(foutmelding);
-            return voorwaarde;
-        }
+		public static bool NFAssert(bool voorwaarde, string foutmelding, bool debugonly=false) {
+			if (
+#if !DEBUG
+			 (!debugonly) &&
+#endif
 
-        public static bool NFAssert(int voorwaarde, string foutmelding) => NFAssert(voorwaarde != 0, foutmelding);
-        public static bool NFAssert(string voorwaarde, string foutmelding) { try { return NFAssert(voorwaarde.Length, foutmelding); } catch { Error(foutmelding); return false; } }
-        public static bool NFAssert(object voorwaarde, string foutmelding) => NFAssert(voorwaarde != null, foutmelding);
+			 (!voorwaarde))
+				Error(foutmelding);
+			return voorwaarde;
+		}
 
-        public static bool Yes(string Question,string Caption="") {
-            MessageBoxResult dr = MessageBox.Show(Question,Caption, MessageBoxButton.YesNo);
-            return dr == MessageBoxResult.Yes;            
-        }
-    }
+		public static bool NFAssert(int voorwaarde, string foutmelding, bool debugonly = false) => NFAssert(voorwaarde != 0, foutmelding, debugonly);
+		public static bool NFAssert(string voorwaarde, string foutmelding, bool debugonly = false) { try { return NFAssert(voorwaarde.Length, foutmelding,debugonly); } catch { Error(foutmelding); return false; } }
+		public static bool NFAssert(object voorwaarde, string foutmelding, bool debugonly = false) => NFAssert(voorwaarde != null, foutmelding, debugonly);
+
+		public static bool Yes(string Question,string Caption="") {
+			MessageBoxResult dr = MessageBox.Show(Question,Caption, MessageBoxButton.YesNo);
+			return dr == MessageBoxResult.Yes;            
+		}
+	}
 }
 
 
