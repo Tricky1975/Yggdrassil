@@ -1,714 +1,714 @@
 ﻿<Window x:Name="YggdrassilMainWindow" x:Class="Yggdrassil.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Yggdrassil"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="1000" Width="1500" ResizeMode="NoResize">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="11*"/>
-            <ColumnDefinition Width="238*"/>
-        </Grid.ColumnDefinitions>
-        <TabControl HorizontalAlignment="Left" Height="969" VerticalAlignment="Top" Width="1492" Grid.ColumnSpan="2">
-            <TabItem Header="Projects">
-                <Grid Background="#FFE5E5E5">
-                    <ListBox x:Name="ListProjects" HorizontalAlignment="Left" Height="941" VerticalAlignment="Top" Width="354" SelectionChanged="ListProjects_SelectionChanged">
-                        <ListBox.Foreground>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FFFFFFB4" Offset="0"/>
-                                <GradientStop Color="#FFFFB400" Offset="1"/>
-                            </LinearGradientBrush>
-                        </ListBox.Foreground>
-                        <ListBox.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FFB400FF" Offset="0"/>
-                                <GradientStop Color="Blue" Offset="1"/>
-                            </LinearGradientBrush>
-                        </ListBox.Background>
-                    </ListBox>
-                    <Image x:Name="Yggdrassil_logo" HorizontalAlignment="Left" Height="350" Margin="365,14,0,0" VerticalAlignment="Top" Width="350" Source="Needed/Assets/Yggdrassil.png">
-                        <Image.OpacityMask>
-                            <ImageBrush ImageSource="Needed/Assets/Yggdrassil.png"/>
-                        </Image.OpacityMask>
-                    </Image>
-                    <Label Content="Yggdrassil&#xD;&#xA;" HorizontalAlignment="Left" Margin="766,14,0,0" VerticalAlignment="Top" Width="685" Height="94" FontFamily="Segoe UI Black" FontSize="48">
-                        <Label.Foreground>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="Lime" Offset="0"/>
-                                <GradientStop Color="Blue" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Label.Foreground>
-                    </Label>
-                    <Label x:Name="VersionDetails" Content="Label" HorizontalAlignment="Left" Height="828" Margin="766,113,0,0" VerticalAlignment="Top" Width="720" FontFamily="Courier New"/>
-                    <Border BorderThickness="1" HorizontalAlignment="Left" Height="267" Margin="359,664,0,0" VerticalAlignment="Top" Width="356">
-                        <Border.BorderBrush>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FFFF0100" Offset="0"/>
-                                <GradientStop Color="#FFB400FF" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Border.BorderBrush>
-                        <Grid>
-                            <Label Content="New Project" FontFamily="Segoe Script" FontSize="24" Margin="1,1,-1,-1">
-                                <Label.Foreground>
-                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <GradientStop Color="Red" Offset="0"/>
-                                        <GradientStop Color="Blue" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Label.Foreground>
-                            </Label>
-                            <TextBox x:Name="TBox_NewProject" Margin="10,40,22,196">
-                                <TextBox.Foreground>
-                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <GradientStop Color="Yellow" Offset="0"/>
-                                        <GradientStop Color="#F8FFFFB4" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </TextBox.Foreground>
-                                <TextBox.Background>
-                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <GradientStop Color="Black" Offset="0"/>
-                                        <GradientStop Color="Blue" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </TextBox.Background>
-                            </TextBox>
-                            <Button x:Name="CreateButton" Content="Create" Margin="0,84,0,0" FontFamily="Ink Free" FontSize="48" Foreground="#FFB4FF00" Click="CreateButton_Click">
-                                <Button.Background>
-                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <GradientStop Color="#FF001900" Offset="0"/>
-                                        <GradientStop Color="Lime" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Button.Background>
-                            </Button>
-                        </Grid>
-                    </Border>
-                    <Label x:Name="Copyrightlabel" Content="..." HorizontalContentAlignment="Center" Height="25" Margin="720,896,0,0" VerticalAlignment="Top" Width="731"/>
-                </Grid>
-            </TabItem>
-            <TabItem x:Name="ConfigTab" Header="Configuration">
-                <Grid>
-                    <Grid.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="#FF96C3FF" Offset="0"/>
-                            <GradientStop Color="White" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Grid.Background>
-                    <Label Content="Output folder:" HorizontalAlignment="Left" Height="28" Margin="62,10,0,0" VerticalAlignment="Top" Width="231"/>
-                    <TextBox x:Name="TBox_OutputFolder" HorizontalAlignment="Left" Height="28" Margin="315,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="1122" TextChanged="TBox_OutputFolder_TextChanged">
-                        <TextBox.Foreground>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FFB46400" Offset="0"/>
-                                <GradientStop Color="#FFFFB400" Offset="1"/>
-                            </LinearGradientBrush>
-                        </TextBox.Foreground>
-                        <TextBox.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FF120000" Offset="0"/>
-                                <GradientStop Color="#FF780000" Offset="1"/>
-                            </LinearGradientBrush>
-                        </TextBox.Background>
-                    </TextBox>
-                    <Button x:Name="BrowseOutputFolder" Content="..." HorizontalAlignment="Left" Height="28" Margin="1442,10,0,0" VerticalAlignment="Top" Width="34" Click="BrowseOutputFolder_Click">
-                        <Button.Foreground>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FFFFB400" Offset="0.003"/>
-                                <GradientStop Color="#FFFFFF01" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Button.Foreground>
-                        <Button.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="Black" Offset="0"/>
-                                <GradientStop Color="Blue" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Button.Background>
-                    </Button>
-                    <Label x:Name="GitRepoLabel" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="9.079,2.615" Margin="315,43,0,0" Width="1161"/>
-                    <Label Content="Git respository Folder:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="62,38,0,0" Width="231"/>
-                    <Label Content="Default Template" HorizontalAlignment="Left" Margin="62,69,0,0" VerticalAlignment="Top" Width="231"/>
-                    <TextBox x:Name="TBox_DefaultTemplate" HorizontalAlignment="Left" Height="23" Margin="315,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="1122" TextChanged="TBox_DefaultTemplate_TextChanged">
-                        <TextBox.Foreground>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FFB46400" Offset="0"/>
-                                <GradientStop Color="#FFFFB400" Offset="1"/>
-                            </LinearGradientBrush>
-                        </TextBox.Foreground>
-                        <TextBox.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="Black" Offset="0"/>
-                                <GradientStop Color="#FF780000" Offset="1"/>
-                            </LinearGradientBrush>
-                        </TextBox.Background>
-                    </TextBox>
-                    <Label Content="Translations of pages and wikis:" HorizontalAlignment="Left" Margin="62,113,0,0" VerticalAlignment="Top" RenderTransformOrigin="-3.237,-0.077" Width="231"/>
-                    <TextBox x:Name="TBox_Languages" AcceptsReturn="True" HorizontalAlignment="Left" Height="130" Margin="315,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="1122" FontFamily="Courier New" FontSize="18">
-                        <TextBox.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FF00B4FF" Offset="0"/>
-                                <GradientStop Color="#FF009B9B" Offset="1"/>
-                            </LinearGradientBrush>
-                        </TextBox.Background>
-                        <TextBox.Foreground>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FF000F0F" Offset="0"/>
-                                <GradientStop Color="Blue" Offset="1"/>
-                            </LinearGradientBrush>
-                        </TextBox.Foreground>
-                    </TextBox>
-                    <Label Content="Users + Avatars:" HorizontalAlignment="Left" Margin="62,248,0,0" VerticalAlignment="Top" RenderTransformOrigin="-3.237,-0.077" Width="231"/>
-                    <TextBox x:Name="TBox_Users" AcceptsReturn="True" HorizontalAlignment="Left" Height="130" Margin="315,248,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="1122" FontFamily="Courier New" FontSize="18" TextChanged="TBox_Users_TextChanged">
-                        <TextBox.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FF00B4FF" Offset="0"/>
-                                <GradientStop Color="#FF009B9B" Offset="1"/>
-                            </LinearGradientBrush>
-                        </TextBox.Background>
-                        <TextBox.Foreground>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FF000F0F" Offset="0"/>
-                                <GradientStop Color="Blue" Offset="1"/>
-                            </LinearGradientBrush>
-                        </TextBox.Foreground>
-                    </TextBox>
-                </Grid>
-            </TabItem>
-            <TabItem x:Name="NewsTab" Header="News" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="54">
-                <Grid>
-                    <Grid.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="Black" Offset="0"/>
-                            <GradientStop Color="#FF191919" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Grid.Background>
-                    <ListBox x:Name="ListNewsBoards" HorizontalAlignment="Left" Height="903" Margin="7,6,0,0" VerticalAlignment="Top" Width="191" FontSize="18" SelectionChanged="ListNewsBoards_SelectionChanged">
-                        <ListBox.Foreground>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="Red" Offset="0"/>
-                                <GradientStop Color="#FFFFB400" Offset="1"/>
-                            </LinearGradientBrush>
-                        </ListBox.Foreground>
-                        <ListBox.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="Black" Offset="0"/>
-                                <GradientStop Color="#FF7F0000" Offset="1"/>
-                            </LinearGradientBrush>
-                        </ListBox.Background>
-                    </ListBox>
-                    <TextBox x:Name="AddNewsBoardName" HorizontalAlignment="Left" Height="23" Margin="10,908,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144">
-                        <TextBox.Foreground>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FFFFB400" Offset="0"/>
-                                <GradientStop Color="Yellow" Offset="1"/>
-                            </LinearGradientBrush>
-                        </TextBox.Foreground>
-                        <TextBox.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="Black" Offset="0"/>
-                                <GradientStop Color="Lime" Offset="1"/>
-                            </LinearGradientBrush>
-                        </TextBox.Background>
-                    </TextBox>
-                    <Button x:Name="DoAddNewsPage" Content="+" HorizontalAlignment="Left" Margin="154,909,0,0" VerticalAlignment="Top" Width="20" RenderTransformOrigin="-2.188,3.45" Foreground="#FF64FF00" Height="22" Click="DoAddNewsPage_Click">
-                        <Button.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="Lime" Offset="0"/>
-                                <GradientStop Color="#FF001900" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Button.Background>
-                    </Button>
-                    <Button x:Name="DoRemoveNewsPage" Content="-" HorizontalAlignment="Left" Margin="174,909,0,0" VerticalAlignment="Top" Width="24" Height="22" Foreground="#FFFF6464" Click="DoRemoveNewsPage_Click">
-                        <Button.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="Red" Offset="0"/>
-                                <GradientStop Color="#FF190000" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Button.Background>
-                    </Button>
-                    <Label Content="Template" HorizontalAlignment="Left" Margin="212,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.816,-1.615" Height="32" Width="209" Foreground="#FFB400FF"/>
-                    <TextBox x:Name="TBox_NewsTemplate" HorizontalAlignment="Left" Height="23" Margin="436,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="968" TextChanged="TBox_NewsTemplate_TextChanged">
-                        <TextBox.Foreground>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FFFFB400" Offset="0"/>
-                                <GradientStop Color="White" Offset="1"/>
-                            </LinearGradientBrush>
-                        </TextBox.Foreground>
-                        <TextBox.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="Black" Offset="0"/>
-                                <GradientStop Color="#FFB400FF" Offset="1"/>
-                            </LinearGradientBrush>
-                        </TextBox.Background>
-                    </TextBox>
-                    <Label Content="Pre-Board Text:" HorizontalAlignment="Left" Margin="212,47,0,0" VerticalAlignment="Top" Width="209" Foreground="#FFB400FF"/>
-                    <TextBox x:Name="TBox_PreNewsText" HorizontalAlignment="Left" Height="190" Margin="436,47,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="968" AcceptsReturn="True" TextChanged="TBox_PreNewsText_TextChanged">
-                        <TextBox.Foreground>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FFFFB400" Offset="0"/>
-                                <GradientStop Color="White" Offset="1"/>
-                            </LinearGradientBrush>
-                        </TextBox.Foreground>
-                        <TextBox.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="Black" Offset="0"/>
-                                <GradientStop Color="#FFB400FF" Offset="1"/>
-                            </LinearGradientBrush>
-                        </TextBox.Background>
-                    </TextBox>
-                    <Separator HorizontalAlignment="Left" Height="15" Margin="212,242,0,0" VerticalAlignment="Top" Width="1192" Background="#FFA03C00"/>
-                    <Label Content="Edit" HorizontalAlignment="Left" Margin="212,257,0,0" VerticalAlignment="Top" Width="209" Background="{x:Null}" Foreground="#FFB400FF"/>
-                    <ComboBox x:Name="CB_NewsEdit" HorizontalAlignment="Left" Margin="436,262,0,0" VerticalAlignment="Top" Width="968" SelectionChanged="CB_NewsEdit_SelectionChanged">
-                        <ComboBox.Background>
-                            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                                <GradientStop Color="#FF120019" Offset="0"/>
-                                <GradientStop Color="#FFB400FF" Offset="1"/>
-                            </LinearGradientBrush>
-                        </ComboBox.Background>
-                        <ListBoxItem/>
-                    </ComboBox>
-                    <Label Content="Subject" HorizontalAlignment="Left" Margin="212,288,0,0" VerticalAlignment="Top" Width="209" Foreground="#FFB400FF"/>
-                    <TextBox x:Name="TBox_NewsSubject" HorizontalAlignment="Left" Height="23" Margin="436,292,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="968">
-                        <TextBox.Foreground>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FFFFB401" Offset="0"/>
-                                <GradientStop Color="Yellow" Offset="1"/>
-                            </LinearGradientBrush>
-                        </TextBox.Foreground>
-                        <TextBox.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="Black" Offset="0"/>
-                                <GradientStop Color="#FFB400FF" Offset="1"/>
-                            </LinearGradientBrush>
-                        </TextBox.Background>
-                    </TextBox>
-                    <Label Content="Created" HorizontalAlignment="Left" Margin="212,328,0,0" VerticalAlignment="Top" Width="209" Foreground="#FFB400FF"/>
-                    <Label x:Name="Label_NewsCreated" Content="N/A" HorizontalAlignment="Left" Margin="436,328,0,0" VerticalAlignment="Top" Width="968" Foreground="#FF00B4FF"/>
-                    <Label Content="Modified" HorizontalAlignment="Left" Height="27" Margin="212,359,0,0" VerticalAlignment="Top" Width="209" Foreground="#FFB400FF"/>
-                    <Label x:Name="Label_NewsModified" Content="N/A" HorizontalAlignment="Left" Margin="436,359,0,0" VerticalAlignment="Top" Width="968" Foreground="#FF00B4FF" RenderTransformOrigin="0.5,2.192"/>
-                    <Label Content="Content" HorizontalAlignment="Left" Margin="212,391,0,0" VerticalAlignment="Top" Width="209" Foreground="#FFB400FF"/>
-                    <TextBox x:Name="TBox_NewsContent" HorizontalAlignment="Left" Height="433" Margin="436,391,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="968" AcceptsReturn="True">
-                        <TextBox.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FC120019" Offset="0"/>
-                                <GradientStop Color="#FFB400FF" Offset="1"/>
-                            </LinearGradientBrush>
-                        </TextBox.Background>
-                        <TextBox.Foreground>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FFFFB400" Offset="0"/>
-                                <GradientStop Color="Yellow" Offset="1"/>
-                            </LinearGradientBrush>
-                        </TextBox.Foreground>
-                    </TextBox>
-                    <Label Content="Commit" HorizontalAlignment="Left" Margin="212,851,0,0" VerticalAlignment="Top" Width="209" Foreground="#FFB400FF"/>
-                    <TextBox x:Name="NewsCommit" HorizontalAlignment="Left" Height="23" Margin="436,855,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="968">
-                        <TextBox.Foreground>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FFFFB400" Offset="0"/>
-                                <GradientStop Color="Yellow" Offset="1"/>
-                            </LinearGradientBrush>
-                        </TextBox.Foreground>
-                        <TextBox.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FF120019" Offset="0"/>
-                                <GradientStop Color="#FFB400FF" Offset="1"/>
-                            </LinearGradientBrush>
-                        </TextBox.Background>
-                    </TextBox>
-                    <Button x:Name="SaveNewsItem" Content="Save" HorizontalAlignment="Left" Margin="212,894,0,0" VerticalAlignment="Top" Width="1192" Click="SaveNewsItem_Click">
-                        <Button.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="DarkGreen"/>
-                                <GradientStop Color="#FFB4FF00" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Button.Background>
-                        <Button.Foreground>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FF001900" Offset="1"/>
-                                <GradientStop Color="#FFB4FF64"/>
-                            </LinearGradientBrush>
-                        </Button.Foreground>
-                    </Button>
-                    <Label Content="User:" HorizontalAlignment="Left" Margin="212,829,0,0" VerticalAlignment="Top" Width="209" Foreground="#FFB400FF"/>
-                    <Image x:Name="Avatar_NewsItem" HorizontalAlignment="Left" Height="100" Margin="212,724,0,0" VerticalAlignment="Top" Width="100"/>
-                    <TextBox x:Name="TBox_NewsItem_User" HorizontalAlignment="Left" Height="23" Margin="436,829,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="968" TextChanged="TBox_NewsItem_User_TextChanged">
-                        <TextBox.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="Black" Offset="0"/>
-                                <GradientStop Color="#FFB400FF" Offset="1"/>
-                            </LinearGradientBrush>
-                        </TextBox.Background>
-                        <TextBox.Foreground>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="Yellow" Offset="0"/>
-                                <GradientStop Color="#FFFFB400" Offset="1"/>
-                            </LinearGradientBrush>
-                        </TextBox.Foreground>
-                    </TextBox>
-                </Grid>
-            </TabItem>
-            <TabItem x:Name="Tab_Page" Header="Page" Height="22" VerticalAlignment="Bottom" >
-                <Grid>
-                    <Grid.Background>
-                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                            <GradientStop Color="#FFFFAC00" Offset="0"/>
-                            <GradientStop Color="Red" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Grid.Background>
-                    <ListBox x:Name="Pages" HorizontalAlignment="Left" Height="896" Margin="10,10,0,0" VerticalAlignment="Top" Width="265" SelectionChanged="Pages_SelectionChanged">
-                        <ListBox.Foreground>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FF00B4FF" Offset="0"/>
-                                <GradientStop Color="Cyan" Offset="1"/>
-                            </LinearGradientBrush>
-                        </ListBox.Foreground>
-                        <ListBox.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="Black" Offset="0"/>
-                                <GradientStop Color="#FF0000FB" Offset="1"/>
-                            </LinearGradientBrush>
-                        </ListBox.Background>
-                    </ListBox>
-                    <TextBox x:Name="NameNewPage" HorizontalAlignment="Left" Height="23" Margin="10,911,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="205">
-                        <TextBox.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FFB4FFB4" Offset="0"/>
-                                <GradientStop Color="#FF00B400" Offset="1"/>
-                            </LinearGradientBrush>
-                        </TextBox.Background>
-                    </TextBox>
-                    <Button x:Name="CreatePage" Content="+" HorizontalAlignment="Left" Margin="215,911,0,0" VerticalAlignment="Top" Width="27" Height="23" Foreground="#FFB4FF00" Click="CreatePage_Click">
-                        <Button.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="DarkGreen" Offset="0"/>
-                                <GradientStop Color="#FF64FF64" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Button.Background>
-                    </Button>
-                    <Button x:Name="DeletePage" Content="-" HorizontalAlignment="Left" Margin="242,911,0,0" VerticalAlignment="Top" Width="33" RenderTransformOrigin="-0.267,0.45" Height="23" Foreground="#FFFFB464">
-                        <Button.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FF640000" Offset="0"/>
-                                <GradientStop Color="Red" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Button.Background>
-                    </Button>
-                    <GroupBox Header="General" Margin="280,0,10,804">
-                        <Grid>
-                            <Label Content="Language:" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top" Width="225"/>
-                            <ComboBox x:Name="PageLanguage" HorizontalAlignment="Left" Margin="240,10,0,0" VerticalAlignment="Top" Width="839" SelectionChanged="PageLanguage_SelectionChanged"/>
-                            <Label Content="User:" HorizontalAlignment="Left" Margin="21,37,0,0" VerticalAlignment="Top" Width="225"/>
-                            <TextBox x:Name="TBox_PageUser" HorizontalAlignment="Left" Height="23" Margin="240,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="839" TextChanged="TBox_PageUser_TextChanged">
-                                <TextBox.Foreground>
-                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <GradientStop Color="#FF00B4FF" Offset="0"/>
-                                        <GradientStop Color="Cyan" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </TextBox.Foreground>
-                                <TextBox.Background>
-                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <GradientStop Color="Black" Offset="0"/>
-                                        <GradientStop Color="Blue" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </TextBox.Background>
-                            </TextBox>
-                            <Image x:Name="Page_Avatar" HorizontalAlignment="Left" Height="100" Margin="1084,10,0,0" VerticalAlignment="Top" Width="100"/>
-                        </Grid>
-                    </GroupBox>
-                    <GroupBox x:Name="PageContentGroup" Header="Content" HorizontalAlignment="Left" Height="777" Margin="282,154,0,0" VerticalAlignment="Top" Width="1194">
-                        <GroupBox.BorderBrush>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="Red" Offset="0"/>
-                                <GradientStop Color="#FFFFB400" Offset="1"/>
-                            </LinearGradientBrush>
-                        </GroupBox.BorderBrush>
-                        <Grid>
-                            <Label Content="Page Congent:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                            <TextBox x:Name="PageContent" Margin="191,0,10,65" AcceptsReturn="True" TextChanged="PageContent_TextChanged">
-                                <TextBox.Foreground>
-                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <GradientStop Color="#FF00B4FF" Offset="0"/>
-                                        <GradientStop Color="#FF00647D" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </TextBox.Foreground>
-                                <TextBox.Background>
-                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <GradientStop Color="Black" Offset="0"/>
-                                        <GradientStop Color="Blue" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </TextBox.Background>
-                            </TextBox>
-                            <Label Content="Commit message:" Margin="10,691,1004,28" RenderTransformOrigin="0.494,3.306"></Label>
-                            <TextBox x:Name="TBox_PageCommit" HorizontalAlignment="Left" Height="23" Margin="191,695,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="981" Foreground="#FF00B4FF">
-                                <TextBox.Background>
-                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <GradientStop Color="Black" Offset="0"/>
-                                        <GradientStop Color="Blue" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </TextBox.Background>
-                            </TextBox>
-                            <Button x:Name="Button_Save_page" Content="Save" HorizontalAlignment="Left" Margin="10,727,0,0" VerticalAlignment="Top" Width="1162" Foreground="#FFB4FF00" Click="Button_Save_page_Click">
-                                <Button.Background>
-                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <GradientStop Color="Black" Offset="0"/>
-                                        <GradientStop Color="Lime" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Button.Background>
-                            </Button>
-                        </Grid>
-                    </GroupBox>
-                </Grid>
-            </TabItem>
-            <TabItem x:Name="Tab_Wiki" Header="Wiki">
-                <Grid>
-                    <Grid.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="Red" Offset="0"/>
-                            <GradientStop Color="Blue" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Grid.Background>
-                    <ListBox x:Name="List_Wikis" Margin="0,0,1288,28" SelectionChanged="List_Wikis_SelectionChanged">
-                        <ListBox.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#F300FFFF" Offset="0"/>
-                                <GradientStop Color="Yellow" Offset="1"/>
-                            </LinearGradientBrush>
-                        </ListBox.Background>
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="clr-namespace:Yggdrassil"
+		mc:Ignorable="d"
+		Title="MainWindow" Height="1000" Width="1500" ResizeMode="NoResize">
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="11*"/>
+			<ColumnDefinition Width="238*"/>
+		</Grid.ColumnDefinitions>
+		<TabControl HorizontalAlignment="Left" Height="969" VerticalAlignment="Top" Width="1492" Grid.ColumnSpan="2">
+			<TabItem Header="Projects">
+				<Grid Background="#FFE5E5E5">
+					<ListBox x:Name="ListProjects" HorizontalAlignment="Left" Height="941" VerticalAlignment="Top" Width="354" SelectionChanged="ListProjects_SelectionChanged">
+						<ListBox.Foreground>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FFFFFFB4" Offset="0"/>
+								<GradientStop Color="#FFFFB400" Offset="1"/>
+							</LinearGradientBrush>
+						</ListBox.Foreground>
+						<ListBox.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FFB400FF" Offset="0"/>
+								<GradientStop Color="Blue" Offset="1"/>
+							</LinearGradientBrush>
+						</ListBox.Background>
+					</ListBox>
+					<Image x:Name="Yggdrassil_logo" HorizontalAlignment="Left" Height="350" Margin="365,14,0,0" VerticalAlignment="Top" Width="350" Source="Needed/Assets/Yggdrassil.png">
+						<Image.OpacityMask>
+							<ImageBrush ImageSource="Needed/Assets/Yggdrassil.png"/>
+						</Image.OpacityMask>
+					</Image>
+					<Label Content="Yggdrassil&#xD;&#xA;" HorizontalAlignment="Left" Margin="766,14,0,0" VerticalAlignment="Top" Width="685" Height="94" FontFamily="Segoe UI Black" FontSize="48">
+						<Label.Foreground>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="Lime" Offset="0"/>
+								<GradientStop Color="Blue" Offset="1"/>
+							</LinearGradientBrush>
+						</Label.Foreground>
+					</Label>
+					<Label x:Name="VersionDetails" Content="Label" HorizontalAlignment="Left" Height="828" Margin="766,113,0,0" VerticalAlignment="Top" Width="720" FontFamily="Courier New"/>
+					<Border BorderThickness="1" HorizontalAlignment="Left" Height="267" Margin="359,664,0,0" VerticalAlignment="Top" Width="356">
+						<Border.BorderBrush>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FFFF0100" Offset="0"/>
+								<GradientStop Color="#FFB400FF" Offset="1"/>
+							</LinearGradientBrush>
+						</Border.BorderBrush>
+						<Grid>
+							<Label Content="New Project" FontFamily="Segoe Script" FontSize="24" Margin="1,1,-1,-1">
+								<Label.Foreground>
+									<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+										<GradientStop Color="Red" Offset="0"/>
+										<GradientStop Color="Blue" Offset="1"/>
+									</LinearGradientBrush>
+								</Label.Foreground>
+							</Label>
+							<TextBox x:Name="TBox_NewProject" Margin="10,40,22,196">
+								<TextBox.Foreground>
+									<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+										<GradientStop Color="Yellow" Offset="0"/>
+										<GradientStop Color="#F8FFFFB4" Offset="1"/>
+									</LinearGradientBrush>
+								</TextBox.Foreground>
+								<TextBox.Background>
+									<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+										<GradientStop Color="Black" Offset="0"/>
+										<GradientStop Color="Blue" Offset="1"/>
+									</LinearGradientBrush>
+								</TextBox.Background>
+							</TextBox>
+							<Button x:Name="CreateButton" Content="Create" Margin="0,84,0,0" FontFamily="Ink Free" FontSize="48" Foreground="#FFB4FF00" Click="CreateButton_Click">
+								<Button.Background>
+									<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+										<GradientStop Color="#FF001900" Offset="0"/>
+										<GradientStop Color="Lime" Offset="1"/>
+									</LinearGradientBrush>
+								</Button.Background>
+							</Button>
+						</Grid>
+					</Border>
+					<Label x:Name="Copyrightlabel" Content="..." HorizontalContentAlignment="Center" Height="25" Margin="720,896,0,0" VerticalAlignment="Top" Width="731"/>
+				</Grid>
+			</TabItem>
+			<TabItem x:Name="ConfigTab" Header="Configuration">
+				<Grid>
+					<Grid.Background>
+						<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+							<GradientStop Color="#FF96C3FF" Offset="0"/>
+							<GradientStop Color="White" Offset="1"/>
+						</LinearGradientBrush>
+					</Grid.Background>
+					<Label Content="Output folder:" HorizontalAlignment="Left" Height="28" Margin="62,10,0,0" VerticalAlignment="Top" Width="231"/>
+					<TextBox x:Name="TBox_OutputFolder" HorizontalAlignment="Left" Height="28" Margin="315,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="1122" TextChanged="TBox_OutputFolder_TextChanged">
+						<TextBox.Foreground>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FFB46400" Offset="0"/>
+								<GradientStop Color="#FFFFB400" Offset="1"/>
+							</LinearGradientBrush>
+						</TextBox.Foreground>
+						<TextBox.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FF120000" Offset="0"/>
+								<GradientStop Color="#FF780000" Offset="1"/>
+							</LinearGradientBrush>
+						</TextBox.Background>
+					</TextBox>
+					<Button x:Name="BrowseOutputFolder" Content="..." HorizontalAlignment="Left" Height="28" Margin="1442,10,0,0" VerticalAlignment="Top" Width="34" Click="BrowseOutputFolder_Click">
+						<Button.Foreground>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FFFFB400" Offset="0.003"/>
+								<GradientStop Color="#FFFFFF01" Offset="1"/>
+							</LinearGradientBrush>
+						</Button.Foreground>
+						<Button.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="Black" Offset="0"/>
+								<GradientStop Color="Blue" Offset="1"/>
+							</LinearGradientBrush>
+						</Button.Background>
+					</Button>
+					<Label x:Name="GitRepoLabel" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="9.079,2.615" Margin="315,43,0,0" Width="1161"/>
+					<Label Content="Git respository Folder:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="62,38,0,0" Width="231"/>
+					<Label Content="Default Template" HorizontalAlignment="Left" Margin="62,69,0,0" VerticalAlignment="Top" Width="231"/>
+					<TextBox x:Name="TBox_DefaultTemplate" HorizontalAlignment="Left" Height="23" Margin="315,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="1122" TextChanged="TBox_DefaultTemplate_TextChanged">
+						<TextBox.Foreground>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FFB46400" Offset="0"/>
+								<GradientStop Color="#FFFFB400" Offset="1"/>
+							</LinearGradientBrush>
+						</TextBox.Foreground>
+						<TextBox.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="Black" Offset="0"/>
+								<GradientStop Color="#FF780000" Offset="1"/>
+							</LinearGradientBrush>
+						</TextBox.Background>
+					</TextBox>
+					<Label Content="Translations of pages and wikis:" HorizontalAlignment="Left" Margin="62,113,0,0" VerticalAlignment="Top" RenderTransformOrigin="-3.237,-0.077" Width="231"/>
+					<TextBox x:Name="TBox_Languages" AcceptsReturn="True" HorizontalAlignment="Left" Height="130" Margin="315,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="1122" FontFamily="Courier New" FontSize="18">
+						<TextBox.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FF00B4FF" Offset="0"/>
+								<GradientStop Color="#FF009B9B" Offset="1"/>
+							</LinearGradientBrush>
+						</TextBox.Background>
+						<TextBox.Foreground>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FF000F0F" Offset="0"/>
+								<GradientStop Color="Blue" Offset="1"/>
+							</LinearGradientBrush>
+						</TextBox.Foreground>
+					</TextBox>
+					<Label Content="Users + Avatars:" HorizontalAlignment="Left" Margin="62,248,0,0" VerticalAlignment="Top" RenderTransformOrigin="-3.237,-0.077" Width="231"/>
+					<TextBox x:Name="TBox_Users" AcceptsReturn="True" HorizontalAlignment="Left" Height="130" Margin="315,248,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="1122" FontFamily="Courier New" FontSize="18" TextChanged="TBox_Users_TextChanged">
+						<TextBox.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FF00B4FF" Offset="0"/>
+								<GradientStop Color="#FF009B9B" Offset="1"/>
+							</LinearGradientBrush>
+						</TextBox.Background>
+						<TextBox.Foreground>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FF000F0F" Offset="0"/>
+								<GradientStop Color="Blue" Offset="1"/>
+							</LinearGradientBrush>
+						</TextBox.Foreground>
+					</TextBox>
+				</Grid>
+			</TabItem>
+			<TabItem x:Name="NewsTab" Header="News" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="54">
+				<Grid>
+					<Grid.Background>
+						<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+							<GradientStop Color="Black" Offset="0"/>
+							<GradientStop Color="#FF191919" Offset="1"/>
+						</LinearGradientBrush>
+					</Grid.Background>
+					<ListBox x:Name="ListNewsBoards" HorizontalAlignment="Left" Height="903" Margin="7,6,0,0" VerticalAlignment="Top" Width="191" FontSize="18" SelectionChanged="ListNewsBoards_SelectionChanged">
+						<ListBox.Foreground>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="Red" Offset="0"/>
+								<GradientStop Color="#FFFFB400" Offset="1"/>
+							</LinearGradientBrush>
+						</ListBox.Foreground>
+						<ListBox.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="Black" Offset="0"/>
+								<GradientStop Color="#FF7F0000" Offset="1"/>
+							</LinearGradientBrush>
+						</ListBox.Background>
+					</ListBox>
+					<TextBox x:Name="AddNewsBoardName" HorizontalAlignment="Left" Height="23" Margin="10,908,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144">
+						<TextBox.Foreground>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FFFFB400" Offset="0"/>
+								<GradientStop Color="Yellow" Offset="1"/>
+							</LinearGradientBrush>
+						</TextBox.Foreground>
+						<TextBox.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="Black" Offset="0"/>
+								<GradientStop Color="Lime" Offset="1"/>
+							</LinearGradientBrush>
+						</TextBox.Background>
+					</TextBox>
+					<Button x:Name="DoAddNewsPage" Content="+" HorizontalAlignment="Left" Margin="154,909,0,0" VerticalAlignment="Top" Width="20" RenderTransformOrigin="-2.188,3.45" Foreground="#FF64FF00" Height="22" Click="DoAddNewsPage_Click">
+						<Button.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="Lime" Offset="0"/>
+								<GradientStop Color="#FF001900" Offset="1"/>
+							</LinearGradientBrush>
+						</Button.Background>
+					</Button>
+					<Button x:Name="DoRemoveNewsPage" Content="-" HorizontalAlignment="Left" Margin="174,909,0,0" VerticalAlignment="Top" Width="24" Height="22" Foreground="#FFFF6464" Click="DoRemoveNewsPage_Click">
+						<Button.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="Red" Offset="0"/>
+								<GradientStop Color="#FF190000" Offset="1"/>
+							</LinearGradientBrush>
+						</Button.Background>
+					</Button>
+					<Label Content="Template" HorizontalAlignment="Left" Margin="212,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.816,-1.615" Height="32" Width="209" Foreground="#FFB400FF"/>
+					<TextBox x:Name="TBox_NewsTemplate" HorizontalAlignment="Left" Height="23" Margin="436,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="968" TextChanged="TBox_NewsTemplate_TextChanged">
+						<TextBox.Foreground>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FFFFB400" Offset="0"/>
+								<GradientStop Color="White" Offset="1"/>
+							</LinearGradientBrush>
+						</TextBox.Foreground>
+						<TextBox.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="Black" Offset="0"/>
+								<GradientStop Color="#FFB400FF" Offset="1"/>
+							</LinearGradientBrush>
+						</TextBox.Background>
+					</TextBox>
+					<Label Content="Pre-Board Text:" HorizontalAlignment="Left" Margin="212,47,0,0" VerticalAlignment="Top" Width="209" Foreground="#FFB400FF"/>
+					<TextBox x:Name="TBox_PreNewsText" HorizontalAlignment="Left" Height="190" Margin="436,47,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="968" AcceptsReturn="True" TextChanged="TBox_PreNewsText_TextChanged">
+						<TextBox.Foreground>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FFFFB400" Offset="0"/>
+								<GradientStop Color="White" Offset="1"/>
+							</LinearGradientBrush>
+						</TextBox.Foreground>
+						<TextBox.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="Black" Offset="0"/>
+								<GradientStop Color="#FFB400FF" Offset="1"/>
+							</LinearGradientBrush>
+						</TextBox.Background>
+					</TextBox>
+					<Separator HorizontalAlignment="Left" Height="15" Margin="212,242,0,0" VerticalAlignment="Top" Width="1192" Background="#FFA03C00"/>
+					<Label Content="Edit" HorizontalAlignment="Left" Margin="212,257,0,0" VerticalAlignment="Top" Width="209" Background="{x:Null}" Foreground="#FFB400FF"/>
+					<ComboBox x:Name="CB_NewsEdit" HorizontalAlignment="Left" Margin="436,262,0,0" VerticalAlignment="Top" Width="968" SelectionChanged="CB_NewsEdit_SelectionChanged">
+						<ComboBox.Background>
+							<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+								<GradientStop Color="#FF120019" Offset="0"/>
+								<GradientStop Color="#FFB400FF" Offset="1"/>
+							</LinearGradientBrush>
+						</ComboBox.Background>
+						<ListBoxItem/>
+					</ComboBox>
+					<Label Content="Subject" HorizontalAlignment="Left" Margin="212,288,0,0" VerticalAlignment="Top" Width="209" Foreground="#FFB400FF"/>
+					<TextBox x:Name="TBox_NewsSubject" HorizontalAlignment="Left" Height="23" Margin="436,292,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="968">
+						<TextBox.Foreground>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FFFFB401" Offset="0"/>
+								<GradientStop Color="Yellow" Offset="1"/>
+							</LinearGradientBrush>
+						</TextBox.Foreground>
+						<TextBox.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="Black" Offset="0"/>
+								<GradientStop Color="#FFB400FF" Offset="1"/>
+							</LinearGradientBrush>
+						</TextBox.Background>
+					</TextBox>
+					<Label Content="Created" HorizontalAlignment="Left" Margin="212,328,0,0" VerticalAlignment="Top" Width="209" Foreground="#FFB400FF"/>
+					<Label x:Name="Label_NewsCreated" Content="N/A" HorizontalAlignment="Left" Margin="436,328,0,0" VerticalAlignment="Top" Width="968" Foreground="#FF00B4FF"/>
+					<Label Content="Modified" HorizontalAlignment="Left" Height="27" Margin="212,359,0,0" VerticalAlignment="Top" Width="209" Foreground="#FFB400FF"/>
+					<Label x:Name="Label_NewsModified" Content="N/A" HorizontalAlignment="Left" Margin="436,359,0,0" VerticalAlignment="Top" Width="968" Foreground="#FF00B4FF" RenderTransformOrigin="0.5,2.192"/>
+					<Label Content="Content" HorizontalAlignment="Left" Margin="212,391,0,0" VerticalAlignment="Top" Width="209" Foreground="#FFB400FF"/>
+					<TextBox x:Name="TBox_NewsContent" HorizontalAlignment="Left" Height="433" Margin="436,391,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="968" AcceptsReturn="True">
+						<TextBox.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FC120019" Offset="0"/>
+								<GradientStop Color="#FFB400FF" Offset="1"/>
+							</LinearGradientBrush>
+						</TextBox.Background>
+						<TextBox.Foreground>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FFFFB400" Offset="0"/>
+								<GradientStop Color="Yellow" Offset="1"/>
+							</LinearGradientBrush>
+						</TextBox.Foreground>
+					</TextBox>
+					<Label Content="Commit" HorizontalAlignment="Left" Margin="212,851,0,0" VerticalAlignment="Top" Width="209" Foreground="#FFB400FF"/>
+					<TextBox x:Name="NewsCommit" HorizontalAlignment="Left" Height="23" Margin="436,855,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="968">
+						<TextBox.Foreground>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FFFFB400" Offset="0"/>
+								<GradientStop Color="Yellow" Offset="1"/>
+							</LinearGradientBrush>
+						</TextBox.Foreground>
+						<TextBox.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FF120019" Offset="0"/>
+								<GradientStop Color="#FFB400FF" Offset="1"/>
+							</LinearGradientBrush>
+						</TextBox.Background>
+					</TextBox>
+					<Button x:Name="SaveNewsItem" Content="Save" HorizontalAlignment="Left" Margin="212,894,0,0" VerticalAlignment="Top" Width="1192" Click="SaveNewsItem_Click">
+						<Button.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="DarkGreen"/>
+								<GradientStop Color="#FFB4FF00" Offset="1"/>
+							</LinearGradientBrush>
+						</Button.Background>
+						<Button.Foreground>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FF001900" Offset="1"/>
+								<GradientStop Color="#FFB4FF64"/>
+							</LinearGradientBrush>
+						</Button.Foreground>
+					</Button>
+					<Label Content="User:" HorizontalAlignment="Left" Margin="212,829,0,0" VerticalAlignment="Top" Width="209" Foreground="#FFB400FF"/>
+					<Image x:Name="Avatar_NewsItem" HorizontalAlignment="Left" Height="100" Margin="212,724,0,0" VerticalAlignment="Top" Width="100"/>
+					<TextBox x:Name="TBox_NewsItem_User" HorizontalAlignment="Left" Height="23" Margin="436,829,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="968" TextChanged="TBox_NewsItem_User_TextChanged">
+						<TextBox.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="Black" Offset="0"/>
+								<GradientStop Color="#FFB400FF" Offset="1"/>
+							</LinearGradientBrush>
+						</TextBox.Background>
+						<TextBox.Foreground>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="Yellow" Offset="0"/>
+								<GradientStop Color="#FFFFB400" Offset="1"/>
+							</LinearGradientBrush>
+						</TextBox.Foreground>
+					</TextBox>
+				</Grid>
+			</TabItem>
+			<TabItem x:Name="Tab_Page" Header="Page" Height="22" VerticalAlignment="Bottom" >
+				<Grid>
+					<Grid.Background>
+						<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+							<GradientStop Color="#FFFFAC00" Offset="0"/>
+							<GradientStop Color="Red" Offset="1"/>
+						</LinearGradientBrush>
+					</Grid.Background>
+					<ListBox x:Name="Pages" HorizontalAlignment="Left" Height="896" Margin="10,10,0,0" VerticalAlignment="Top" Width="265" SelectionChanged="Pages_SelectionChanged">
+						<ListBox.Foreground>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FF00B4FF" Offset="0"/>
+								<GradientStop Color="Cyan" Offset="1"/>
+							</LinearGradientBrush>
+						</ListBox.Foreground>
+						<ListBox.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="Black" Offset="0"/>
+								<GradientStop Color="#FF0000FB" Offset="1"/>
+							</LinearGradientBrush>
+						</ListBox.Background>
+					</ListBox>
+					<TextBox x:Name="NameNewPage" HorizontalAlignment="Left" Height="23" Margin="10,911,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="205">
+						<TextBox.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FFB4FFB4" Offset="0"/>
+								<GradientStop Color="#FF00B400" Offset="1"/>
+							</LinearGradientBrush>
+						</TextBox.Background>
+					</TextBox>
+					<Button x:Name="CreatePage" Content="+" HorizontalAlignment="Left" Margin="215,911,0,0" VerticalAlignment="Top" Width="27" Height="23" Foreground="#FFB4FF00" Click="CreatePage_Click">
+						<Button.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="DarkGreen" Offset="0"/>
+								<GradientStop Color="#FF64FF64" Offset="1"/>
+							</LinearGradientBrush>
+						</Button.Background>
+					</Button>
+					<Button x:Name="DeletePage" Content="-" HorizontalAlignment="Left" Margin="242,911,0,0" VerticalAlignment="Top" Width="33" RenderTransformOrigin="-0.267,0.45" Height="23" Foreground="#FFFFB464">
+						<Button.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FF640000" Offset="0"/>
+								<GradientStop Color="Red" Offset="1"/>
+							</LinearGradientBrush>
+						</Button.Background>
+					</Button>
+					<GroupBox Header="General" Margin="280,0,10,804">
+						<Grid>
+							<Label Content="Language:" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top" Width="225"/>
+							<ComboBox x:Name="PageLanguage" HorizontalAlignment="Left" Margin="240,10,0,0" VerticalAlignment="Top" Width="839" SelectionChanged="PageLanguage_SelectionChanged"/>
+							<Label Content="User:" HorizontalAlignment="Left" Margin="21,37,0,0" VerticalAlignment="Top" Width="225"/>
+							<TextBox x:Name="TBox_PageUser" HorizontalAlignment="Left" Height="23" Margin="240,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="839" TextChanged="TBox_PageUser_TextChanged">
+								<TextBox.Foreground>
+									<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+										<GradientStop Color="#FF00B4FF" Offset="0"/>
+										<GradientStop Color="Cyan" Offset="1"/>
+									</LinearGradientBrush>
+								</TextBox.Foreground>
+								<TextBox.Background>
+									<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+										<GradientStop Color="Black" Offset="0"/>
+										<GradientStop Color="Blue" Offset="1"/>
+									</LinearGradientBrush>
+								</TextBox.Background>
+							</TextBox>
+							<Image x:Name="Page_Avatar" HorizontalAlignment="Left" Height="100" Margin="1084,10,0,0" VerticalAlignment="Top" Width="100"/>
+						</Grid>
+					</GroupBox>
+					<GroupBox x:Name="PageContentGroup" Header="Content" HorizontalAlignment="Left" Height="777" Margin="282,154,0,0" VerticalAlignment="Top" Width="1194">
+						<GroupBox.BorderBrush>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="Red" Offset="0"/>
+								<GradientStop Color="#FFFFB400" Offset="1"/>
+							</LinearGradientBrush>
+						</GroupBox.BorderBrush>
+						<Grid>
+							<Label Content="Page Congent:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+							<TextBox x:Name="PageContent" Margin="191,0,10,65" AcceptsReturn="True" TextChanged="PageContent_TextChanged">
+								<TextBox.Foreground>
+									<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+										<GradientStop Color="#FF00B4FF" Offset="0"/>
+										<GradientStop Color="#FF00647D" Offset="1"/>
+									</LinearGradientBrush>
+								</TextBox.Foreground>
+								<TextBox.Background>
+									<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+										<GradientStop Color="Black" Offset="0"/>
+										<GradientStop Color="Blue" Offset="1"/>
+									</LinearGradientBrush>
+								</TextBox.Background>
+							</TextBox>
+							<Label Content="Commit message:" Margin="10,691,1004,28" RenderTransformOrigin="0.494,3.306"></Label>
+							<TextBox x:Name="TBox_PageCommit" HorizontalAlignment="Left" Height="23" Margin="191,695,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="981" Foreground="#FF00B4FF">
+								<TextBox.Background>
+									<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+										<GradientStop Color="Black" Offset="0"/>
+										<GradientStop Color="Blue" Offset="1"/>
+									</LinearGradientBrush>
+								</TextBox.Background>
+							</TextBox>
+							<Button x:Name="Button_Save_page" Content="Save" HorizontalAlignment="Left" Margin="10,727,0,0" VerticalAlignment="Top" Width="1162" Foreground="#FFB4FF00" Click="Button_Save_page_Click">
+								<Button.Background>
+									<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+										<GradientStop Color="Black" Offset="0"/>
+										<GradientStop Color="Lime" Offset="1"/>
+									</LinearGradientBrush>
+								</Button.Background>
+							</Button>
+						</Grid>
+					</GroupBox>
+				</Grid>
+			</TabItem>
+			<TabItem x:Name="Tab_Wiki" Header="Wiki">
+				<Grid>
+					<Grid.Background>
+						<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+							<GradientStop Color="Red" Offset="0"/>
+							<GradientStop Color="Blue" Offset="1"/>
+						</LinearGradientBrush>
+					</Grid.Background>
+					<ListBox x:Name="List_Wikis" Margin="0,0,1288,28" SelectionChanged="List_Wikis_SelectionChanged">
+						<ListBox.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#F300FFFF" Offset="0"/>
+								<GradientStop Color="Yellow" Offset="1"/>
+							</LinearGradientBrush>
+						</ListBox.Background>
 
-                    </ListBox>
-                    <Button x:Name="DoAddWiki" Content="+" HorizontalAlignment="Left" Margin="154,909,0,0" VerticalAlignment="Top" Width="20" RenderTransformOrigin="-2.188,3.45" Foreground="#FF64FF00" Height="22" Click="DoAddWiki_Click">
-                        <Button.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="Lime" Offset="0"/>
-                                <GradientStop Color="#FF001900" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Button.Background>
-                    </Button>
-                    <Button x:Name="DoRemoveWiki" Content="-" HorizontalAlignment="Left" Margin="174,909,0,0" VerticalAlignment="Top" Width="24" Height="22" Foreground="#FFFF6464" Click="DoRemoveWiki_Click">
-                        <Button.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="Red" Offset="0"/>
-                                <GradientStop Color="#FF190000" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Button.Background>
-                    </Button>
-                    <TextBox x:Name="AddWikiName" HorizontalAlignment="Left" Height="18" Margin="0,911,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="154">
-                        <TextBox.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="Yellow" Offset="0"/>
-                                <GradientStop Color="Cyan" Offset="1"/>
-                            </LinearGradientBrush>
-                        </TextBox.Background>
-                    </TextBox>
-                    <TabControl x:Name="WikiSubTab" HorizontalAlignment="Left" Height="907" Margin="232,22,0,0" VerticalAlignment="Top" Width="1221" RenderTransformOrigin="0.498,0.557">
-                        <TabItem Header="Profiles">
-                            <Grid>
-                                <Grid.Background>
-                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <GradientStop Color="#FFB400FF" Offset="0"/>
-                                        <GradientStop Color="#F9120019" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Grid.Background>
-                                <ListBox x:Name="List_WikiProfile" Width="200" Margin="0,0,1015,29" SelectionChanged="List_WikiProfile_SelectionChanged">
-                                    <ListBox.Foreground>
-                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                            <GradientStop Color="Yellow" Offset="0"/>
-                                            <GradientStop Color="#FFFFFFB4" Offset="1"/>
-                                        </LinearGradientBrush>
-                                    </ListBox.Foreground>
-                                    <ListBox.Background>
-                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                            <GradientStop Color="#F7001219" Offset="0"/>
-                                            <GradientStop Color="#FF00B4FF" Offset="1"/>
-                                        </LinearGradientBrush>
-                                    </ListBox.Background>
-                                </ListBox>
-                                <Button x:Name="DoAddWikiProfile" Content="+" HorizontalAlignment="Left" Margin="156,850,0,0" VerticalAlignment="Top" Width="20" RenderTransformOrigin="-2.188,3.45" Foreground="#FF64FF00" Height="22" Click="DoAddWikiProfile_Click">
-                                    <Button.Background>
-                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                            <GradientStop Color="Lime" Offset="0"/>
-                                            <GradientStop Color="#FF001900" Offset="1"/>
-                                        </LinearGradientBrush>
-                                    </Button.Background>
-                                </Button>
-                                <Button x:Name="DoRemoveWikiProfile" Content="-" HorizontalAlignment="Left" Margin="176,850,0,0" VerticalAlignment="Top" Width="24" Height="22" Foreground="#FFFF6464" Click="DoRemoveWikiProfile_Click">
-                                    <Button.Background>
-                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                            <GradientStop Color="Red" Offset="0"/>
-                                            <GradientStop Color="#FF190000" Offset="1"/>
-                                        </LinearGradientBrush>
-                                    </Button.Background>
-                                </Button>
-                                <TextBox x:Name="TBox_NewWikiProfileName" RenderTransformOrigin="0.25,5.208" Margin="0,850,1059,10">
-                                    <TextBox.Foreground>
-                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                            <GradientStop Color="#FD00B4FF" Offset="0"/>
-                                            <GradientStop Color="#FF001219" Offset="1"/>
-                                        </LinearGradientBrush>
-                                    </TextBox.Foreground>
-                                    <TextBox.Background>
-                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                            <GradientStop Color="#FF001219" Offset="0"/>
-                                            <GradientStop Color="#FF00B4FF" Offset="1"/>
-                                        </LinearGradientBrush>
-                                    </TextBox.Background>
-                                </TextBox>
-                                <ComboBox x:Name="WikiProfileSelectType" HorizontalAlignment="Left" Margin="220,850,0,0" VerticalAlignment="Top" Width="144" AutomationProperties.HelpText="Which type do you want your profile variable to have?" SelectedIndex="2" BorderBrush="#FFACACAC">
-                                    <ComboBox.Background>
-                                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                                            <GradientStop Color="#FFF0F0F0" Offset="0"/>
-                                            <GradientStop Color="#FC000000" Offset="1"/>
-                                        </LinearGradientBrush>
-                                    </ComboBox.Background>
-                                    <ListBoxItem Background="#F8190000" Content="Picture" Foreground="#FFFF0700"/>
-                                    <ListBoxItem Background="#FB001219" Content="Int" Foreground="#FF0096FF"/>
-                                    <ListBoxItem Background="#FB120019" Content="String" Foreground="#FF9600FF"/>
-                                    <ListBoxItem Background="#FB191900" Content="JavaScript" Foreground="#FFFFFF00"/>
-                                </ComboBox>
-                                <TextBox x:Name="WikiProfileVar" HorizontalAlignment="Left" Height="23" Margin="386,850,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="269" Background="Black" Foreground="#FFA000C8" FontFamily="SimSun"/>
-                                <TextBox x:Name="WikiProfileVariableShow" HorizontalAlignment="Left" Height="23" Margin="680,850,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="489" Background="Black" Foreground="#FF00B4FF"/>
-                                <Label Content="Type" HorizontalAlignment="Left" Margin="220,819,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="Yellow" Width="67"/>
-                                <Label Content="Variable" HorizontalAlignment="Left" Margin="386,819,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.237,-0.192" Foreground="Yellow"/>
-                                <Label Content="ShowName" HorizontalAlignment="Left" Margin="680,819,0,0" VerticalAlignment="Top" Width="140" Foreground="Yellow"/>
-                                <Button x:Name="AddVariable" Content="💾" HorizontalAlignment="Left" Margin="1174,821,0,0" VerticalAlignment="Top" Width="28" Height="48" RenderTransformOrigin="2.684,1.697" Click="AddVariable_Click"/>
-                                <TextBox x:Name="OverviewProfileVariables" HorizontalAlignment="Left" Height="797" Margin="220,19,0,0" TextWrapping="Wrap" Text="" IsReadOnly="True" VerticalAlignment="Top" Width="973" Background="#19000000" FontFamily="Courier New" FontSize="20">
-                                    <TextBox.Foreground>
-                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                            <GradientStop Color="#FFFFB400" Offset="0.5"/>
-                                            <GradientStop Color="#FF00B4FF" Offset="1"/>
-                                        </LinearGradientBrush>
-                                    </TextBox.Foreground>
-                                </TextBox>
-                            </Grid>
-                        </TabItem>
-                        <TabItem Header="Pages">
-                            <Grid>
-                                <Grid.Background>
-                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <GradientStop Color="Lime" Offset="0"/>
-                                        <GradientStop Color="Red" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Grid.Background>
-                                <GroupBox Header="General info" x:Name="WikiPageGeneral" HorizontalAlignment="Left" Height="146" Margin="10,10,0,0" VerticalAlignment="Top" Width="1195">
-                                    <Grid>
-                                        <Grid.Background>
-                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                                <GradientStop Color="#FFFFB400" Offset="0.5"/>
-                                                <GradientStop Color="#FF00B4FF" Offset="1"/>
-                                            </LinearGradientBrush>
-                                        </Grid.Background>
-                                        <Image x:Name="WikiPageAvatar" Width="100" Height="100" Margin="10,10,1073,10" Stretch="Fill" Cursor="No" />
-                                        <Label Content="User" HorizontalAlignment="Left" Margin="110,10,0,0" VerticalAlignment="Top"/>
-                                        <Label Content="Languge" HorizontalAlignment="Left" Margin="110,36,0,0" VerticalAlignment="Top"/>
-                                        <Label Content="WikiProfile" HorizontalAlignment="Left" Margin="110,62,0,0" VerticalAlignment="Top"/>
-                                        <Label Content="Page" HorizontalAlignment="Left" Margin="110,88,0,0" VerticalAlignment="Top"/>
-                                        <TextBox x:Name="TBox_WikiPageUser" Margin="212,10,10,88" Height="25" FontFamily="Arial Black" TextChanged="TBox_WikiPageUser_TextChanged">
-                                            <TextBox.Foreground>
-                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                                    <GradientStop Color="#FFFFB400" Offset="1"/>
-                                                    <GradientStop Color="#FF00B4FF"/>
-                                                </LinearGradientBrush>
-                                            </TextBox.Foreground>
-                                            <TextBox.Background>
-                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                                    <GradientStop Color="#FF644000" Offset="0"/>
-                                                    <GradientStop Color="#FF004064" Offset="1"/>
-                                                </LinearGradientBrush>
-                                            </TextBox.Background>
-                                        </TextBox>
-                                        <ComboBox x:Name="WikiPageLanguage" HorizontalAlignment="Left" Margin="212,40,0,0" VerticalAlignment="Top" Width="961" SelectionChanged="WikiPageLanguage_SelectionChanged"/>
-                                        <ComboBox x:Name="WikiPageProfile" HorizontalAlignment="Left" Margin="212,67,0,0" VerticalAlignment="Top" Width="961" SelectionChanged="WikiPageProfile_SelectionChanged"/>
-                                        <ComboBox x:Name="WikiPagePage" HorizontalAlignment="Left" Margin="212,93,0,0" VerticalAlignment="Top" Width="480" SelectionChanged="WikiPagePage_SelectionChanged"/>
-                                        
-                                        <TextBox x:Name="WikiPageNewPageName" Margin="726,93,30,11" Height="20" Foreground="#FF64FF00">
-                                            <TextBox.Background>
-                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                                    <GradientStop Color="DarkGreen" Offset="0"/>
-                                                    <GradientStop Color="Lime" Offset="1"/>
-                                                </LinearGradientBrush>
-                                            </TextBox.Background>
-                                        </TextBox>
-                                        <Button x:Name="DoAddWikiPage" Content="+" HorizontalAlignment="Left" Margin="1153,93,0,0" VerticalAlignment="Top" Width="20" RenderTransformOrigin="-2.188,3.45" Foreground="#FF64FF00" Height="22" Click="DoAddWikiPage_Click" >
-                                            <Button.Background>
-                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                                    <GradientStop Color="Lime" Offset="0"/>
-                                                    <GradientStop Color="#FF001900" Offset="1"/>
-                                                </LinearGradientBrush>
-                                            </Button.Background>
-                                        </Button>
-                                        <Button x:Name="DoRemoveWikiPage" Content="-" HorizontalAlignment="Left" Margin="692,93,0,0" VerticalAlignment="Top" Width="24" Height="22" Foreground="#FFFF6464">
-                                            <Button.Background>
-                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                                    <GradientStop Color="Red" Offset="0"/>
-                                                    <GradientStop Color="#FF190000" Offset="1"/>
-                                                </LinearGradientBrush>
-                                            </Button.Background>
-                                        </Button>
+					</ListBox>
+					<Button x:Name="DoAddWiki" Content="+" HorizontalAlignment="Left" Margin="154,909,0,0" VerticalAlignment="Top" Width="20" RenderTransformOrigin="-2.188,3.45" Foreground="#FF64FF00" Height="22" Click="DoAddWiki_Click">
+						<Button.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="Lime" Offset="0"/>
+								<GradientStop Color="#FF001900" Offset="1"/>
+							</LinearGradientBrush>
+						</Button.Background>
+					</Button>
+					<Button x:Name="DoRemoveWiki" Content="-" HorizontalAlignment="Left" Margin="174,909,0,0" VerticalAlignment="Top" Width="24" Height="22" Foreground="#FFFF6464" Click="DoRemoveWiki_Click">
+						<Button.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="Red" Offset="0"/>
+								<GradientStop Color="#FF190000" Offset="1"/>
+							</LinearGradientBrush>
+						</Button.Background>
+					</Button>
+					<TextBox x:Name="AddWikiName" HorizontalAlignment="Left" Height="18" Margin="0,911,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="154">
+						<TextBox.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="Yellow" Offset="0"/>
+								<GradientStop Color="Cyan" Offset="1"/>
+							</LinearGradientBrush>
+						</TextBox.Background>
+					</TextBox>
+					<TabControl x:Name="WikiSubTab" HorizontalAlignment="Left" Height="907" Margin="232,22,0,0" VerticalAlignment="Top" Width="1221" RenderTransformOrigin="0.498,0.557">
+						<TabItem Header="Profiles">
+							<Grid>
+								<Grid.Background>
+									<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+										<GradientStop Color="#FFB400FF" Offset="0"/>
+										<GradientStop Color="#F9120019" Offset="1"/>
+									</LinearGradientBrush>
+								</Grid.Background>
+								<ListBox x:Name="List_WikiProfile" Width="200" Margin="0,0,1015,29" SelectionChanged="List_WikiProfile_SelectionChanged">
+									<ListBox.Foreground>
+										<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+											<GradientStop Color="Yellow" Offset="0"/>
+											<GradientStop Color="#FFFFFFB4" Offset="1"/>
+										</LinearGradientBrush>
+									</ListBox.Foreground>
+									<ListBox.Background>
+										<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+											<GradientStop Color="#F7001219" Offset="0"/>
+											<GradientStop Color="#FF00B4FF" Offset="1"/>
+										</LinearGradientBrush>
+									</ListBox.Background>
+								</ListBox>
+								<Button x:Name="DoAddWikiProfile" Content="+" HorizontalAlignment="Left" Margin="156,850,0,0" VerticalAlignment="Top" Width="20" RenderTransformOrigin="-2.188,3.45" Foreground="#FF64FF00" Height="22" Click="DoAddWikiProfile_Click">
+									<Button.Background>
+										<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+											<GradientStop Color="Lime" Offset="0"/>
+											<GradientStop Color="#FF001900" Offset="1"/>
+										</LinearGradientBrush>
+									</Button.Background>
+								</Button>
+								<Button x:Name="DoRemoveWikiProfile" Content="-" HorizontalAlignment="Left" Margin="176,850,0,0" VerticalAlignment="Top" Width="24" Height="22" Foreground="#FFFF6464" Click="DoRemoveWikiProfile_Click">
+									<Button.Background>
+										<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+											<GradientStop Color="Red" Offset="0"/>
+											<GradientStop Color="#FF190000" Offset="1"/>
+										</LinearGradientBrush>
+									</Button.Background>
+								</Button>
+								<TextBox x:Name="TBox_NewWikiProfileName" RenderTransformOrigin="0.25,5.208" Margin="0,850,1059,10">
+									<TextBox.Foreground>
+										<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+											<GradientStop Color="#FD00B4FF" Offset="0"/>
+											<GradientStop Color="#FF001219" Offset="1"/>
+										</LinearGradientBrush>
+									</TextBox.Foreground>
+									<TextBox.Background>
+										<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+											<GradientStop Color="#FF001219" Offset="0"/>
+											<GradientStop Color="#FF00B4FF" Offset="1"/>
+										</LinearGradientBrush>
+									</TextBox.Background>
+								</TextBox>
+								<ComboBox x:Name="WikiProfileSelectType" HorizontalAlignment="Left" Margin="220,850,0,0" VerticalAlignment="Top" Width="144" AutomationProperties.HelpText="Which type do you want your profile variable to have?" SelectedIndex="2" BorderBrush="#FFACACAC">
+									<ComboBox.Background>
+										<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+											<GradientStop Color="#FFF0F0F0" Offset="0"/>
+											<GradientStop Color="#FC000000" Offset="1"/>
+										</LinearGradientBrush>
+									</ComboBox.Background>
+									<ListBoxItem Background="#F8190000" Content="Picture" Foreground="#FFFF0700"/>
+									<ListBoxItem Background="#FB001219" Content="Int" Foreground="#FF0096FF"/>
+									<ListBoxItem Background="#FB120019" Content="String" Foreground="#FF9600FF"/>
+									<ListBoxItem Background="#FB191900" Content="JavaScript" Foreground="#FFFFFF00"/>
+								</ComboBox>
+								<TextBox x:Name="WikiProfileVar" HorizontalAlignment="Left" Height="23" Margin="386,850,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="269" Background="Black" Foreground="#FFA000C8" FontFamily="SimSun"/>
+								<TextBox x:Name="WikiProfileVariableShow" HorizontalAlignment="Left" Height="23" Margin="680,850,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="489" Background="Black" Foreground="#FF00B4FF"/>
+								<Label Content="Type" HorizontalAlignment="Left" Margin="220,819,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="Yellow" Width="67"/>
+								<Label Content="Variable" HorizontalAlignment="Left" Margin="386,819,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.237,-0.192" Foreground="Yellow"/>
+								<Label Content="ShowName" HorizontalAlignment="Left" Margin="680,819,0,0" VerticalAlignment="Top" Width="140" Foreground="Yellow"/>
+								<Button x:Name="AddVariable" Content="💾" HorizontalAlignment="Left" Margin="1174,821,0,0" VerticalAlignment="Top" Width="28" Height="48" RenderTransformOrigin="2.684,1.697" Click="AddVariable_Click"/>
+								<TextBox x:Name="OverviewProfileVariables" HorizontalAlignment="Left" Height="797" Margin="220,19,0,0" TextWrapping="Wrap" Text="" IsReadOnly="True" VerticalAlignment="Top" Width="973" Background="#19000000" FontFamily="Courier New" FontSize="20">
+									<TextBox.Foreground>
+										<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+											<GradientStop Color="#FFFFB400" Offset="0.5"/>
+											<GradientStop Color="#FF00B4FF" Offset="1"/>
+										</LinearGradientBrush>
+									</TextBox.Foreground>
+								</TextBox>
+							</Grid>
+						</TabItem>
+						<TabItem Header="Pages">
+							<Grid>
+								<Grid.Background>
+									<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+										<GradientStop Color="Lime" Offset="0"/>
+										<GradientStop Color="Red" Offset="1"/>
+									</LinearGradientBrush>
+								</Grid.Background>
+								<GroupBox Header="General info" x:Name="WikiPageGeneral" HorizontalAlignment="Left" Height="146" Margin="10,10,0,0" VerticalAlignment="Top" Width="1195">
+									<Grid>
+										<Grid.Background>
+											<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+												<GradientStop Color="#FFFFB400" Offset="0.5"/>
+												<GradientStop Color="#FF00B4FF" Offset="1"/>
+											</LinearGradientBrush>
+										</Grid.Background>
+										<Image x:Name="WikiPageAvatar" Width="100" Height="100" Margin="10,10,1073,10" Stretch="Fill" Cursor="No" />
+										<Label Content="User" HorizontalAlignment="Left" Margin="110,10,0,0" VerticalAlignment="Top"/>
+										<Label Content="Languge" HorizontalAlignment="Left" Margin="110,36,0,0" VerticalAlignment="Top"/>
+										<Label Content="WikiProfile" HorizontalAlignment="Left" Margin="110,62,0,0" VerticalAlignment="Top"/>
+										<Label Content="Page" HorizontalAlignment="Left" Margin="110,88,0,0" VerticalAlignment="Top"/>
+										<TextBox x:Name="TBox_WikiPageUser" Margin="212,10,10,88" Height="25" FontFamily="Arial Black" TextChanged="TBox_WikiPageUser_TextChanged">
+											<TextBox.Foreground>
+												<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+													<GradientStop Color="#FFFFB400" Offset="1"/>
+													<GradientStop Color="#FF00B4FF"/>
+												</LinearGradientBrush>
+											</TextBox.Foreground>
+											<TextBox.Background>
+												<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+													<GradientStop Color="#FF644000" Offset="0"/>
+													<GradientStop Color="#FF004064" Offset="1"/>
+												</LinearGradientBrush>
+											</TextBox.Background>
+										</TextBox>
+										<ComboBox x:Name="WikiPageLanguage" HorizontalAlignment="Left" Margin="212,40,0,0" VerticalAlignment="Top" Width="961" SelectionChanged="WikiPageLanguage_SelectionChanged"/>
+										<ComboBox x:Name="WikiPageProfile" HorizontalAlignment="Left" Margin="212,67,0,0" VerticalAlignment="Top" Width="961" SelectionChanged="WikiPageProfile_SelectionChanged"/>
+										<ComboBox x:Name="WikiPagePage" HorizontalAlignment="Left" Margin="212,93,0,0" VerticalAlignment="Top" Width="480" SelectionChanged="WikiPagePage_SelectionChanged"/>
+										
+										<TextBox x:Name="WikiPageNewPageName" Margin="726,93,30,11" Height="20" Foreground="#FF64FF00">
+											<TextBox.Background>
+												<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+													<GradientStop Color="DarkGreen" Offset="0"/>
+													<GradientStop Color="Lime" Offset="1"/>
+												</LinearGradientBrush>
+											</TextBox.Background>
+										</TextBox>
+										<Button x:Name="DoAddWikiPage" Content="+" HorizontalAlignment="Left" Margin="1153,93,0,0" VerticalAlignment="Top" Width="20" RenderTransformOrigin="-2.188,3.45" Foreground="#FF64FF00" Height="22" Click="DoAddWikiPage_Click" >
+											<Button.Background>
+												<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+													<GradientStop Color="Lime" Offset="0"/>
+													<GradientStop Color="#FF001900" Offset="1"/>
+												</LinearGradientBrush>
+											</Button.Background>
+										</Button>
+										<Button x:Name="DoRemoveWikiPage" Content="-" HorizontalAlignment="Left" Margin="692,93,0,0" VerticalAlignment="Top" Width="24" Height="22" Foreground="#FFFF6464">
+											<Button.Background>
+												<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+													<GradientStop Color="Red" Offset="0"/>
+													<GradientStop Color="#FF190000" Offset="1"/>
+												</LinearGradientBrush>
+											</Button.Background>
+										</Button>
 
-                                    </Grid>
-                                </GroupBox>
-                                <GroupBox x:Name="WikiPageGroup" Header="Page" HorizontalAlignment="Left" Height="679" Margin="10,161,0,0" VerticalAlignment="Top" Width="1195">
-                                    <Grid>
-                                        <ComboBox x:Name="WikiPageVars" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="192" SelectionChanged="WikiPageVars_SelectionChanged"/>
-                                        <TextBox x:Name="WikiPageContentVarValue" Height="20" Margin="236,12,20,625" TextChanged="WikiPageContentVarValue_TextChanged">
-                                            <TextBox.Background>
-                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                                    <GradientStop Color="Lime" Offset="1"/>
-                                                    <GradientStop Color="Red" Offset="0"/>
-                                                </LinearGradientBrush>
-                                            </TextBox.Background>
-                                        </TextBox>
-                                        <TextBox x:Name="WikiPageContentMainContent" FontFamily="Courier New" FontSize="20" Margin="10,37,20,10" Foreground="#FF00B4FF" AcceptsReturn="True" TextChanged="WikiPageContentMainContent_TextChanged">
-                                            <TextBox.Background>
-                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                                    <GradientStop Color="#F9004061" Offset="0"/>
-                                                    <GradientStop Color="#FF000019" Offset="1"/>
-                                                </LinearGradientBrush>
-                                            </TextBox.Background>
-                                        </TextBox>
-                                    </Grid>
-                                </GroupBox>
-                                <Button x:Name="SaveWikiPage" Content="Save Page" Margin="0,840,0,0" Foreground="#FF001906" Click="SaveWikiPage_Click">
-                                    <Button.Background>
-                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                            <GradientStop Color="Yellow" Offset="0"/>
-                                            <GradientStop Color="Lime" Offset="1"/>
-                                        </LinearGradientBrush>
-                                    </Button.Background>
-                                </Button>
-                            </Grid>
-                        </TabItem>
-                        <TabItem Header="Generation"></TabItem>
-                    </TabControl>
+									</Grid>
+								</GroupBox>
+								<GroupBox x:Name="WikiPageGroup" Header="Page" HorizontalAlignment="Left" Height="679" Margin="10,161,0,0" VerticalAlignment="Top" Width="1195">
+									<Grid>
+										<ComboBox x:Name="WikiPageVars" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="192" SelectionChanged="WikiPageVars_SelectionChanged"/>
+										<TextBox x:Name="WikiPageContentVarValue" Height="20" Margin="236,12,20,625" TextChanged="WikiPageContentVarValue_TextChanged">
+											<TextBox.Background>
+												<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+													<GradientStop Color="Lime" Offset="1"/>
+													<GradientStop Color="Red" Offset="0"/>
+												</LinearGradientBrush>
+											</TextBox.Background>
+										</TextBox>
+										<TextBox x:Name="WikiPageContentMainContent" FontFamily="Courier New" FontSize="20" Margin="10,37,20,10" Foreground="#FF00B4FF" AcceptsReturn="True" TextChanged="WikiPageContentMainContent_TextChanged">
+											<TextBox.Background>
+												<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+													<GradientStop Color="#F9004061" Offset="0"/>
+													<GradientStop Color="#FF000019" Offset="1"/>
+												</LinearGradientBrush>
+											</TextBox.Background>
+										</TextBox>
+									</Grid>
+								</GroupBox>
+								<Button x:Name="SaveWikiPage" Content="Save Page" Margin="0,840,0,0" Foreground="#FF001906" Click="SaveWikiPage_Click">
+									<Button.Background>
+										<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+											<GradientStop Color="Yellow" Offset="0"/>
+											<GradientStop Color="Lime" Offset="1"/>
+										</LinearGradientBrush>
+									</Button.Background>
+								</Button>
+							</Grid>
+						</TabItem>
+						<TabItem Header="Generation"></TabItem>
+					</TabControl>
 
-                </Grid>
-            </TabItem>
-            <TabItem Header="Scripted Pages"></TabItem>
-            <TabItem Header="Git">
-                <Grid>
-                    <TextBox x:Name="GitOutput" Foreground="#FFFFB400" Text="No Git requests done yet!" FontFamily="Courier New" FontSize="16" Margin="0,0,0,50" IsReadOnly="True">
-                        <TextBox.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FF321900" Offset="0"/>
-                                <GradientStop Color="#FF191200" Offset="1"/>
-                            </LinearGradientBrush>
-                        </TextBox.Background>
-                    </TextBox>
-                    <Button x:Name="GitPush" Content="Push" HorizontalAlignment="Left" Margin="10,896,0,0" VerticalAlignment="Top" Width="1466" Click="GitPush_Click" Height="45">
-                        <Button.Foreground>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="Lime" Offset="0"/>
-                                <GradientStop Color="#FF00C800" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Button.Foreground>
-                        <Button.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="Black" Offset="0"/>
-                                <GradientStop Color="#FF00C800" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Button.Background>
-                    </Button>
-                </Grid>
-            </TabItem>
-        </TabControl>
+				</Grid>
+			</TabItem>
+			<TabItem Header="Scripted Pages"></TabItem>
+			<TabItem Header="Git">
+				<Grid>
+					<TextBox x:Name="GitOutput" Foreground="#FFFFB400" Text="No Git requests done yet!" FontFamily="Courier New" FontSize="16" Margin="0,0,0,50" IsReadOnly="True">
+						<TextBox.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="#FF321900" Offset="0"/>
+								<GradientStop Color="#FF191200" Offset="1"/>
+							</LinearGradientBrush>
+						</TextBox.Background>
+					</TextBox>
+					<Button x:Name="GitPush" Content="Push" HorizontalAlignment="Left" Margin="10,896,0,0" VerticalAlignment="Top" Width="1466" Click="GitPush_Click" Height="45">
+						<Button.Foreground>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="Lime" Offset="0"/>
+								<GradientStop Color="#FF00C800" Offset="1"/>
+							</LinearGradientBrush>
+						</Button.Foreground>
+						<Button.Background>
+							<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+								<GradientStop Color="Black" Offset="0"/>
+								<GradientStop Color="#FF00C800" Offset="1"/>
+							</LinearGradientBrush>
+						</Button.Background>
+					</Button>
+				</Grid>
+			</TabItem>
+		</TabControl>
 
-    </Grid>
+	</Grid>
 </Window>

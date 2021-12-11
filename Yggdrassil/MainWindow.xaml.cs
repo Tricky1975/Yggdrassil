@@ -4,7 +4,7 @@
 // 
 // 
 // 
-// (c) Jeroen P. Broks, 
+// (c) Jeroen P. Broks, 2019
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 19.06.25
+// Version: 21.12.11
 // EndLic
 
 using System;
@@ -60,7 +60,7 @@ namespace Yggdrassil {
 		public MainWindow() {
 			Debug.WriteLine("Loading main window");
 			MKL.Lic    ("Yggdrassil - MainWindow.xaml.cs","GNU General Public License 3");
-			MKL.Version("Yggdrassil - MainWindow.xaml.cs","19.06.25");
+			MKL.Version("Yggdrassil - MainWindow.xaml.cs","21.12.11");
 			InitializeComponent();
 			WindowStartupLocation = WindowStartupLocation.CenterScreen;
 			Title = $"Yggdrassil version {MKL.Newest}";
@@ -761,19 +761,3 @@ namespace Yggdrassil {
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -4,7 +4,7 @@
 // 
 // 
 // 
-// (c) Jeroen P. Broks, 
+// (c) Jeroen P. Broks, 2019
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 19.06.23
+// Version: 21.12.11
 // EndLic
 
 
@@ -41,7 +41,7 @@ namespace Yggdrassil.Needed.XSource {
 	static class Fout {
 		static Fout() {
 			MKL.Lic    ("Yggdrassil - Fout.cs","GNU General Public License 3");
-			MKL.Version("Yggdrassil - Fout.cs","19.06.23");
+			MKL.Version("Yggdrassil - Fout.cs","21.12.11");
 		}
 		public static void Crash(string foutmelding) {
 			MessageBox.Show($"FATAL ERROR!\n\n{foutmelding}", "That doesn't work!", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -93,7 +93,3 @@ namespace Yggdrassil.Needed.XSource {
 		}
 	}
 }
-
-
-
-

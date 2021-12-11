@@ -4,7 +4,7 @@
 // 
 // 
 // 
-// (c) Jeroen P. Broks, 
+// (c) Jeroen P. Broks, 2019
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 19.06.20
+// Version: 21.12.11
 // EndLic
 
 
@@ -108,12 +108,8 @@ namespace Yggdrassil.Needed.XSource {
             QuickStream.SaveString($"{Project.Current.OutputDir}/PageLangsSelector.js", LanguageSelectJS);
 
 
-            Git.AddAndCommit(qstr.OrText(MW.TBox_PageCommit.Text.Trim(), $"Update of page {id}"),$"*/Page_*_{id}.html","*/PageLangsSelector.js",$"*/PageLangs_{id}.js");
+            Git.AddAndCommit(qstr.OrText(MW.TBox_PageCommit.Text.Trim(), $"Update of page {id}"),$"./Page_*_{id}.html","./PageLangsSelector.js",$"./PageLangs_{id}.js");
             MW.TBox_PageCommit.Text = "";
         }
     }
 }
-
-
-
-
