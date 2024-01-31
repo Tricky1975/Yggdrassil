@@ -4,7 +4,7 @@
 // 
 // 
 // 
-// (c) Jeroen P. Broks, 2019
+// (c) Jeroen P. Broks, 2019, 2024
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -23,14 +23,6 @@
 // 
 // Version: 24.01.31
 // EndLic
-
-
-
-
-
-
-
-
 
 using System;
 using System.Collections.Generic;
