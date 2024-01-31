@@ -4,7 +4,7 @@
 // 
 // 
 // 
-// (c) Jeroen P. Broks, 2019
+// (c) Jeroen P. Broks, 2019, 2024
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 21.12.11
+// Version: 24.01.31
 // EndLic
 
 using System;
@@ -60,7 +60,7 @@ namespace Yggdrassil {
 		public MainWindow() {
 			Debug.WriteLine("Loading main window");
 			MKL.Lic    ("Yggdrassil - MainWindow.xaml.cs","GNU General Public License 3");
-			MKL.Version("Yggdrassil - MainWindow.xaml.cs","21.12.11");
+			MKL.Version("Yggdrassil - MainWindow.xaml.cs","24.01.31");
 			InitializeComponent();
 			WindowStartupLocation = WindowStartupLocation.CenterScreen;
 			Title = $"Yggdrassil version {MKL.Newest}";
@@ -220,6 +220,7 @@ namespace Yggdrassil {
 			TBox_Users.Text = Project.Current.Users;
 			TBox_NewsItem_User.Text = Project.Current.LastUser;
 			TBox_PageUser.Text = Project.Current.LastUser;
+			TBox_WikiPageUser.Text = Project.Current.LastUser;
 			RefreshNewsBoards();
 			RefreshPages();
 			RefreshLanguages();
@@ -625,9 +626,11 @@ namespace Yggdrassil {
 		}
 
 		private void TBox_WikiPageUser_TextChanged(object sender, TextChangedEventArgs e) {
+			//var W = Project.Current.GetWiki(CurrentWiki);
 			UpdateAvatars(TBox_WikiPageUser.Text);
 			SyncUsers(TBox_WikiPageUser);
 			EnableElements();
+			//W.SetVar("Wiki.User", TBox_WikiPageUser.Text);
 		}
 
 		void RefreshWikiPages() {
@@ -665,6 +668,7 @@ namespace Yggdrassil {
 
 		private void WikiPageLanguage_SelectionChanged(object sender, SelectionChangedEventArgs e) {
 			EnableElements();
+			if (WikiPageProfile.SelectedItem != null) RefreshPageVars();
 		}
 
 		private void WikiPageProfile_SelectionChanged(object sender, SelectionChangedEventArgs e) {
@@ -674,6 +678,7 @@ namespace Yggdrassil {
 
 		private void WikiPagePage_SelectionChanged(object sender, SelectionChangedEventArgs e) {
 			EnableElements();
+			if (WikiPageProfile.SelectedItem != null) RefreshPageVars();
 		}
 
 		void RefreshPageVars() {
@@ -706,17 +711,43 @@ namespace Yggdrassil {
 				}
 			}
 			//OverviewProfileVariables.Text = r.ToString();
+			RefreshMainContent();
+		}
 
+		static bool DontChangeMainContent = false;
+
+		private void RefreshMainContent() {
+			Debug.WriteLine("Refresh Main Content!");
+			if (WikiPageProfile.SelectedItem==null) { Debug.WriteLine("Profile is null so no text update yet!"); return; }
+			if (WikiPagePage.SelectedItem==null) { Debug.WriteLine("Page is null so no text update yet!"); return; }
+			bool odcmc = DontChangeMainContent;
+			try {
+				DontChangeMainContent = true;
+				var _current = Project.Current;
+				var _wiki = _current.GetWiki(CurrentWiki);
+				var _profile = WikiPageProfile.SelectedItem.ToString();
+				var _wikipage = _wiki.GetWikiPage(WikiPagePage.SelectedItem.ToString());
+				if (!(Fout.NFAssert(_wikipage, "INTERNAL ERROR!\nWiki page not retrieved from combobox!") && Fout.NFAssert(WikiPageContentMainContent, "XAML ERROR!\n\nPlease report!"))) return;
+				_wikipage.Lang = WikiPageLanguage.SelectedItem.ToString();
+				_wikipage.Profile = _profile;
+				WikiPageContentMainContent.Text = _wikipage.Content;
+			} catch (Exception e) {
+				Fout.Error($"INTERNAL ISSUES!\n\n{e.Message}\n\n{e.StackTrace}\n\nPlease report!");
+			} finally {
+				DontChangeMainContent = odcmc;
+			}
 		}
 
 		private void WikiPageContentMainContent_TextChanged(object sender, TextChangedEventArgs stuffIdontNeed) {
-			try {
+			if (DontChangeMainContent) return;
+			try {				
 				var _current = Project.Current;
 				var _wiki = _current.GetWiki(CurrentWiki);
 				var _profile = WikiPageProfile.SelectedItem.ToString();
 				var _wikipage = _wiki.GetWikiPage(WikiPagePage.SelectedItem.ToString());
 				if (!(Fout.NFAssert(_wikipage, "INTERNAL ERROR!\nWiki page not retrieved from combobox!") && Fout.NFAssert(WikiPageContentMainContent,"XAML ERROR!\n\nPlease report!"))) return;
 				_wikipage.Lang = WikiPageLanguage.SelectedItem.ToString();
+				_wikipage.Profile = _profile;
 				_wikipage.Content = WikiPageContentMainContent.Text;
 			} catch (Exception e) {
 				Fout.Error($"INTERNAL ISSUES!\n\n{e.Message}\n\n{e.StackTrace}\n\nPlease report!");
@@ -742,7 +773,10 @@ namespace Yggdrassil {
 			var _profile = WikiPageProfile.SelectedItem.ToString();
 			var _wikipage = _wiki.GetWikiPage(WikiPagePage.SelectedItem.ToString());
 			_wikipage.Lang = WikiPageLanguage.SelectedItem.ToString();
-			WikiPageContentVarValue.Text = _wikipage.Get(_profile,WikiPageVars.SelectedItem.ToString());
+			if (WikiPageVars.SelectedItem != null)
+				WikiPageContentVarValue.Text = _wikipage.Get(_profile, WikiPageVars.SelectedItem.ToString());
+			else
+				WikiPageContentVarValue.Text = "";
 			AutoAdept = pushed; 
 		}
 
