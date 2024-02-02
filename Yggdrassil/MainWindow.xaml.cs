@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.01.31
+// Version: 24.02.01
 // EndLic
 
 using System;
@@ -60,7 +60,7 @@ namespace Yggdrassil {
 		public MainWindow() {
 			Debug.WriteLine("Loading main window");
 			MKL.Lic    ("Yggdrassil - MainWindow.xaml.cs","GNU General Public License 3");
-			MKL.Version("Yggdrassil - MainWindow.xaml.cs","24.01.31");
+			MKL.Version("Yggdrassil - MainWindow.xaml.cs","24.02.01");
 			InitializeComponent();
 			WindowStartupLocation = WindowStartupLocation.CenterScreen;
 			Title = $"Yggdrassil version {MKL.Newest}";
@@ -792,6 +792,22 @@ namespace Yggdrassil {
 				else
 					_wikipage.Set(_profile, WikiPageVars.SelectedItem.ToString(), WikiPageContentVarValue.Text);
 			}
+		}
+
+		private void Wiki_Commit_Act(object sender, RoutedEventArgs e) {
+			if (Wiki_Git_Push == null) return;
+			Wiki_Git_Push.IsEnabled = Wiki_Git_Commit.IsChecked == true;
+			if (Wiki_Git_Commit.IsChecked == true) Wiki_Git_Commit.Content = "Yes"; else Wiki_Git_Commit.Content = "No";
+		}
+
+		private void Wiki_Push_Act(object sender, RoutedEventArgs e) {
+			if (Wiki_Git_Push.IsChecked == true) Wiki_Git_Push.Content = "Yes"; else Wiki_Git_Push.Content = "No";
+		}
+
+		private void Wiki_Button_Generate_Pressed(object sender, RoutedEventArgs e) {
+			var _current = Project.Current;
+			var _wiki = _current.GetWiki(CurrentWiki);
+			_wiki.Export();
 		}
 	}
 }

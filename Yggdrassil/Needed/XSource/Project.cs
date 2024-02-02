@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.01.31
+// Version: 24.02.01
 // EndLic
 
 using System;
@@ -130,6 +130,20 @@ namespace Yggdrassil.Needed.XSource {
 				k = k.Replace(";", "\n");
 				Global.StringToList("Translations", k);
 				SaveGlobal();
+			}
+		}
+
+		public SortedDictionary<string,string> TransDict {
+			get {
+				var ret = new SortedDictionary<string,string>();
+				foreach(var t in Global.List("Translations")) {
+					var p=t.IndexOf("=");
+					if (p == -1) continue; // Skip faulty crap
+					var c=t.Substring(0,p);
+					var n=t.Substring(p+1);
+					ret.Add(c,n);
+				}
+				return ret;
 			}
 		}
 

@@ -4,7 +4,7 @@
 // 
 // 
 // 
-// (c) Jeroen P. Broks, 2019
+// (c) Jeroen P. Broks, 2019, 2024
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 21.12.11
+// Version: 24.02.01
 // EndLic
 
 
@@ -41,7 +41,7 @@ namespace Yggdrassil.Needed.XSource {
 	static class Fout {
 		static Fout() {
 			MKL.Lic    ("Yggdrassil - Fout.cs","GNU General Public License 3");
-			MKL.Version("Yggdrassil - Fout.cs","21.12.11");
+			MKL.Version("Yggdrassil - Fout.cs","24.02.01");
 		}
 		public static void Crash(string foutmelding) {
 			MessageBox.Show($"FATAL ERROR!\n\n{foutmelding}", "That doesn't work!", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -84,7 +84,7 @@ namespace Yggdrassil.Needed.XSource {
 		}
 
 		public static bool NFAssert(int voorwaarde, string foutmelding, bool debugonly = false) => NFAssert(voorwaarde != 0, foutmelding, debugonly);
-		public static bool NFAssert(string voorwaarde, string foutmelding, bool debugonly = false) { try { return NFAssert(voorwaarde.Length, foutmelding,debugonly); } catch { Error(foutmelding); return false; } }
+		public static bool NFAssert(string voorwaarde, string foutmelding, bool debugonly = false) { try { return NFAssert(voorwaarde!=null && voorwaarde.Length>0, foutmelding,debugonly); } catch { Error(foutmelding); return false; } }
 		public static bool NFAssert(object voorwaarde, string foutmelding, bool debugonly = false) => NFAssert(voorwaarde != null, foutmelding, debugonly);
 
 		public static bool Yes(string Question,string Caption="") {
