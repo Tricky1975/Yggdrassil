@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 24.02.02
+// Version: 24.09.09
 // EndLic
 
 
@@ -35,6 +35,7 @@ using System.Diagnostics;
 using System.Text;
 using TrickyUnits;
 using System.Windows.Ink;
+using System.Linq;
 
 namespace Yggdrassil.Needed.XSource {
 
@@ -47,8 +48,13 @@ namespace Yggdrassil.Needed.XSource {
 		readonly string Name;
 		string _Lang="";
 		public string Lang { set { _Lang = value; }
-			get {
-				Fout.NFAssert(_Lang, "Request to language done, while this has not yet been set!");
+			get {				
+				Fout.NFAssert(_Lang, $"Request to language done, while this has not yet been set! ({Name})");
+#if DEBUG
+				/*
+				try { throw new Exception("Langauge Fuck"); } catch(Exception e) { Debug.WriteLine(e.StackTrace); }
+				//*/
+#endif
 				//Debug.Assert(_Lang != null && Lang.Length>0,"Lang failure (DEBUG)");
 				return _Lang;
 			}
@@ -59,6 +65,12 @@ namespace Yggdrassil.Needed.XSource {
 		public string Profile { get => Data.C($"{Lang}.PROFILE"); set { Data.D($"{Lang}.Profile", value); Modified(); } }
 		public void Set(string Profile, string Key, string Value) => Data.D($"VARIABLE.{Lang}.{Profile}.{Key}", Value);
 		public string Get(string Profile, string Key) => Data.C($"VARIABLE.{Lang}.{Profile}.{Key}");
+
+		public List<string> Profiles {
+			get {
+				return Data.List("Profiles");
+			}
+		}
 		public string Content {
 			get {
 				var ret = new StringBuilder(1);
@@ -120,7 +132,8 @@ namespace Yggdrassil.Needed.XSource {
 				} else {
 					Data.List(ContentTag).Add("WL: << White Line >>");
 				}
-			Modified();
+				Modified();
+				if (value != "" && (!Profiles.Contains(Profile))) { Profiles.Add(Profile); Profiles.Sort(); Debug.WriteLine($"Added profile {Profile}"); }
 			}
 		}
 
@@ -157,7 +170,7 @@ namespace Yggdrassil.Needed.XSource {
 				Modified();
 				Save();
 			}
-			Debug.WriteLine($"Created wiki page: {PageName}");
+			Debug.WriteLine($"Created wiki page: {PageName} (C# object)");
 			Fout.Assert(Data,$"Data could not be properly set up on page {PageName}!");
 		}
 	}
@@ -227,7 +240,7 @@ namespace Yggdrassil.Needed.XSource {
 		public void Export() {
 			Debug.WriteLine("Exporting Wiki");
 			try {
-				var Template = QuickStream.LoadString(Parent.DefaultTemplate);
+				var Template = QuickStream.LoadString($"{Parent.TemplateDir}/{Parent.DefaultTemplate}");
 				//var items = WikiPagePage.Items;
 				var W = this; // Project.Current.GetWiki(CurrentWiki);
 				var WPages = FileList.GetDir(W.WikiPageDir);
@@ -236,70 +249,78 @@ namespace Yggdrassil.Needed.XSource {
 				var EntriesByProfile = new SortedDictionary<string,SortedDictionary<string,string>>();
 				foreach (string p in WPages) {
 					if (qstr.ExtractExt(p).ToUpper() == "GINI") {
+						Debug.WriteLine($"Exporting {p}");
 						foreach (var L in Langs) {
-							var HasContent = false;
+							Debug.WriteLine($"Exporting {p} - Lang {L.Key}");
 							var Page = qstr.Left(p, p.Length - 5);
 							var PData = GetWikiPage(Page);
-							var OPL = ""; if (PData.LangSet) OPL = PData.Lang; PData.Lang = L.Key;
-							var XPage = new StringBuilder($"<!--- Wiki: {WikiName}; Page: {Page}; Langauge {L.Value} -->\n\n");
-							var PVars = GetProfile(PData); //Profiles[PData.Profile];							
-							if (!EntriesByProfile.ContainsKey(PData.Profile)) { EntriesByProfile[PData.Profile] = new SortedDictionary<string, string>(); }
-							EntriesByProfile[PData.Profile][Page] = Page;
-							XPage.Append($"<div style=\"float:right;\" width=\"20%\"><table><tr><td colspan=2>{Page}</td></tr>\n");
-							foreach (var D in PVars) {
-								var DP = D.Value.Split(':');
-								var DType = DP[0].ToLower();
-								var DName = DP[1];
-								var DValue = PData.Get(PData.Profile, D.Key);
-								//Debug.WriteLine($"Checking profile var {D.Key} => {DValue}"); 
-								if (DValue != "") {
-									switch (DType) {
-										case "sys":
-											switch (D.Key.ToLower()) {
-												case "screenname":
-												case "screen_name":
-													EntriesByProfile[PData.Profile][Page] = DValue;
-													break;
-												default:
-													Debug.WriteLine($"Unknown sys name! {DName}");
-													break;
-											}
-											break;
-										case "picture":
-											HasContent = true;
-											XPage.Append($"\t<tr valign=top><td style=\"text-align:center\" colspan=2><img src=\"{DValue}\" Alt=\"Picture: {DName}\" /></td></tr>\n");
-											break;
-										case "string":											
-											HasContent = true;
-											XPage.Append($"\t<tr valign=top><td style=\"text-align:right\">{DName}:</td><td>{DValue}</td></tr>\n");
-											break;
-										default:
-											Debug.WriteLine($"Unknown profile var type {DType} for var {D.Key} (ignored)");
-											break;
+							var OPL = ""; if (PData.LangSet) OPL = PData.Lang; PData.Lang = L.Key; Debug.WriteLine($"Lang set to: {PData.Lang}");
+							if (PData.Profiles.Count == 0 && PData.Profile!="") { PData.Profiles.Add(PData.Profile); }
+							Debug.WriteLine("Profile rollout");
+							foreach (var _profile in PData.Profiles) {
+								Debug.WriteLine($"Exporting {p} - Lang {L.Key} - Profile: {_profile}!");
+								var HasContent = false;
+								var XPage = new StringBuilder($"<!--- Wiki: {WikiName}; Page: {Page}; Langauge {L.Value} -->\n\n");
+								var PVars = GetProfile(PData); //Profiles[_profile];							
+								if (!EntriesByProfile.ContainsKey(_profile)) { EntriesByProfile[_profile] = new SortedDictionary<string, string>(); }
+								EntriesByProfile[_profile][Page] = Page;
+								XPage.Append($"<div style=\"float:right;\" width=\"20%\"><table><tr><td colspan=2>{Page}</td></tr>\n");
+								foreach (var D in PVars) {
+									var DP = D.Value.Split(':');
+									var DType = DP[0].ToLower();
+									var DName = DP[1];
+									var DValue = PData.Get(_profile, D.Key);
+									//Debug.WriteLine($"Checking profile var {D.Key} => {DValue}"); 
+									if (DValue != "") {
+										switch (DType) {
+											case "sys":
+												switch (D.Key.ToLower()) {
+													case "screenname":
+													case "screen_name":
+														EntriesByProfile[_profile][Page] = DValue;
+														break;
+													default:
+														Debug.WriteLine($"Unknown sys name! {DName}");
+														break;
+												}
+												break;
+											case "picture":
+												HasContent = true;
+												XPage.Append($"\t<tr valign=top><td style=\"text-align:center\" colspan=2><img src=\"{DValue}\" Alt=\"Picture: {DName}\" /></td></tr>\n");
+												break;
+											case "string":
+												HasContent = true;
+												XPage.Append($"\t<tr valign=top><td style=\"text-align:right\">{DName}:</td><td>{DValue}</td></tr>\n");
+												break;
+											default:
+												Debug.WriteLine($"Unknown profile var type {DType} for var {D.Key} (ignored)");
+												break;
+										}
 									}
 								}
-							}
-							HasContent= HasContent|| PData.Content.Trim().Length > 0;
-							XPage.Append("</table></div>\n\n");
-							XPage.Append($"<h1>{EntriesByProfile[PData.Profile][Page]}</h1>\n\n");
-							XPage.Append($"{PData.Content}\n\n");
-							XPage.Append($"<br /><br /><br /><br /><small>Last updated on {PData.LastModified} by {PData.LastModifiedBy}</small>");
-							XPage.Append($"<br/><a href=\"WikiIndex_{WikiName}_{PData.Lang}.html\">Index</a>");
-							Debug.WriteLine($"Wiki {WikiName}; Page {Page}\n\n{XPage}; Language {L.Value} ({L.Key}); Has content {HasContent}\n");
-							if ( HasContent ) {
-								var OFile = $"{Parent.OutputDir}/Wiki_{PData.Lang}_{PData.Profile}_{qstr.StripExt(p)}.html";
-								var ODir = qstr.ExtractDir(OFile);
-								if (!Directory.Exists(ODir)) {
-									Debug.WriteLine($"Creating dir: {ODir}");
-									Directory.CreateDirectory(ODir); 
+								HasContent = HasContent || PData.Content.Trim().Length > 0;
+								XPage.Append("</table></div>\n\n");
+								XPage.Append($"<h1>{EntriesByProfile[_profile][Page]}</h1>\n\n");
+								XPage.Append($"{PData.Content}\n\n");
+								XPage.Append($"<br /><br /><br /><br /><small>Last updated on {PData.LastModified} by {PData.LastModifiedBy}</small>");
+								XPage.Append($"<br/><a href=\"WikiIndex_{WikiName}_{PData.Lang}.html\">Index</a>");
+								Debug.WriteLine($"Wiki {WikiName}; Page {Page}\n\n{XPage}; Language {L.Value} ({L.Key}); Has content {HasContent}\n");
+								if (HasContent) {
+									var OFile = $"{Parent.OutputDir}/Wiki_{PData.Lang}_{_profile}_{qstr.StripExt(p)}.html";
+									var ODir = qstr.ExtractDir(OFile);
+									if (!Directory.Exists(ODir)) {
+										Debug.WriteLine($"Creating dir: {ODir}");
+										Directory.CreateDirectory(ODir);
+									}
+									Debug.WriteLine($"Saving: {OFile}");
+									QuickStream.SaveString(OFile, Template.Replace("[[CONTENT]]", XPage.ToString()));
 								}
-								Debug.WriteLine($"Saving: {OFile}");
-								QuickStream.SaveString(OFile, Template.Replace("[[CONTENT]]", XPage.ToString()));
+								if (OPL != "") PData.Lang = OPL;
 							}
-							if (OPL!="") PData.Lang = OPL;
 						}
 					}
 				}
+				Debug.WriteLine("Lang workout");
 				foreach (var L in Langs) {
 					var Wiki_Index = new StringBuilder("<table><caption>Wiki index</caption>\n");
 					foreach (var WI_Profile in EntriesByProfile) {
