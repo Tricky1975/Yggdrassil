@@ -36,6 +36,7 @@ using System.Text;
 using TrickyUnits;
 using System.Windows.Ink;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace Yggdrassil.Needed.XSource {
 
@@ -186,8 +187,9 @@ namespace Yggdrassil.Needed.XSource {
 		public List<string> ProfileListList => Data.List("Profiles");
 		public string WikiFile => $"{Parent.WikiMainDir}/{WikiName}.Profiles.GINI";
 		public string WikiPageDir => $"{Parent.WikiMainDir}/{WikiName}.Pages";
+        public string WikiScriptDir => $"{Parent.WikiMainDir}/{WikiName}.Scripts";
 
-		public Wiki(Project Ouwe, string wikiName) {
+        public Wiki(Project Ouwe, string wikiName) {
 			Parent = Ouwe;
 			Parent.Wikis[wikiName] = this;
 			WikiName = wikiName;
@@ -261,6 +263,7 @@ namespace Yggdrassil.Needed.XSource {
 								Debug.WriteLine($"Exporting {p} - Lang {L.Key} - Profile: {_profile}!");
 								var HasContent = false;
 								var XPage = new StringBuilder($"<!--- Wiki: {WikiName}; Page: {Page}; Langauge {L.Value} -->\n\n");
+								var XPageScript = new StringBuilder("");
 								var PVars = GetProfile(PData); //Profiles[_profile];							
 								if (!EntriesByProfile.ContainsKey(_profile)) { EntriesByProfile[_profile] = new SortedDictionary<string, string>(); }
 								EntriesByProfile[_profile][Page] = Page;
@@ -280,7 +283,7 @@ namespace Yggdrassil.Needed.XSource {
 														EntriesByProfile[_profile][Page] = DValue;
 														break;
 													default:
-														Debug.WriteLine($"Unknown sys name! {DName}");
+														Debug.WriteLine($"Unknown sys name!  {D.Key}/{DName}");
 														break;
 												}
 												break;
@@ -290,7 +293,23 @@ namespace Yggdrassil.Needed.XSource {
 												break;
 											case "string":
 												HasContent = true;
-												XPage.Append($"\t<tr valign=top><td style=\"text-align:right\">{DName}:</td><td>{DValue}</td></tr>\n");
+												XPage.Append($"\t<tr valign=top><td style=\"text-align:right\">{DName}:</td><td><span id=\"WIKI_FID_{D.Key}\">{DValue}</span></td></tr>\n");
+												break;
+											case "javascript": {
+													var js = $"WIKISCRIPT_{L.Key}_{_profile}_{D.Key}.js";
+													var fjs = $"{W.WikiScriptDir}/{js}";													
+													if (!File.Exists(fjs)) {
+                                                        Debug.WriteLine(fjs);
+                                                        Confirm.Annoy($"Requested JavaScript not found\n\n{fjs}\nPage: {Page} ({L.Key})\nField: {D.Key}\nValue:{DValue}"); ;
+														XPage.Append($"<!-- Missing script: {js} -->\n");
+													} else {
+														Debug.WriteLine($"Script: {js}");
+														var scr = QuickStream.LoadString(fjs);
+														scr = $"let WIKI_{D.Key} = \"{DValue}\";\n{scr}";
+														//XPage.Append($"<script language=\"JavaScript\">\n{scr}\n</script>\n");
+														XPageScript.Append($"// {D.Key}\n\n{scr}");
+													}
+												}
 												break;
 											default:
 												Debug.WriteLine($"Unknown profile var type {DType} for var {D.Key} (ignored)");
@@ -303,7 +322,8 @@ namespace Yggdrassil.Needed.XSource {
 								XPage.Append($"<h1>{EntriesByProfile[_profile][Page]}</h1>\n\n");
 								XPage.Append($"{PData.Content}\n\n");
 								XPage.Append($"<br /><br /><br /><br /><small>Last updated on {PData.LastModified} by {PData.LastModifiedBy}</small>");
-								XPage.Append($"<br/><a href=\"WikiIndex_{WikiName}_{PData.Lang}.html\">Index</a>");
+								XPage.Append($"<br/><a href=\"WikiIndex_{WikiName}_{PData.Lang}.html\">Index</a>\n");
+								if (XPageScript.Length>0) XPage.Append($"<script language=\"JavaScript\">\n{XPageScript}\n</script>\n");
 								Debug.WriteLine($"Wiki {WikiName}; Page {Page}\n\n{XPage}; Language {L.Value} ({L.Key}); Has content {HasContent}\n");
 								if (HasContent) {
 									var OFile = $"{Parent.OutputDir}/Wiki_{PData.Lang}_{_profile}_{qstr.StripExt(p)}.html";
